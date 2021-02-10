@@ -67,7 +67,7 @@ export const ContainerText = styled.div`
 
   width: 100%;
   height: 600px;
-  padding: 13% 5%;
+  padding: 13% 8%;
 
   color: #fff;
   font-style: normal;
@@ -75,19 +75,20 @@ export const ContainerText = styled.div`
 
 export const ContainerTextTitle = styled.h1`
   position: relative;
-  font-size: 30px;
+  font-size: 38px;
   margin: 0;
   margin-right: auto;
-  
+
   z-index: 2;
 
-  min-width: 260px;
+  min-width: 220px;
   width: 60%;
 `;
 
 export const ContainerTextParagraph = styled.p`
+
   margin-top: 48px;
-  font-size: 12px;
+  font-size: 20px;
 
   z-index: 2;
 

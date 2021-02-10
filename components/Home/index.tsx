@@ -30,7 +30,7 @@ const Home = () => {
             <ContainerTextTitle>Um novo jeito de compartilhar emoções</ContainerTextTitle>  
             <ContainerTextParagraph>
               Você quer presentear alguém de uma forma especial? iCods surgiu para te ajudar nesse problema, 
-              com ele você envia mensagens em forma de QR CODE, seja um vídeo editado exclusivamente por você, uma mensagem de texto feito com carinho, 
+              com ele você envia mensagens em forma de QR CODE, seja um vídeo editado por você, uma mensagem de texto feito com carinho, 
               um áudio ou imagem única, e tudo isso de uma forma acessível e fácil!
             </ContainerTextParagraph>
             <Sapiens01 src='./images/sapiens01.svg' alt='sapiens one'/>

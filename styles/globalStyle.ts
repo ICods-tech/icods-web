@@ -21,8 +21,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p { 
-    font-weight: 600;
-    line-height: 16px;
+    font-weight: 200;
+    line-height: 26px;
   }
 `
 
