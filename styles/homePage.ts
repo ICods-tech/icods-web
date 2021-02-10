@@ -64,19 +64,23 @@ export const Clouds = styled.img`
 
 export const ContainerText = styled.div`
   position: relative;
+  background: #000;
 
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   height: 600px;
-  padding: 13% 8%;
+  
 
   color: #fff;
   font-style: normal;
 `;
 
 export const ContainerTextTitle = styled.h1`
+
   position: relative;
   font-size: 38px;
   margin: 0;
+  margin-top: 20px;
   margin-right: auto;
 
   z-index: 2;
@@ -86,7 +90,7 @@ export const ContainerTextTitle = styled.h1`
 `;
 
 export const ContainerTextParagraph = styled.p`
-
+  /* text-align: justify; */
   margin-top: 48px;
   font-size: 20px;
 
@@ -98,6 +102,7 @@ export const ContainerTextParagraph = styled.p`
 
 export const Sapiens01 = styled.img`
   /* position: absolute; */
+  /* width:  */
   left: 0;
   bottom: 0;
   width: 100%;

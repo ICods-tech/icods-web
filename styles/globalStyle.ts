@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  body {
+    max-height: 100vh;
+  }
+
   * { 
     font-family: 'Manrope', sans-serif;
     margin: 0;
