@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p { 
+    letter-spacing: 0.02em;
     font-weight: 200;
     line-height: 26px;
   }
