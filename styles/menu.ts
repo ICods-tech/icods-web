@@ -45,10 +45,9 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   }
 
   a {
-    margin: 0px auto ;
+    margin: 16px auto ;
     font-size: 16px;
-    text-transform: uppercase;
-    padding: 0.7rem 0;
+    text-transform: uppercase;  
 
     font-style: normal;
     font-weight: normal;
@@ -56,8 +55,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
 
     letter-spacing: 0.02em;
     color: #000;
-
-    text-decoration: none;
+    
     transition: color 0.3s linear;
     
     @media (max-width: 576px) {
@@ -71,7 +69,9 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     }
 
     &:hover {
-      color: #343078};
+      /* padding: 0.2rem 0; */
+      border-bottom: 1px solid #fff;
+    };
     }
   };
 

@@ -3,6 +3,8 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   body {
     max-height: 100vh;
+    max-width: 100vw;
+    background: #2B90D9;
   }
 
   * { 
@@ -20,14 +22,18 @@ const GlobalStyle = createGlobalStyle`
 
   h1 { 
     font-weight: 800;
-    line-height: 41px;
+    line-height: 45.6px;
     letter-spacing: 0.02em;
   }
 
   p { 
     letter-spacing: 0.02em;
-    font-weight: 200;
-    line-height: 26px;
+    font-weight: 300;
+    line-height: 32px;
+  }
+
+  a {
+    font-weight: 600;
   }
 `
 

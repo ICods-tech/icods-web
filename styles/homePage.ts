@@ -4,6 +4,7 @@ export const HomePage = styled.div`
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
 
 export const InitSection = styled.section`
@@ -11,7 +12,7 @@ export const InitSection = styled.section`
 
   width: 100vw;
   /* height: 100vh; */
-  height:  100%;
+  height:  1800px;
 
   display: flex;
   flex-direction: column;
@@ -29,13 +30,14 @@ export const Navbar = styled.nav`
   align-items: flex-end;
   justify-content: space-between;
 
-  width: 100vw;
+  width: 90%;
   height: 100px;
   
+  margin: 0 auto;
 `;
 
 export const LogoImage = styled.img`
-  margin-left: 17px;
+  margin-left: 8px;
 `;
 
 export const Container = styled.div`
@@ -64,12 +66,15 @@ export const Clouds = styled.img`
 
 export const ContainerText = styled.div`
   position: relative;
-  background: #000;
+  /* background: #000; */
 
   width: 90%;
   margin: 0 auto;
-  height: 600px;
-  
+  height: 1000px;
+
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 
   color: #fff;
   font-style: normal;
@@ -79,9 +84,7 @@ export const ContainerTextTitle = styled.h1`
 
   position: relative;
   font-size: 38px;
-  margin: 0;
-  margin-top: 20px;
-  margin-right: auto;
+  margin: 48px 16px 0;
 
   z-index: 2;
 
@@ -91,7 +94,7 @@ export const ContainerTextTitle = styled.h1`
 
 export const ContainerTextParagraph = styled.p`
   /* text-align: justify; */
-  margin-top: 48px;
+  margin: 48px 16px;
   font-size: 20px;
 
   z-index: 2;
@@ -104,6 +107,6 @@ export const Sapiens01 = styled.img`
   /* position: absolute; */
   /* width:  */
   left: 0;
-  bottom: 0;
+  bottom: -100;
   width: 100%;
 `

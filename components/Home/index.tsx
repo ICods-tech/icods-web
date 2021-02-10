@@ -5,7 +5,6 @@ import {
   Navbar,
   LogoImage,
   Container,
-  Clouds,
   ContainerText,
   ContainerTextTitle,
   ContainerTextParagraph,
@@ -13,6 +12,7 @@ import {
 } from '../../styles/homePage';
 import Burger from '../Burger';
 import Menu from '../Menu';
+import Cloud from '../Cloud';
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -25,9 +25,12 @@ const Home = () => {
           <Menu open={open} />
         </Navbar>
         <Container>
-          <Clouds src="./images/clouds.svg" alt="clouds" />
+          <Cloud animationTime='10s' cloudImage='./images/cloud_1.svg' position_y='10' />
+          <Cloud animationTime='7s' cloudImage='./images/cloud_2.svg'  position_y='25' />
+          <Cloud animationTime='12s' cloudImage='./images/cloud_1.svg' position_y='0' />          
+          <Cloud animationTime='25s' cloudImage='./images/cloud_2.svg' position_y='13' />          
           <ContainerText>
-            <ContainerTextTitle>Um novo jeito de compartilhar emoções</ContainerTextTitle>  
+            <ContainerTextTitle>Compartilhe emoções de um novo jeito</ContainerTextTitle>  
             <ContainerTextParagraph>
               Você quer presentear alguém de uma forma especial? iCods surgiu para te ajudar nesse problema, 
               com ele você envia mensagens em forma de QR CODE, seja um vídeo editado por você, uma mensagem de texto feito com carinho, 

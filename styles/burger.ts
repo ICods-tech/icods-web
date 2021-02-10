@@ -6,7 +6,7 @@ interface StyledBurgerProps {
 
 export const StyledBurger = styled.button<StyledBurgerProps>`
   margin-bottom: 6px;
-  margin-right: 32px;
+  margin-right: 8px;
   
   top: 5%;
   left: 2rem;
