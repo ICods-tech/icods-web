@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CloudContainer, CloudImage } from './styles';
 
 interface CloudProps {
@@ -8,6 +9,7 @@ interface CloudProps {
   alt: string;
   time: string;
   top: string;
+
 }
 
 const Cloud = (props: CloudProps) => {
@@ -22,7 +24,7 @@ const Cloud = (props: CloudProps) => {
         width={props.width}
         heigth={props.heigth} />
     </CloudContainer>
-  );
+ );
 };
 
 export default Cloud;

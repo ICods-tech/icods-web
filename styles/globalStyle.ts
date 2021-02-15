@@ -1,9 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  body{
-    overflow-y:auto;
+  body {
+    max-height: 100vh;
+    max-width: 100vw;
+    background: #2B90D9;
   }
+
   * { 
     font-family: 'Manrope', sans-serif;
     margin: 0;
@@ -19,13 +22,18 @@ const GlobalStyle = createGlobalStyle`
 
   h1 { 
     font-weight: 800;
-    line-height: 41px;
+    line-height: 45.6px;
     letter-spacing: 0.02em;
   }
 
   p { 
+    letter-spacing: 0.02em;
+    font-weight: 300;
+    line-height: 32px;
+  }
+
+  a {
     font-weight: 600;
-    line-height: 16px;
   }
 `
 
