@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledBurger } from '../../styles/burger';
+import { StyledBurger } from './burger';
 
 interface BurgerProps {
   open: boolean;

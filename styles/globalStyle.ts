@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  body{
+    overflow-y:auto;
+  }
   * { 
     font-family: 'Manrope', sans-serif;
     margin: 0;
