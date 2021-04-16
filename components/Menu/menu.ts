@@ -13,7 +13,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   background:#fff;
   height: 100vh;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 0;
   position: absolute;
   top: 0;
   right: 0;
@@ -28,9 +28,9 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     transform: translateX(0);
     flex-direction: row;
     position: relative;
-    width: 75%;
+    width: 100%;
 
-    max-width: 500px;
+    /* max-width: 500px; */
     height: 100px;
 
     margin: 0 auto;
@@ -46,18 +46,15 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
 
   a {
     margin: 0px auto ;
-    font-size: 16px;
-    text-transform: uppercase;
+    font-size: 1rem;
     padding: 0.7rem 0;
 
     font-style: normal;
     font-weight: normal;
-    line-height: 19px;
-
+    line-height: 10px;
+    
     letter-spacing: 0.02em;
     color: #000;
-
-    text-decoration: none;
     transition: color 0.3s linear;
     
     @media (max-width: 576px) {
@@ -66,7 +63,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     }
 
     @media (min-width: 769px) {
-      margin: 0 10px;
+      margin: 0 3.125rem;
       color: #fff;
     }
 
