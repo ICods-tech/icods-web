@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   p { 
     letter-spacing: 0.02em;
     font-weight: 300;
-    line-height: 32px;
+    line-height: 2rem;
   }
 
   a {

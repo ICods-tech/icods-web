@@ -11,24 +11,39 @@ import {
   ContainerText,
   ContainerTextTitle,
   ContainerTextParagraph,
+  CompaniesContainer,
+  CompaniesText,
+  CompaniesSection,
+  CompaniesParagraph,
   IosImg,
+  IcodsAppImg,
+  EnterpriseImg,
   ExplanationSection,
   ExplanationContainer,
   ExplanationText,
   ExplanationParagraph,
   ExplanationTitle,
+  FooterSectionsLinks,
   FindSection,
   FindImage,
   FindTitle,
   FindContainer,
   FindText,
   FindParagraph,
+  FooterContainer,
+  FooterSection,
   LocalizationImg,
   PlaystoreImg,
+  SubSectionFooter,
+  SubSectionFooterLinks,
+  SubSectionFooterTitle,
+  TitleFooter,
+  TitleFooterSection,  
   WallpaperContainer,
   WallpapersInitialSectionImg,
   WallpaperThree,
   WavesContainer,
+  CompaniesTitle,
   WavesExplanationSectionImg
 } from './homePage';
 import Burger from '../Burger';
@@ -42,7 +57,7 @@ const Home = () => {
       < BlueCloud src="./images/blueCloud.svg"/>
       <InitSection>
         <Navbar>
-          <LogoImage src="./images/newlogo.svg" alt="logo" />
+          <LogoImage src="./images/newlogo.svg" alt="logo" marginBottom="0" />
           <Burger open={open} setOpen={setOpen}/>
           <Menu open={open} />
         </Navbar>
@@ -168,8 +183,88 @@ const Home = () => {
           </FindText>
 
           <FindImage src="./images/wallpapericods5.svg" alt="wallpaper three" />
-        </FindContainer>
+        </FindContainer>      
       </FindSection>
+
+      <CompaniesSection>
+        <CompaniesContainer>
+          <IcodsAppImg src="./images/icodsImageApp.svg" />
+          
+          <CompaniesText>
+            <CompaniesTitle>Se você é uma empresa, então entre aqui!</CompaniesTitle>
+            <CompaniesParagraph>Nessa área você pode gerenciar seus iCODS, 
+              personalizando-os, realizar impressões em larga escala e contar 
+              com um suporte especializado caso necessário, além de muitas outras funções, 
+              venha conferir!
+            </CompaniesParagraph>
+
+            <DownloadLinks 
+              href="#" 
+              padding="20px 60px"
+              marginTop="79px"
+              color="#FFFFFF"
+              backgroundColor="#282C37"
+              border="none"
+            > <EnterpriseImg src="./images/enterprise.svg"/> Sessão Empresas</DownloadLinks>
+          </CompaniesText>
+          
+        </CompaniesContainer>
+      </CompaniesSection>
+
+
+      <FooterSection>
+        
+        <FooterContainer>
+
+          
+          <FooterSectionsLinks>
+            
+          <TitleFooterSection>
+            <TitleFooter>Compartilhe emoções de um novo jeito</TitleFooter>
+          </TitleFooterSection>
+
+            <SubSectionFooter>
+              <SubSectionFooterTitle>Produto</SubSectionFooterTitle>
+              <SubSectionFooterLinks href="#">Baixar</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Usar iCODS? Por que?</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Atualizações</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Para Empresas</SubSectionFooterLinks>
+
+            </SubSectionFooter>
+          
+          <SubSectionFooter>
+              <SubSectionFooterTitle>
+                Empresa
+              </SubSectionFooterTitle>
+              <SubSectionFooterLinks href="#">Sobre</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Empregos</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Marca</SubSectionFooterLinks>
+            </SubSectionFooter>
+            
+            <SubSectionFooter>
+              <SubSectionFooterTitle>
+                Suporte
+              </SubSectionFooterTitle>
+
+              <SubSectionFooterLinks href="#">Estou com problemas?</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Status do aplicativo</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Contate-nos</SubSectionFooterLinks>
+            </SubSectionFooter>
+            
+            <SubSectionFooter>
+              <SubSectionFooterTitle>
+                Política
+              </SubSectionFooterTitle>
+
+              <SubSectionFooterLinks href="#">Licenças</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Termos de uso</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Reconhecimentos</SubSectionFooterLinks>
+            </SubSectionFooter>
+          </FooterSectionsLinks>
+        </FooterContainer>
+        <LogoImage src="./images/newlogo.svg" alt="logo" marginLeft="170px" marginBottom="62px"/>
+
+      </FooterSection>
 
     </HomePage>
   )

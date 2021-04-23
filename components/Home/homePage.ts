@@ -32,9 +32,16 @@ export const Navbar = styled.nav`
   height: 100px;  
 `;
 
-export const LogoImage = styled.img`
+interface LogoImageProps {
+  marginBottom: string;
+  marginLeft: string;
+}
+
+export const LogoImage = styled.img<LogoImageProps>`
   margin-top: 1rem;
   margin-left: 5.25rem;
+  margin-bottom: ${(props) => props.marginBottom};
+  margin-left: ${(props) => props.marginLeft};
 `;
 
 export const BlueCloud = styled.img`
@@ -269,17 +276,17 @@ export const FindSection = styled.section`
 
 export const FindContainer = styled.div`
   display: grid;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  grid-template-columns: 35rem 50rem;
-  gap: 108px;
+  grid-template-columns: 34rem 35.2rem;
+  gap: 15.188rem;
   
   margin: 6.25rem auto;
 `
 
 export const FindImage = styled.img`
-  width: 70%;
-  margin: 0 auto; 
+  width: 100%;
+  /* margin: 0 auto;  */
   margin-bottom: 10rem;
 `;
 
@@ -299,7 +306,7 @@ export const FindTitle = styled.h1`
 `;
 
 export const FindParagraph = styled.p`
-  margin: 0 48px 50px;
+  margin: 0 3rem 3.125rem;
   
   color: #282C37;
   font-style: normal;
@@ -319,4 +326,112 @@ export const BagImg = styled.img`
   margin-right: 1.25rem;
 `
 
+export const IcodsAppImg = styled.img`
+  width: 100%;
+  /* margin: 0 auto; */
+  `;
 
+export const CompaniesContainer = styled.div`
+  display: grid;
+  align-items: center;
+  justify-content: space-evenly;
+  grid-template-columns: 47.313rem 27rem;
+
+  gap: 5.438rem;
+  
+  margin: 6.25rem auto;
+`;
+
+export const CompaniesText = styled.article``;
+
+export const CompaniesSection = styled.div`
+  background-color: #fff;
+`;
+
+export const CompaniesTitle = styled.h1`
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 170%;
+  color: #282C37;
+`; 
+
+export const EnterpriseImg = styled.img`
+  font-weight: 400;
+  color: #282C37;
+  font-size: 1.25rem;
+  margin-right: 1.75rem;
+  letter-spacing: 0.02em;
+`;
+
+export const CompaniesParagraph = styled.p`
+  margin-right: 1.75rem;
+`;
+
+export const FooterSection = styled.footer`
+    background-color: #282C37;
+`;
+
+export const FooterContainer = styled.div`
+    margin-left: 10.625rem;
+    display: flex; 
+    border-bottom: 2px solid #2B90D9;
+    
+    margin-bottom: 3.75rem;
+`;
+
+export const TitleFooterSection = styled.div`
+    margin-top: 5rem;
+    margin-right: 8rem;
+`;
+export const TitleFooter = styled.h1`
+  color: #2B90D9;
+  width: 15rem;
+`;
+
+export const FooterSectionsLinks = styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3rem;
+    margin-bottom: 3.125rem;
+`;
+export const SubSectionFooter = styled.div`
+  margin-top: 6.625rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  
+`;
+
+export const SubSectionFooterTitle = styled.p`
+    color: #2B90D9;
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: Medium;
+    margin-bottom: 1.75rem;
+    
+    line-height: 1.375rem;
+`;
+
+export const SubSectionFooterLinks = styled.a`
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.366rem;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+
+    letter-spacing: 0.02em;
+`;
+
+export const EnterpriseFooterSection = styled.div`
+  margin-top: 6.625rem;
+`;
+
+export const SupportFooterSection = styled.div`
+  margin-top: 6.625rem;
+`;
+
+export const PoliticsFooterSection = styled.div`
+  margin-top: 6.625rem;
+`;
