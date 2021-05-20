@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
     /* overflow: hidden; */
   }
 
+  button {
+    margin: 0;
+  }
+
   a { 
     text-decoration: none;
   }

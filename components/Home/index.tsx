@@ -7,12 +7,15 @@ import {
   LogoImage,
   BagImg,
   BlueCloud,
+  ChatButton,
+  ChatIcon,
   Container,
   ContainerText,
   ContainerTextTitle,
   ContainerTextParagraph,
   CompaniesContainer,
   CompaniesText,
+  CompaniesTitle,
   CompaniesSection,
   CompaniesParagraph,
   IosImg,
@@ -31,19 +34,26 @@ import {
   FindText,
   FindParagraph,
   FooterContainer,
+  FooterLogoImage,
   FooterSection,
   LocalizationImg,
   PlaystoreImg,
+  SecondCloudContainer,
+  SelectLenguages,
+  SelectLenguagesSection,
+  SocialContactSection,
+  SocialContactLink,
+  SocialContactLinksImg,
   SubSectionFooter,
+  SubSectionFooterGridLinks,
   SubSectionFooterLinks,
   SubSectionFooterTitle,
   TitleFooter,
-  TitleFooterSection,  
+  TitleFooterSection,
   WallpaperContainer,
   WallpapersInitialSectionImg,
   WallpaperThree,
   WavesContainer,
-  CompaniesTitle,
   WavesExplanationSectionImg
 } from './homePage';
 import Burger from '../Burger';
@@ -57,11 +67,16 @@ const Home = () => {
       < BlueCloud src="./images/blueCloud.svg"/>
       <InitSection>
         <Navbar>
-          <LogoImage src="./images/newlogo.svg" alt="logo" marginBottom="0" />
-          <Burger open={open} setOpen={setOpen}/>
+          <LogoImage src="./images/newlogo.svg" alt="logo" marginLeft="84px" marginBottom="0" />
+          <div style={{display: 'flex',  height: '100%', alignItems: 'flex-end' }}>
+            <Burger open={open} setOpen={setOpen}/>
+          </div>
           <Menu open={open} />
         </Navbar>
+
         <Container>
+        <SecondCloudContainer>
+
           <Cloud
             time="20s"
             width={122}
@@ -70,25 +85,27 @@ const Home = () => {
             alt="nuvem 1"
             top="80px"
           />
+        </SecondCloudContainer>
 
-          <Cloud
-            time="25s"
-            width={84}
-            heigth={55}         
-            path="./images/cloud03.svg"
-            alt="nuvem 2"
-            top="15px"
-          />
+            <Cloud
+              time="25s"
+              width={84}
+              heigth={55}         
+              path="./images/cloud03.svg"
+              alt="nuvem 2"
+              top="15px"
+            />
 
-          <Cloud
-            time="30s"
-            width={75}
-            heigth={49}         
-            path="./images/cloud03.svg"
-            alt="nuvem 3"
-            top="221px"
-          />
+            <Cloud
+              time="30s"
+              width={75}
+              heigth={49}         
+              path="./images/cloud03.svg"
+              alt="nuvem 3"
+              top="245px"
+            />
           <ContainerText>
+
             <ContainerTextTitle>Compartilhe emoções de um novo jeito</ContainerTextTitle>  
             <ContainerTextParagraph>
               Você quer presentear alguém de uma forma especial? iCods surgiu para te ajudar
@@ -96,7 +113,7 @@ const Home = () => {
               um vídeo editado exclusivamente por você, uma mensagem de texto feito com 
               carinho, um áudio ou imagem única, e tudo isso de uma forma acessível e fácil!
             </ContainerTextParagraph>
-
+            
             <DownloadLinks
             href="#"
             padding="21px 54px 25px 54px"
@@ -215,24 +232,45 @@ const Home = () => {
       <FooterSection>
         
         <FooterContainer>
-
           
-          <FooterSectionsLinks>
-            
           <TitleFooterSection>
             <TitleFooter>Compartilhe emoções de um novo jeito</TitleFooter>
+            
+            <SelectLenguagesSection>
+              <SelectLenguages>
+                <option>Português (Brasil)</option>
+                <option>Inglês (EUA)</option>
+              </SelectLenguages>
+            </SelectLenguagesSection>
+
+            <SocialContactSection>
+              
+              <SocialContactLink href="https://www.instagram.com/icods_tech/" target="_blank">
+                <SocialContactLinksImg src="./images/insta_icon.svg" ></SocialContactLinksImg>
+              </SocialContactLink>
+              
+              <SocialContactLink href="https://www.linkedin.com/company/icods-tech/" target="_blank">
+                <SocialContactLinksImg src="./images/linkedin_icon.svg"></SocialContactLinksImg>
+              </SocialContactLink>
+              
+              <SocialContactLink href="#" target="_blank">
+                <SocialContactLinksImg src="./images/twitter_icon.svg"></SocialContactLinksImg>
+              </SocialContactLink>
+            
+            </SocialContactSection>
           </TitleFooterSection>
 
-            <SubSectionFooter>
+            <SubSectionFooterGridLinks>
+
+            <SubSectionFooter marginTop="0">
               <SubSectionFooterTitle>Produto</SubSectionFooterTitle>
               <SubSectionFooterLinks href="#">Baixar</SubSectionFooterLinks>
               <SubSectionFooterLinks href="#">Usar iCODS? Por que?</SubSectionFooterLinks>
               <SubSectionFooterLinks href="#">Atualizações</SubSectionFooterLinks>
               <SubSectionFooterLinks href="#">Para Empresas</SubSectionFooterLinks>
-
             </SubSectionFooter>
           
-          <SubSectionFooter>
+          <SubSectionFooter marginTop="0">
               <SubSectionFooterTitle>
                 Empresa
               </SubSectionFooterTitle>
@@ -241,17 +279,17 @@ const Home = () => {
               <SubSectionFooterLinks href="#">Marca</SubSectionFooterLinks>
             </SubSectionFooter>
             
-            <SubSectionFooter>
+            <SubSectionFooter marginTop="40px">
               <SubSectionFooterTitle>
                 Suporte
               </SubSectionFooterTitle>
 
-              <SubSectionFooterLinks href="#">Estou com problemas?</SubSectionFooterLinks>
+              <SubSectionFooterLinks href="#">Estou com problemas</SubSectionFooterLinks>
               <SubSectionFooterLinks href="#">Status do aplicativo</SubSectionFooterLinks>
               <SubSectionFooterLinks href="#">Contate-nos</SubSectionFooterLinks>
             </SubSectionFooter>
             
-            <SubSectionFooter>
+            <SubSectionFooter marginTop="40px">
               <SubSectionFooterTitle>
                 Política
               </SubSectionFooterTitle>
@@ -260,10 +298,15 @@ const Home = () => {
               <SubSectionFooterLinks href="#">Termos de uso</SubSectionFooterLinks>
               <SubSectionFooterLinks href="#">Reconhecimentos</SubSectionFooterLinks>
             </SubSectionFooter>
-          </FooterSectionsLinks>
+            </SubSectionFooterGridLinks>
         </FooterContainer>
-        <LogoImage src="./images/newlogo.svg" alt="logo" marginLeft="170px" marginBottom="62px"/>
-
+        <FooterLogoImage>
+            <LogoImage src="./images/logo_footer.svg" alt="logo" marginLeft="170px" marginBottom="62px"/>
+        </FooterLogoImage>
+      
+      <ChatButton>
+        <ChatIcon src="./images/chat_icon.svg" />
+      </ChatButton>
       </FooterSection>
 
     </HomePage>

@@ -19,6 +19,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   right: 0;
   transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0)'};
   transition: transform 0.3s ease-in-out;
+  width: 60%;
   
   @media (max-width: 576px) {
     width: 100%;

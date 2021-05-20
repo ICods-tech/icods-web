@@ -5,7 +5,7 @@ interface StyledBurgerProps {
 }
 
 export const StyledBurger = styled.button<StyledBurgerProps>`
-  margin-bottom: 6px;
+  // margin-bottom: 6px;
   margin-right: 32px;
   
   top: 5%;
@@ -50,5 +50,11 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
 
   @media (min-width: 769px) {
     display: none;
+  }
+
+   @media (max-width: 769px) {
+       margin-right: 2.8rem;
+  //   margin-bottom: 0.75rem;
+  //   margin-top: 2rem;
   }
 `;
