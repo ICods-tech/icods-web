@@ -29,6 +29,10 @@ export const CloudContainer = styled.div<CloudContainerProps>`
 
   animation: ${props => props.time} ${animClouds} linear infinite;
 
+  @media (max-width: 1400px) {
+    animation: 5s ${animClouds} linear infinite;
+  }
+
 `;
 
 export const CloudImage = styled.img<CloudImageProps>`

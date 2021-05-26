@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
     /* overflow: hidden; */
   }
 
+  button {
+    margin: 0;
+  }
+
   a { 
     text-decoration: none;
   }
@@ -29,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   p { 
     letter-spacing: 0.02em;
     font-weight: 300;
-    line-height: 32px;
+    line-height: 2rem;
   }
 
   a {
