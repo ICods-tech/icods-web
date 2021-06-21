@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent, useRef, useEffect } from 'react';
 import {
   DownloadLinks,
   HomePage,
@@ -52,8 +52,7 @@ import {
   ThirdCloudContainer,
   TutorialSection,
   TutorialContainer,
-  TutorialStepContainer,
-  TutorialNavigationContainer,
+  TutorialCarrouselContainer,
   WallpaperContainer,
   WallpapersInitialSectionImg,
   WallpaperThree,
@@ -63,78 +62,63 @@ import {
 import Burger from '../Burger';
 import Menu from '../Menu';
 import Cloud from '../Cloud';
+import { TutorialStepContainer } from '../TutorialStepContainer';
 
-interface tutorialNextStepPageProps {
-  nextStep: number;
-  resetStep: number;
-  resetStepNavigation: number;
-}
 
 const Home = () => {
   const [open, setOpen] = useState(true);
-  const [tutorialStep, setTutorialStep] = useState(1);
-  const resetScroll = 10000;
-  const tutorialContainer = document.querySelector('.tutorial-container');
+  const tutorialCarrouselContainer = useRef(null);
+  const tutorialContainer = useRef(null);
+  let selectedItem = 0;
 
-  
-  function tutorialNextStepPage({ nextStep, resetStep, resetStepNavigation } : tutorialNextStepPageProps ) {
-    if(nextStep < 1 || nextStep > 6){
-      nextStep = resetStep; 
-      setTutorialStep(nextStep)
-      tutorialContainer.scrollBy(resetStepNavigation, 0)
-    } 
-  }
-  
-  function handleButtonPreviusTutorialNavigation() {
-    tutorialContainer.scrollBy(-300, 0) 
+  useEffect(() => {
+    let intervalId = autoPlay();
+    const navigationButtons = document.createElement("div")
+    navigationButtons.id = "navigationButtons";
 
-    const tutorialStepPage: tutorialNextStepPageProps = {
-      nextStep: tutorialStep - 1,
-      resetStep: 6,
-      resetStepNavigation: resetScroll
-    }
-    tutorialNextStepPage(tutorialStepPage)
-  }
-
-  function handleButtonNextTutorialNavigation(){  
-    tutorialContainer.scrollBy(300, 0)
-  
-    const tutorialStepPage: tutorialNextStepPageProps = {
-      nextStep: tutorialStep + 1,
-      resetStep: 1,
-      resetStepNavigation: -resetScroll
-    }
-    tutorialNextStepPage(tutorialStepPage)
-  }
-
-  function handleMobileTutorialNavigation() {
-    // console.log(`carai ${document.querySelector('.tutorial-container').scrollWidth}`);
-    // console.log(`Trecho ${document.querySelector('.tutorial-container').scrollLeft}`);
+    const qtPages = tutorialContainer.current.children.length;
+    tutorialCarrouselContainer.current.appendChild(navigationButtons)
     
-    let nextStep = 1;
-    let scrollWidth = tutorialContainer.scrollWidth;
-    let scrollNavigation = tutorialContainer.scrollLeft;
-    
-    if(scrollNavigation == 0) {
-      setTutorialStep(nextStep);
-    } else if(scrollNavigation <= scrollWidth/6) {
-      nextStep = 2;
-      setTutorialStep(nextStep);
-    } else if(scrollNavigation <= scrollWidth/3) {
-      nextStep = 3;
-      setTutorialStep(nextStep);
-    } else if(scrollNavigation <= scrollWidth/2) {
-      nextStep = 4;
-      setTutorialStep(nextStep);
-    } else if(scrollNavigation <= scrollWidth/1.5) {
-      nextStep = 5;
-      setTutorialStep(nextStep);
-    } else if(scrollNavigation <= scrollWidth) {
-      nextStep = 6;
-      setTutorialStep(nextStep);
+    function nextBanner(btn, item) {
+      let buttons = navigationButtons.children;
+      
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("selectedItem")
+      }
+      btn.classList.add("selectedItem");
+      selectedItem = item;
+      tutorialContainer.current.scrollTo(tutorialContainer.current.offsetWidth * selectedItem, 0)
     }
-  }
-  
+
+    function autoPlay() {
+      return setInterval(() => {
+        if (selectedItem < qtPages - 1) selectedItem++;
+        else selectedItem = 0;
+        nextBanner(navigationButtons.children[selectedItem], selectedItem)
+      }, 3000)
+    }
+
+    function buttonClicked(btn, item) {
+      clearInterval(intervalId)
+      nextBanner(btn, item)
+      intervalId = autoPlay()
+    }
+
+    function insertButtons(upperDiv) {
+      for (let i = 0; i < qtPages; i++) {
+        let a = document.createElement("a")
+        a.addEventListener("click", (event) => buttonClicked(event.target, i))
+        a.innerText = String(i + 1);
+        
+        upperDiv.appendChild(a);
+      }
+      
+      navigationButtons.children[0].classList.add("selectedItem");
+    }
+    insertButtons(navigationButtons);
+    
+  }, [])
+
   return (
     <HomePage>
       < BlueCloud src="./images/blueCloud.svg"/>
@@ -177,7 +161,7 @@ const Home = () => {
               heigth={49}         
               path="./images/cloud03.svg"
               alt="nuvem 3"
-              top="245px"
+              top="220px"
               />
           </ThirdCloudContainer>
           <ContainerText>
@@ -236,8 +220,7 @@ const Home = () => {
 
         </ExplanationContainer>
           <WavesContainer>
-            <WavesExplanationSectionImg src="./images/waves02.svg" />
-            <WavesExplanationSectionImg src="./images/waves01.svg"/>
+            <WavesExplanationSectionImg src="./images/wave.svg" />
           </WavesContainer>
       </ExplanationSection>
 
@@ -279,57 +262,41 @@ const Home = () => {
         </FindContainer>      
       </FindSection>
 
-      <TutorialSection>
-        <TutorialContainer className="tutorial-container" onScroll={handleMobileTutorialNavigation} >
-          
-          <TutorialStepContainer>
-                    <h1>Passo a Passo</h1>
-                    {/* <img src="./images/tutorial_step1_bag.svg" alt="" /> */}
-                    <p>Baixe o aplicativo do iCODS no seu smartphone, seja android ou IOS</p>
-          </TutorialStepContainer>
+      <TutorialSection >
+        <WavesContainer style={{ marginTop: 0 }}>
+          <WavesExplanationSectionImg src="./images/wave2.svg" />
+        </WavesContainer>
 
-          <TutorialStepContainer>
-                    <h1>Passo a Passo</h1>
-                    <img src="./images/tutorial_step1_bag.svg" alt="" />
-                    <p>Adquira um iCods em uma de nossas lojas parceiras</p>
-          </TutorialStepContainer>
+        <TutorialCarrouselContainer  ref={tutorialCarrouselContainer}> 
+          <TutorialContainer  ref={tutorialContainer}>
+            
+            <TutorialStepContainer 
+              image="./images/tutorial_step0_app.svg" 
+              description="Baixe o aplicativo do iCODS no seu smartphone, seja android ou IOS"
+            />
+            <TutorialStepContainer 
+              image="./images/tutorial_step1_bag.svg" 
+              description="Adquira um iCods em uma de nossas lojas parceiras"
+            />
+            <TutorialStepContainer 
+              image="./images/tutorial_step2_cell.svg" 
+              description="Use a camera do seu celular e leia o QR Code"
+            />
+            <TutorialStepContainer 
+              image="./images/tutorial_step3_edit.svg" 
+              description="Edite a mensagem do seu jeito, fique a vontade para usar texto, vídeo e áudio."
+            />
+            <TutorialStepContainer 
+              image="./images/tutorial_step4_map.svg" 
+              description="Pronto! Agora basta conferir sua edição e clicar em enviar o iCods."
+            />
+            <TutorialStepContainer 
+              image="./images/tutorial_step5_girl.svg" 
+              description="Agora basta o destinatário ler o QR CODE e visualizar a mensagem."
+            />
+          </TutorialContainer>
+        </TutorialCarrouselContainer>
 
-          <TutorialStepContainer>
-                  <h1>Passo a Passo</h1>
-                  <img src="./images/tutorial_step2_cell.svg" alt="" />
-                  <p>Use a camera do seu celular e leia o QR Code</p>
-          </TutorialStepContainer>
-
-          <TutorialStepContainer>
-                  <h1>Passo a Passo</h1>
-                  <img src="./images/tutorial_step3_edit.svg" alt="" />
-                  <p>Edite a mensagem do seu jeito, fique a vontade para usar texto, vídeo e áudio.</p>
-          </TutorialStepContainer>
-
-          <TutorialStepContainer>
-                  <h1>Passo a Passo</h1>
-                  <img src="./images/tutorial_step4_map.svg" alt="" />
-                  <p>Pronto! Agora basta <br></br> conferir sua edição e <br></br> clicar em enviar o iCods.</p>
-          </TutorialStepContainer>
-
-          <TutorialStepContainer>
-                  <h1>Passo a Passo</h1>
-                  <img src="./images/tutorial_step5_girl.svg" alt="" />
-                  <p>Agora basta o destinatário ler o QR <br></br> CODE e visualizar a mensagem.</p>
-          </TutorialStepContainer>
-        </TutorialContainer>
-
-        <TutorialNavigationContainer>
-          <button onClick={handleButtonPreviusTutorialNavigation} >
-              <img src="./images/arrow_left.svg" alt="" />
-          </button>
-
-          <legend>{tutorialStep} de 6</legend>
-          
-          <button className="next" onClick={() => handleButtonNextTutorialNavigation()}>
-              <img src="./images/arrow_right.svg" alt="" />
-          </button>
-        </TutorialNavigationContainer>
       </TutorialSection>
 
       <CompaniesSection>

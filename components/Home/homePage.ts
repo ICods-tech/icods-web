@@ -2,6 +2,7 @@ import styled, {keyframes} from 'styled-components';
 
 export const HomePage = styled.div`
   overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   background: #2B90D9;
@@ -87,7 +88,7 @@ export const ThirdCloudContainer = styled.div`
   }
 
   @media (max-width: 1080px) {
-    margin-top: -30px;
+    margin-top: -70px;
   }
 
   @media (max-width: 769px) {
@@ -95,7 +96,7 @@ export const ThirdCloudContainer = styled.div`
   }
 
   @media (max-width: 716px) {
-    margin-top: 0px;
+    margin-top: 10px;
   }
 `;
 
@@ -266,7 +267,7 @@ export const WallpapersInitialSectionImg = styled.img`
 
 export const ExplanationSection = styled.section`
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
 
   position: relative;
   background: #fff;
@@ -278,7 +279,6 @@ export const ExplanationContainer = styled.div`
   justify-content: center;
   align-items: center;
   grid-template-columns: 43.75rem 35rem;
-  
   margin: 6.25rem auto;
 
   @media (max-width: 1230px) {
@@ -289,12 +289,11 @@ export const ExplanationContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* padding: 0 1.5rem; */
+    padding: 0 1.5rem;
   }
 `
 export const ExplanationText = styled.article`
   text-align: left;
-  padding: 0 1.5rem;
 `
 
 export const WallpaperThree = styled.img`
@@ -359,7 +358,7 @@ export const  WavesContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   padding-bottom: 0;
   
   @media (max-width: 1230px) {
@@ -369,14 +368,18 @@ export const  WavesContainer = styled.div`
 
 export const WavesExplanationSectionImg = styled.img`
   width: 100%;
-  height: 200%;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
   position: relative;
-  
-  top: 5px;
+  /* position: relative */
   margin-bottom: 0;
   padding-bottom: 0;
+  object-fit: cover;
+  box-sizing: border-box;
+  
 
-  @media (max-width: 1230px) {
+  @media (max-width: 768px) {
     display: hidden;
     display: none;
   }
@@ -492,109 +495,104 @@ export const TutorialSection = styled.section`
   margin: 0 auto;
   display: grid;
   align-items: center;
+  box-sizing: border-box;
 
   /* overflow-block: unset; */
   /* overflow-wrap: unset; */
   /* overflow-anchor: unset; */
 `;
 
+export const TutorialCarrouselContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 9.9375rem;
+  box-sizing: border-box;
+
+  #navigationButtons{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+  }
+
+  #navigationButtons a {
+    background:  #E0E0E0;
+    border-radius: 50%;
+    border: 3px solid #E0E0E0;
+;
+    cursor: pointer;
+
+    padding: 0.5625rem;
+
+    margin: 0 0.40625rem;
+
+    width: 0.4375rem;
+    height: 0.4375rem;
+
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 769px) {
+      margin: 0 0.28125rem;
+    }
+}
+
+#navigationButtons a.selectedItem {
+  background: #fff;
+  color: whitesmoke;
+  border-color: #2B90D9;
+
+  color: #000;
+}
+
+  @media (max-width: 769px) {
+     margin-bottom: 2.273125rem;
+   }
+`;
 
 export const TutorialContainer = styled.div`
+
   display: flex;
+  width: 100vw;
+  margin: 0 auto;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   --webkit-overflow-scrolling: touch;
   overflow: hidden;
 
-  @media (max-width: 769px) {
+  @media (max-width: 768px) {
     overflow-x: scroll;
-  }
-`;
 
-export const TutorialStepContainer = styled.div`
-  width: 100%;
-  height: 100%;
+    &::-webkit-scrollbar { 
+      position: absolute;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0; 
+    } 
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  
-  object-fit: cover;
-  scroll-snap-align: start;
-
-  pointer-events: none;
-
- h1 {
-   font-size: 3rem;
-   line-height: 4.125rem;
-   text-align: center;
-   color: #282C37;
-   
-   margin: 5.563rem auto;
-
-   @media (max-width: 769px) {
-     font-size: 1.875rem;
-     line-height: 120%;
-   }
- }
-
- img {
-   @media (max-width: 500px) {
-     width: 80%;;
-   }
- }
-
- p {
-   font-size: 1.25rem;
-   font-weight: normal;
-   line-height: 1.688rem;
-   text-align: center;
-   
-   color: #282C37;
-   max-width: 25%;   
-   margin-top: 3.56rem;
-   margin-bottom: 7.125rem;
-
-   @media (max-width: 769px) {
-     min-width: 75%;
-   }
- }
-`;
-
-export const TutorialNavigationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    
-    transition: filter 0.2s;
-
-    &:hover{
-     filter: brightness(0.9)
+    &::-webkit-scrollbar-track {
+      background: #fff;
     }
 
-    img {
-      width: 44px;
-      height: 44px;
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
     }
   }
-
-  legend {
-    color: #282C37;
-    letter-spacing: 0.02rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    
-    margin: 0 3.5rem;
-  }
-
 `;
 
 export const IcodsAppImg = styled.img`
@@ -706,7 +704,7 @@ export const TitleFooterSection = styled.div`
     margin-right: 8rem;
 
     @media (max-width: 1300px) {
-      margin: 0 auto;
+      margin: 0;
     }
 `;
 export const TitleFooter = styled.h1`
@@ -715,8 +713,6 @@ export const TitleFooter = styled.h1`
   
   @media (max-width: 1300px) {
     width: 100%;
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
@@ -771,7 +767,7 @@ export const SubSectionFooterGridLinks = styled.div`
   @media (max-width: 769px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* gap: 1rem; */
+    gap: 2rem;
   }
 `;
 
