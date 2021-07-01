@@ -95,7 +95,7 @@ const Home = () => {
         if (selectedItem < qtPages - 1) selectedItem++;
         else selectedItem = 0;
         nextBanner(navigationButtons.children[selectedItem], selectedItem)
-      }, 3000)
+      }, 5500)
     }
 
     function buttonClicked(btn, item) {
