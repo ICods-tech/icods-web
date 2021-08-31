@@ -13,7 +13,6 @@ import api from '../../services/api'
 import 'react-dropdown/style.css';
 import Dropdown from 'react-dropdown';
 import GlobalStyle from '../../styles/globalStyle'
-import axios from 'axios';
 
 const options = getDropdownOptions()
 const defaultOption = options[0]
@@ -42,13 +41,12 @@ const EnterprisePage = () => {
         console.log(`response: `, {...response})
         const pdfFile = new Blob([response.data], { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfFile)
-        console.log({ fileURL })
         window.open(fileURL)
       })
     } catch (error) {
       console.log(error)
     }
-   }, [])
+   }, [numberOfQrCodes])
 
   return (
     <>
@@ -62,7 +60,7 @@ const EnterprisePage = () => {
                 <Dropdown
                   className="dropdown"
                   options={options}
-                  onChange={(e) => setNumberOfQrCodes(Number(e.value))}
+                  onChange={(event) => setNumberOfQrCodes(Number(event.label))}
                   value={defaultOption}
                   placeholder={"Selecione a quantidade de QR Codes"}
                 />
