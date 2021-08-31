@@ -25,5 +25,5 @@
 , "pages/__app.ts", "pages/_app.js"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

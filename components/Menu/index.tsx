@@ -14,7 +14,7 @@ const Menu = (props: MenuProps) => {
       <a href="/">
         Porque usar iCODS?
       </a>
-      <a href="/">
+      <a href="/enterprise">
         Empresarial
       </a>
       <a href="/">
