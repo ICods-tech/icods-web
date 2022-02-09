@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from '../components/Home';
-import GlobalStyle from '../styles/globalStyle'
+import GlobalStyle from '../../styles/globalStyle'
 
 const HomePage = () => {
   return (

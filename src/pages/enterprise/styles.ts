@@ -2,11 +2,15 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
+  flex: 1;
+  
+  height: 100vh;
+  width: 100vw;
+  
   flex-direction: column;
   color: white;
   align-items: center;
   justify-content: center;
-  margin-top: 96px;
 `
 
 export const EnterpriseContainer = styled.div`

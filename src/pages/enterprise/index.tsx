@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { getDropdownOptions } from '../../utils/getDropdownOptions'
+import { getDropdownOptions } from '../../../utils/getDropdownOptions'
 import { 
   Container, 
   EnterpriseInput,
@@ -9,10 +9,10 @@ import {
   EnterpriseContainer,
   GenerateQRCodeContainer,
 } from './styles'
-import api from '../../services/api'
+import api from '../../../services/api'
 import 'react-dropdown/style.css';
 import Dropdown from 'react-dropdown';
-import GlobalStyle from '../../styles/globalStyle'
+import GlobalStyle from '../../../styles/globalStyle'
 
 const options = getDropdownOptions()
 const defaultOption = options[0]
