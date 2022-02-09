@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
         --text-shape: #ffffff;
         --text-dark: rgba(0, 0, 0, 0.87);
   }
-
+  
   
   html {
         // Telas com o máximo de 1080px de largura usem a definição abaixo
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
         @media (max-width: 720px) {
             font-size: 87.5%; // 14 px
         }
-  }
+    }
 
 
   * { 
