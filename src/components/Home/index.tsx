@@ -63,6 +63,7 @@ import Burger from '../Burger';
 import Menu from '../Menu';
 import Cloud from '../Cloud';
 import { TutorialStepContainer } from '../TutorialStepContainer';
+import Head from 'next/head';
 
 
 const Home = () => {
@@ -121,6 +122,8 @@ const Home = () => {
 
   return (
     <HomePage>
+      <Head> <title>ICods</title> </Head>
+
       < BlueCloud src="./images/blueCloud.svg"/>
       <InitSection>
         <Navbar>

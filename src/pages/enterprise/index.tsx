@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from 'react';
+import Head from 'next/head';
+
 import { getDropdownOptions } from '../../../utils/getDropdownOptions'
 import { 
   Container, 
@@ -8,11 +10,13 @@ import {
   GenerateQRCodeTitle,
   EnterpriseContainer,
   GenerateQRCodeContainer,
+
 } from './styles'
 import api from '../../../services/api'
 import 'react-dropdown/style.css';
 import Dropdown from 'react-dropdown';
 import GlobalStyle from '../../../styles/globalStyle'
+import { Header } from '../../components/Enterprise/Header';
 
 const options = getDropdownOptions()
 const defaultOption = options[0]
@@ -51,6 +55,11 @@ const EnterprisePage = () => {
   return (
     <>
       <GlobalStyle />
+        <Head>
+          <title>Empresarial | ICods</title>
+        </Head>
+
+        <Header />
       <Container>
       {
         authenticated
