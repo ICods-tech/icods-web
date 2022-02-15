@@ -1,21 +1,24 @@
 import React, { useState, useCallback } from 'react';
 import Head from 'next/head';
-
 import { getDropdownOptions } from '../../../utils/getDropdownOptions'
 import { 
   Container, 
   EnterpriseInput,
   EnterpriseTitle, 
   EnterpriseButton,
+  LeftWaveContainer,
   GenerateQRCodeTitle,
   EnterpriseContainer,
   GenerateQRCodeContainer,
-
+  ICodsEnterpriseLogoLarge,
+  LeftWave,
+  ICodsDescriptionText,
+  LogoAndDescriptionContainer,
 } from './styles'
-import api from '../../../services/api'
 import 'react-dropdown/style.css';
 import Dropdown from 'react-dropdown';
-import GlobalStyle from '../../../styles/globalStyle'
+import api from '../../../services/api';
+import GlobalStyle from '../../../styles/globalStyle';
 import { Header } from '../../components/Enterprise/Header';
 
 const options = getDropdownOptions()
@@ -26,7 +29,6 @@ const EnterprisePage = () => {
   const [password, setPassword] = useState<string>('')
   const [numberOfQrCodes, setNumberOfQrCodes] = useState<number>(1)
   const [authenticated, setAuthenticated] = useState<boolean>(false)
-
 
   const handleEnterpriseLogin = useCallback(() => {
     console.log("batatas")
@@ -58,9 +60,21 @@ const EnterprisePage = () => {
         <Head>
           <title>Empresarial | ICods</title>
         </Head>
-
-        <Header />
-      <Container>
+      <Header /> 
+      <LeftWave
+        src="images/enterprise/wave-left.svg"
+        alt="Wave left"
+      />
+      <LeftWaveContainer>
+        <LogoAndDescriptionContainer>
+          <ICodsEnterpriseLogoLarge
+            src="images/enterprise/icods-logo.svg"
+            alt="iCods Enterprise Logo"
+          />
+          <ICodsDescriptionText>Um novo jeito de compartilhar emoções</ICodsDescriptionText>
+        </LogoAndDescriptionContainer>
+      </LeftWaveContainer>
+      {/* <Container>
       {
         authenticated
           ? (
@@ -87,8 +101,7 @@ const EnterprisePage = () => {
             </EnterpriseContainer>
           )
       }
-        
-      </Container>
+      </Container> */}
     </>
   );
 };

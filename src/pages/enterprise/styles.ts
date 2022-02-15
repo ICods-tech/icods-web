@@ -54,3 +54,42 @@ export const EnterpriseButton = styled.button`
   font-size: 16px;
   cursor: pointer;
 `
+
+export const LeftWaveContainer = styled.div`
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 4rem;
+`
+
+export const ICodsEnterpriseLogoLarge = styled.img`
+  height: 15rem;
+  width: 15rem;
+`
+
+export const ICodsDescriptionText = styled.h3`
+  margin-top: 1rem;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.2rem;
+  line-height: 2.125rem;
+  color: var(--shape);
+`
+
+export const LeftWave = styled.img`
+  position: absolute;
+  height: 80vh;
+  overflow-x: hidden;
+  z-index: -1;
+`;
+
+export const LogoAndDescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6rem;
+`

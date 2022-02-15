@@ -21,6 +21,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "./custom.d.ts",
     "**/*.tsx"
 , "pages/__app.ts", "pages/_app.js"  ],
   "exclude": [

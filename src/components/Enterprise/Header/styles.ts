@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   display: flex;
-  height: 10.75rem;
+  height: 20vh;
   background-color: var(--main);
 
   align-items: center;

@@ -4,7 +4,6 @@ const GlobalStyle = createGlobalStyle`
   :root {
         --background: #2B90D9;
         --main: #171717;
-        
         --shape: #ffffff;
         --text-title: rgba(0, 0, 0, 0.87);
   }

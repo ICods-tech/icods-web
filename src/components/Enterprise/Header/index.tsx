@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Container,
   LogoImg,
@@ -14,7 +13,6 @@ export function Header(){
             src="iCODS icon.svg"
             alt="logo"
           />
-          
           <NavBar>
             <NavBarLink>Baixar</NavBarLink>
             <NavBarLink>Porque usar iCODS?</NavBarLink>
