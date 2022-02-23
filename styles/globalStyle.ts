@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
         --main: #171717;
         --shape: #ffffff;
         --text-title: rgba(0, 0, 0, 0.87);
+        --dark-void: #171717;
   }
   
   
@@ -27,13 +28,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     text-decoration: none;
     /* background: teal; */
-    overflow: hidden;
   }
 
   body {
     max-height: 100vh;
     max-width: 100vw;
-    background: var(--background);
   }
 
   body, input, button, textArea {

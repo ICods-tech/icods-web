@@ -10,7 +10,7 @@ export function Header(){
   return (
     <Container>
           <LogoImg 
-            src="iCODS icon.svg"
+            src="/iCODS icon.svg"
             alt="logo"
           />
           <NavBar>
