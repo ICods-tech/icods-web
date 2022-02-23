@@ -1,10 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import { 
-  Container, ICodsEnterpriseLogoLarge, LeftSectionContainer, MenuOptionContainer, MenuOptionIconAndTextContainer, MenuOptionText, NotificationsIconMenuOptionContainer, NotificationsIconMenuOptionNumber
+  Container, GrayDivider, ICodsEnterpriseLogoLarge, LeftSectionContainer, MenuOptionContainer, MenuOptionIconAndTextContainer, MenuOptionText, NotificationsIconMenuOptionContainer, NotificationsIconMenuOptionNumber, RightSectionContainer
 } from './styles'
 import 'react-dropdown/style.css';
 import GlobalStyle from '../../../../styles/globalStyle';
+import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header';
 import { User, Setting } from 'react-iconly'
 
 const EnterpriseClients = () => {
@@ -41,7 +42,14 @@ const EnterpriseClients = () => {
                 <MenuOptionText>Configurações</MenuOptionText>
               </MenuOptionIconAndTextContainer>
             </MenuOptionContainer>
-          </LeftSectionContainer>
+        </LeftSectionContainer>
+        <RightSectionContainer>
+          <HeaderClient
+            name="Mucas Loreira"
+            position="Gerente"
+          />
+          <GrayDivider />
+        </RightSectionContainer>
        </Container>
     </>
   );

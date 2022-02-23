@@ -110,7 +110,7 @@ export const HeaderLoginText = styled.h1`
   color: var(--text-title);
 `
 
-export const BoldHeaderLoginText = styled(HeaderLoginText)`
+export const BoldHeaderLoginText = styled.span`
   font-weight: 700;
   margin-left: 0.5rem;
 `

@@ -4,14 +4,12 @@ interface MenuOptionContainerProps {
   isSelected: boolean;
 }
 
-interface MenuOptionIconAndTextContainer {
-  containsNotification: boolean;
-}
-
 export const Container = styled.div`
   display: flex;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
 `
 
 export const LeftSectionContainer = styled.div`
@@ -77,4 +75,16 @@ export const NotificationsIconMenuOptionNumber = styled.h3`
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.188rem;
+`
+
+export const RightSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+export const GrayDivider = styled.div`
+  height: 1rem;
+  width: 100%;
+  background-color: var(--main);
 `
