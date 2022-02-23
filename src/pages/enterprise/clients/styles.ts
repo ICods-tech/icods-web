@@ -43,7 +43,7 @@ export const MenuOptionIconAndTextContainer = styled.div`
   flex-direction: row;
   align-items: center;
   align-self: center;
-  margin-left: 4.5rem;
+  margin-left: 2rem;
   margin-right: auto;
 `
 
@@ -87,4 +87,11 @@ export const GrayDivider = styled.div`
   height: 1rem;
   width: 100%;
   background-color: var(--main);
+`
+
+export const TableContainer = styled.table`
+  margin-top: 4rem;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  align-self: center;
+  width: 90%;
 `
