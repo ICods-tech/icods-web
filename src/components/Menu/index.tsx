@@ -1,26 +1,18 @@
-import React from 'react';
-import { StyledMenu } from './menu';
+import React from 'react'
+import { StyledMenu } from './menu'
 
 interface MenuProps {
-  open: boolean;
+  open: boolean
 }
 
 const Menu = (props: MenuProps) => {
   return (
     <StyledMenu open={props.open}>
-      <a href="/">
-        Baixar
-      </a>
-      <a href="/">
-        Porque usar iCODS?
-      </a>
-      <a href="/enterprise">
-        Empresarial
-      </a>
-      <a href="/">
-        Suporte
-      </a>
+      <a href="/">Baixar</a>
+      <a href="/">Porque usar iCODS?</a>
+      <a href="/enterprise/login">Empresarial</a>
+      <a href="/">Suporte</a>
     </StyledMenu>
   )
 }
-export default Menu;
+export default Menu

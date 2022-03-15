@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface MenuOptionContainerProps {
-  isSelected: boolean;
+  isSelected: boolean
 }
 
 export const Container = styled.div`
@@ -35,7 +35,8 @@ export const MenuOptionContainer = styled.div<MenuOptionContainerProps>`
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
-  background-color: ${(props: MenuOptionContainerProps) => props.isSelected ? 'var(--background)' : 'var(--main)'};
+  background-color: ${(props: MenuOptionContainerProps) =>
+    props.isSelected ? 'var(--background)' : 'var(--main)'};
 `
 
 export const MenuOptionIconAndTextContainer = styled.div`
@@ -61,7 +62,7 @@ export const NotificationsIconMenuOptionContainer = styled.div`
   height: 1.5rem;
   background-color: var(--shape);
   border-radius: 50%;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 1rem;
@@ -95,3 +96,37 @@ export const TableContainer = styled.table`
   align-self: center;
   width: 90%;
 `
+
+export const TableButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin: 0.5rem;
+`
+
+export const TableButton = styled.button`
+  width: 11.9375rem;
+  height: 2.5rem;
+  background-color: var(--background);
+  border: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+`
+
+export const TableButtonText = styled.h3`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--shape);
+  margin-left: 0.25rem;
+`
+
+export const ButtonIconContainer = styled.img``
