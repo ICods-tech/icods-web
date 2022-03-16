@@ -1,35 +1,54 @@
-import React from 'react';
+import React from 'react'
 import {
-  Container, ManagementText, NameAndPositionOuterContainer, NameAndPositionText, NameAndPositionTextContainer, PositionAndIConContainer, RightSectionContainer, SignOutText, WelcomeToManagement,
-} from './styles';
-import Avatar from 'react-avatar';
-import { User } from 'react-iconly'
+  Container,
+  ManagementText,
+  NameAndPositionOuterContainer,
+  NameAndPositionText,
+  NameAndPositionTextContainer,
+  PositionAndIConContainer,
+  RightSectionContainer,
+  SignOutText,
+  ChevronLeftIcon,
+  WelcomeToManagement,
+  HeaderChevronContainer,
+  ChevronLeftIconContainer,
+} from './styles'
+import { useRouter } from 'next/router'
+import Avatar from 'react-avatar'
+import { User, ChevronLeft } from 'react-iconly'
 
 interface HeaderClientProps {
-  name: string;
-  position: string;
+  isClientRegistry?: boolean
+  name: string
+  position: string
 }
 
-export const HeaderClient = ({ name, position }: HeaderClientProps) => {
-  const iconStyle = { width: '1rem' , height: '1rem', marginRight: '0.4rem' }
+export const HeaderClient = ({ isClientRegistry, name, position }: HeaderClientProps) => {
+  const router = useRouter()
+  const iconStyle = { width: '1rem', height: '1rem', marginRight: '0.4rem' }
   return (
     <Container>
-      <WelcomeToManagement>
-        Bem vindo ao módulo <ManagementText>Gerência</ManagementText>
-      </WelcomeToManagement>
+      {isClientRegistry ? (
+        <HeaderChevronContainer>
+          <ChevronLeftIconContainer onClick={() => router.back()}>
+            <ChevronLeftIcon />
+          </ChevronLeftIconContainer>
+          <WelcomeToManagement>
+            <ManagementText>Cadastrar</ManagementText> Cliente
+          </WelcomeToManagement>
+        </HeaderChevronContainer>
+      ) : (
+        <WelcomeToManagement>
+          Bem vindo ao módulo <ManagementText>Gerência</ManagementText>
+        </WelcomeToManagement>
+      )}
       <RightSectionContainer>
         <NameAndPositionOuterContainer>
-          <Avatar
-            fgColor='rgba(0, 0, 0, 0.87)'
-            color='#fff'
-            name={name}
-            round
-            size={'5rem'}
-          />
+          <Avatar fgColor="rgba(0, 0, 0, 0.87)" color="#fff" name={name} round size={'5rem'} />
           <NameAndPositionTextContainer>
             <NameAndPositionText>{name}</NameAndPositionText>
             <PositionAndIConContainer>
-              <User set='curved' primaryColor='#fff' style={iconStyle}/>
+              <User set="curved" primaryColor="#fff" style={iconStyle} />
               <NameAndPositionText>{position}</NameAndPositionText>
             </PositionAndIConContainer>
           </NameAndPositionTextContainer>
@@ -37,5 +56,5 @@ export const HeaderClient = ({ name, position }: HeaderClientProps) => {
         <SignOutText>Sair</SignOutText>
       </RightSectionContainer>
     </Container>
-  );
+  )
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Dropdown, { Option } from 'react-dropdown'
+import Dropdown from 'react-dropdown'
 
 export const Container = styled.div`
   display: flex;

@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { ChevronLeft } from 'react-iconly'
 
 export const Container = styled.header`
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.header`
   justify-content: space-between;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-`;
+`
 
 export const WelcomeToManagement = styled.h1`
   font-family: Manrope;
@@ -70,5 +71,23 @@ export const SignOutText = styled.a`
   line-height: 1.375rem;
   color: var(--background);
   margin-left: 2rem;
+  cursor: pointer;
+`
+
+export const HeaderChevronContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const ChevronLeftIcon = styled(ChevronLeft).attrs({
+  set: 'light',
+  size: 36,
+  primaryColor: 'var(--background)',
+})``
+
+export const ChevronLeftIconContainer = styled.div`
+  margin-left: 0;
+  margin-right: 1.5rem;
   cursor: pointer;
 `
