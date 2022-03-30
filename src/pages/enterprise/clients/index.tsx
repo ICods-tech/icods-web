@@ -5,19 +5,24 @@ import {
   Container,
   GrayDivider,
   RightSectionContainer,
+  TableBodyContainer,
+  TableBodyInnerContainer,
+  TableBodyInnerContainerText,
   TableButton,
   TableButtonsContainer,
   TableButtonText,
   TableContainer,
+  TableHeaderContainer,
+  TableHeaderOuterContainer,
+  TableHeaderText,
 } from './styles'
 import 'react-dropdown/style.css'
 import { useTable } from 'react-table'
 import GlobalStyle from '../../../../styles/globalStyle'
+import authenticatedRoute from '../../../components/AuthenticatedRoute'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
-import { User, Setting } from 'react-iconly'
 import { Functionalities } from '../../../components/Functionalities'
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
-import RegisterClient from '../../../components/Enterprise/RegisterClient'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import { useRouter } from 'next/router'
 
@@ -144,28 +149,34 @@ const EnterpriseClients = () => {
             </TableButton>
           </TableButtonsContainer>
           <TableContainer {...getTableProps()}>
-            <thead>
+            <TableHeaderOuterContainer>
               {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
+                <TableHeaderContainer {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                    <TableHeaderText {...column.getHeaderProps()}>
+                      {column.render('Header')}
+                    </TableHeaderText>
                   ))}
-                </tr>
+                </TableHeaderContainer>
               ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
+            </TableHeaderOuterContainer>
+            <TableBodyContainer {...getTableBodyProps()}>
               {rows.map((row) => {
                 prepareRow(row)
 
                 return (
-                  <tr {...row.getRowProps()}>
+                  <TableBodyInnerContainer {...row.getRowProps()}>
                     {row.cells.map((cell) => {
-                      return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                      return (
+                        <TableBodyInnerContainerText {...cell.getCellProps()}>
+                          {cell.render('Cell')}
+                        </TableBodyInnerContainerText>
+                      )
                     })}
-                  </tr>
+                  </TableBodyInnerContainer>
                 )
               })}
-            </tbody>
+            </TableBodyContainer>
           </TableContainer>
         </RightSectionContainer>
       </Container>
@@ -173,4 +184,5 @@ const EnterpriseClients = () => {
   )
 }
 
-export default EnterpriseClients
+export default authenticatedRoute(EnterpriseClients, { pathAfterFailure: 'enterprise/login' })
+

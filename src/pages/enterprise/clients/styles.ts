@@ -23,6 +23,7 @@ export const GrayDivider = styled.div`
 export const TableContainer = styled.table`
   margin-top: 4rem;
   border: 1px solid rgba(0, 0, 0, 0.17);
+
   align-self: center;
   width: 90%;
 `
@@ -60,3 +61,39 @@ export const TableButtonText = styled.h3`
 `
 
 export const ButtonIconContainer = styled.img``
+
+export const TableHeaderOuterContainer = styled.thead`
+  padding: 0;
+  height: 6.25rem;
+  border: 0;
+`
+
+export const TableHeaderContainer = styled.tr`
+  background: var(--text-title);
+  margin: 0;
+  border: 0;
+`
+
+export const TableHeaderText = styled.th`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--shape);
+`
+
+export const TableBodyContainer = styled.tbody``
+
+export const TableBodyInnerContainer = styled.tr`
+  border: 0;
+`
+
+export const TableBodyInnerContainerText = styled.td`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--text-title);
+`

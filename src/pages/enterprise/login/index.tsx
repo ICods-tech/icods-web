@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import Head from 'next/head';
+import React, { useState, useCallback } from 'react'
+import Head from 'next/head'
 import { getDropdownOptions } from '../../../../utils/getDropdownOptions'
-import { 
+import {
   LeftWaveContainer,
   ICodsEnterpriseLogoLarge,
   LeftWave,
@@ -21,58 +21,63 @@ import {
   ContactUsHighlightedText,
   ContactUsContainer,
 } from './styles'
-import 'react-dropdown/style.css';
-
-import api from '../../../../services/api';
-import GlobalStyle from '../../../../styles/globalStyle';
-import { Header } from '../../../components/Enterprise/Header';
-import { Button } from '../../../components/Enterprise/Button';
+import 'react-dropdown/style.css'
+import api from '../../../../services/api'
+import GlobalStyle from '../../../../styles/globalStyle'
+import { Header } from '../../../components/Enterprise/Header'
+import { Button } from '../../../components/Enterprise/Button'
 
 const options = getDropdownOptions()
 const defaultOption = options[0]
 
 const EnterpriseLogin = () => {
-  const [login, setLogin] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [email, setEmail] = useState<string>('contato@google.com')
+  const [password, setPassword] = useState<string>('123456')
   const [numberOfQrCodes, setNumberOfQrCodes] = useState<number>(1)
   const [authenticated, setAuthenticated] = useState<boolean>(false)
-  
 
-  const handleEnterpriseLogin = useCallback(() => {
-    console.log("batatas")
-    if (login === process.env.ENTERPRISE_LOGIN
-      && password === process.env.ENTERPRISE_PASSWORD) {
-      console.log('Authenticated')
-      setAuthenticated(true)
-    }
-  }, [login, password])
-  
-  const handleGenerateQRCodes = useCallback(async () => {
+  const handleEnterpriseLogin = useCallback(async () => {
     try {
-      api.post('generate_deactivated_qrcode', {
-        numberOfQrCodes
-      }, { responseType: 'blob' }).then(response => {
-        console.log(`response: `, {...response})
-        const pdfFile = new Blob([response.data], { type: 'application/pdf' })
-        const fileURL = URL.createObjectURL(pdfFile)
-        window.open(fileURL)
+      const response = await api.post('signin-business', {
+        email,
+        password,
       })
+
+      console.log(response)
     } catch (error) {
       console.log(error)
     }
-   }, [numberOfQrCodes])
+  }, [email, password])
+
+  const handleGenerateQRCodes = useCallback(async () => {
+    try {
+      api
+        .post(
+          'generate_deactivated_qrcode',
+          {
+            numberOfQrCodes,
+          },
+          { responseType: 'blob' }
+        )
+        .then((response) => {
+          console.log(`response: `, { ...response })
+          const pdfFile = new Blob([response.data], { type: 'application/pdf' })
+          const fileURL = URL.createObjectURL(pdfFile)
+          window.open(fileURL)
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }, [numberOfQrCodes])
 
   return (
     <>
       <GlobalStyle />
-        <Head>
-          <title>Empresarial | ICods</title>
-        </Head>
-      <Header /> 
-      <LeftWave
-        src="/images/enterprise/wave-left.svg"
-        alt="Wave left"
-      />
+      <Head>
+        <title>Empresarial | ICods</title>
+      </Head>
+      <Header />
+      <LeftWave src="/images/enterprise/wave-left.svg" alt="Wave left" />
       <ContentContainer>
         <LeftWaveContainer>
           <LogoAndDescriptionContainer>
@@ -86,12 +91,14 @@ const EnterpriseLogin = () => {
         <LoginSectionContainer>
           <LoginInformationContainer>
             <HeaderLoginContainer>
-              <HeaderLoginText>Login para <BoldHeaderLoginText>Empresas</BoldHeaderLoginText></HeaderLoginText>
+              <HeaderLoginText>
+                Login para <BoldHeaderLoginText>Empresas</BoldHeaderLoginText>
+              </HeaderLoginText>
             </HeaderLoginContainer>
             <LabelLoginText>E-mail</LabelLoginText>
             <InputLoginText
-              value={login}
-              onChange={(e) => setLogin(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Digite seu e-mail empresarial da iCods"
             />
             <LabelLoginText>Senha</LabelLoginText>
@@ -103,20 +110,18 @@ const EnterpriseLogin = () => {
             />
             <CheckboxRememberMe>Lembrar-me</CheckboxRememberMe>
             <EnterButtonContainer>
-              <Button
-                pressed={() => {}}
-                title="Entrar"
-              />
+              <Button pressed={async () => await handleEnterpriseLogin()} title="Entrar" />
             </EnterButtonContainer>
-              <ContactUsContainer>
-                <ContactUsText>Algum problema?</ContactUsText>
-                <ContactUsHighlightedText>Contate-nos</ContactUsHighlightedText>
-              </ContactUsContainer>
-            </LoginInformationContainer>
+            <ContactUsContainer>
+              <ContactUsText>Algum problema?</ContactUsText>
+              <ContactUsHighlightedText>Contate-nos</ContactUsHighlightedText>
+            </ContactUsContainer>
+          </LoginInformationContainer>
         </LoginSectionContainer>
       </ContentContainer>
     </>
-  );
-};
+  )
+}
 
-export default EnterpriseLogin;
+export default EnterpriseLogin
+

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Checkbox } from 'pretty-checkbox-react';
+import { Checkbox } from 'pretty-checkbox-react'
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +12,6 @@ export const EnterpriseContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 256px;
-  
 `
 
 export const GenerateQRCodeTitle = styled.h2`
@@ -75,7 +74,7 @@ export const LeftWave = styled.img`
   height: 80vh;
   overflow-x: hidden;
   z-index: -1;
-`;
+`
 
 export const LogoAndDescriptionContainer = styled.div`
   display: flex;
@@ -87,7 +86,7 @@ export const LogoAndDescriptionContainer = styled.div`
 
 export const ContentContainer = styled.div`
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
 `
 
 export const LoginSectionContainer = styled.div`
@@ -166,7 +165,7 @@ export const InputLoginText = styled.input`
 export const PasswordInputContainer = styled.div`
   display: flex;
   flex-direction: row;
-` 
+`
 
 export const CheckboxRememberMe = styled(Checkbox).attrs({
   animation: 'pulse',
@@ -179,7 +178,7 @@ export const CheckboxRememberMe = styled(Checkbox).attrs({
   font-family: 'Manrope';
   font-size: 16;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   align-self: flex-start;
 `
 
@@ -196,7 +195,7 @@ export const EnterButtonContainer = styled.div`
 
 export const ContactUsContainer = styled.div`
   display: flex;
-  margin-top: 4rem;
+  margin-top: 1rem;
   align-self: center;
   flex-direction: row;
   align-items: center;
@@ -215,3 +214,4 @@ export const ContactUsHighlightedText = styled(ContactUsText)`
   text-decoration: underline;
   margin-left: 0.25rem;
 `
+
