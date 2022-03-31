@@ -1,53 +1,38 @@
-import React, { useState, useCallback } from 'react'
+import { getProviders } from "next-auth/react"
 import Head from 'next/head'
-import { getDropdownOptions } from '../../../../utils/getDropdownOptions'
-import {
-  LeftWaveContainer,
-  ICodsEnterpriseLogoLarge,
-  LeftWave,
-  ICodsDescriptionText,
-  LogoAndDescriptionContainer,
-  ContentContainer,
-  LoginSectionContainer,
-  HeaderLoginText,
-  BoldHeaderLoginText,
-  HeaderLoginContainer,
-  LabelLoginText,
-  InputLoginText,
-  CheckboxRememberMe,
-  EnterButtonContainer,
-  ContactUsText,
-  LoginInformationContainer,
-  ContactUsHighlightedText,
-  ContactUsContainer,
-} from './styles'
+import { useRouter } from "next/router"
+import { useCallback, useContext, useState } from 'react'
 import 'react-dropdown/style.css'
 import api from '../../../../services/api'
 import GlobalStyle from '../../../../styles/globalStyle'
-import { Header } from '../../../components/Enterprise/Header'
+import { getDropdownOptions } from '../../../../utils/getDropdownOptions'
 import { Button } from '../../../components/Enterprise/Button'
+import { Header } from '../../../components/Enterprise/Header'
+import { PATH_LIST_CLIENTS } from "../../../constants/urls"
+import { AuthContext } from '../../../context/auth'
+import {
+  BoldHeaderLoginText, CheckboxRememberMe, ContactUsContainer, ContactUsHighlightedText, ContactUsText, ContentContainer, EnterButtonContainer, HeaderLoginContainer, HeaderLoginText, ICodsDescriptionText, ICodsEnterpriseLogoLarge, InputLoginText, LabelLoginText, LeftWave, LeftWaveContainer, LoginInformationContainer, LoginSectionContainer, LogoAndDescriptionContainer
+} from './styles'
 
 const options = getDropdownOptions()
 const defaultOption = options[0]
 
 const EnterpriseLogin = () => {
-  const [email, setEmail] = useState<string>('contato@google.com')
-  const [password, setPassword] = useState<string>('123456')
+  const {businessSignIn, authState} = useContext(AuthContext)
+  const router = useRouter()
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [numberOfQrCodes, setNumberOfQrCodes] = useState<number>(1)
   const [authenticated, setAuthenticated] = useState<boolean>(false)
 
   const handleEnterpriseLogin = useCallback(async () => {
     try {
-      const response = await api.post('signin-business', {
-        email,
-        password,
-      })
-
-      console.log(response)
+      await businessSignIn({ email, password })
+      router.push(PATH_LIST_CLIENTS)      
     } catch (error) {
       console.log(error)
     }
-  }, [email, password])
+  }, [email, password, authState])
 
   const handleGenerateQRCodes = useCallback(async () => {
     try {
@@ -122,6 +107,14 @@ const EnterpriseLogin = () => {
     </>
   )
 }
+
+export async function getServerSideProps(context) {
+  const providers = await getProviders()
+  return {
+    props: { providers },
+  }
+}
+
 
 export default EnterpriseLogin
 

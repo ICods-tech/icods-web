@@ -1,21 +1,17 @@
-import React from 'react'
+import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import Avatar from 'react-avatar'
+import { User } from 'react-iconly'
+import { AuthContext } from '../../../../context/auth'
 import {
-  Container,
-  ManagementText,
+  ChevronLeftIcon, ChevronLeftIconContainer, Container, HeaderChevronContainer, ManagementText,
   NameAndPositionOuterContainer,
   NameAndPositionText,
   NameAndPositionTextContainer,
   PositionAndIConContainer,
   RightSectionContainer,
-  SignOutText,
-  ChevronLeftIcon,
-  WelcomeToManagement,
-  HeaderChevronContainer,
-  ChevronLeftIconContainer,
+  SignOutText, WelcomeToManagement
 } from './styles'
-import { useRouter } from 'next/router'
-import Avatar from 'react-avatar'
-import { User, ChevronLeft } from 'react-iconly'
 
 interface HeaderClientProps {
   isClientRegistry?: boolean
@@ -25,6 +21,7 @@ interface HeaderClientProps {
 
 export const HeaderClient = ({ isClientRegistry, name, position }: HeaderClientProps) => {
   const router = useRouter()
+  const { businessSignOut } = useContext(AuthContext)
   const iconStyle = { width: '1rem', height: '1rem', marginRight: '0.4rem' }
   return (
     <Container>
@@ -53,7 +50,7 @@ export const HeaderClient = ({ isClientRegistry, name, position }: HeaderClientP
             </PositionAndIConContainer>
           </NameAndPositionTextContainer>
         </NameAndPositionOuterContainer>
-        <SignOutText>Sair</SignOutText>
+        <SignOutText onClick={businessSignOut}>Sair</SignOutText>
       </RightSectionContainer>
     </Container>
   )

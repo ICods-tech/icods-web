@@ -1,24 +1,18 @@
-import React from 'react'
+import Router from 'next/router'
+import { NextResponse } from 'next/server'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/auth'
+const enviroment = process.browser ? "client side" : "server side"
 
-const authenticatedRoute = (Component = null, options = {}) => {
-  class AuthenticatedRoute extends React.Component {
-    state = {
-      loading: true,
-    }
-
-    render() {
-      const { loading } = this.state
-
-      if (loading) {
-        return <h1>Loading</h1>
-      }
-
-      return <Component {...this.props} />
-    }
+const authenticatedRoute = (componentPath, options = {}) => {
+  
+  const AuthenticatedRoute = () => {
+    const { isUserAuthenticated } = useContext(AuthContext)
+    console.log(enviroment);
+//    return isUserAuthenticated() ? NextResponse.next() : Router.push('/enterprise/login')
   }
 
   return AuthenticatedRoute
 }
-
 export default authenticatedRoute
 
