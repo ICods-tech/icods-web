@@ -89,7 +89,7 @@ const EnterpriseClients = () => {
     <>
       <GlobalStyle />
       <Head>
-        <title>Empresarial | ICods</title>
+        <title>Empresarial | iCods</title>
       </Head>
       <Container>
         <LeftSection />

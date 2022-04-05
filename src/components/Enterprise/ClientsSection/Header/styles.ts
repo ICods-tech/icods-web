@@ -14,7 +14,7 @@ export const Container = styled.header`
 
 export const WelcomeToManagement = styled.h1`
   font-family: Manrope;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 500;
   color: var(--text-title);
 `
@@ -26,7 +26,7 @@ export const RightSectionContainer = styled.div`
 `
 
 export const ManagementText = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   color: var(--background);
 `
 
@@ -83,11 +83,12 @@ export const HeaderChevronContainer = styled.div`
 export const ChevronLeftIcon = styled(ChevronLeft).attrs({
   set: 'light',
   size: 36,
-  primaryColor: 'var(--background)',
+  primaryColor: 'rgb(0,0,0)',
+  borderColor: 'rgb(0,0,0)',
 })``
 
-export const ChevronLeftIconContainer = styled.div`
+export const ChevronLeftIconContainer = styled.img`
+  cursor: pointer;
   margin-left: 0;
   margin-right: 1.5rem;
-  cursor: pointer;
 `

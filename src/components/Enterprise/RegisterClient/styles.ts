@@ -57,8 +57,14 @@ export const LargeTextInput = styled.input`
   height: 2.5rem;
   padding: 0 1rem;
   border-radius: 0.75rem;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0,0, 0, 0.25);
   color: var(--text-title);
+  // Deixar a borda do input azul quando clicar nele
+  &:focus {
+    border: 2px solid rgba(43,144, 217, 0.5);
+    outline: none;
+    box-shadow: 0 0 1em rgba(43,144, 217, 0.5);
+  }
 `
 
 export const PhoneInput = styled(LargeTextInput)`
@@ -80,4 +86,38 @@ export const ButtonContainer = styled.div`
   margin-top: auto;
   align-self: center;
   margin-bottom: 1.5rem;
+`
+
+export const ButtonContainerRegister = styled.button`
+  width: 11.9375rem;
+  height: 2.5rem;
+  background-color: var(--background);
+  border: 0;
+  transition: border-radius 0.8s linear;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  margin-top: auto;
+  align-self: center;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  &:hover {
+    outline: none;
+    box-shadow: 0 0 1em rgba(43,144, 217, 0.5);
+  }
+`
+
+export const ButtonRegister = styled.h3`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #FFF;
+  line-height: 1.5rem;
+  color: var(--shape);
+  margin-left: 0.25rem;
 `

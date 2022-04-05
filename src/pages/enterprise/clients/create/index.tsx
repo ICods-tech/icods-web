@@ -18,7 +18,7 @@ const CreateClient = () => {
       <Container>
         <LeftSection />
         <RightSectionContainer>
-          <HeaderClient isClientRegistry name="  Mucas Loreira" position="Gerente" />
+          <HeaderClient isClientRegistry name="Marcelo Ivonaldo" position="Design Gráfico" />
           <GrayDivider />
           <RegisterClient />
         </RightSectionContainer>

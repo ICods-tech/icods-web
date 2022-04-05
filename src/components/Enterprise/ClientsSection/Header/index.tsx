@@ -27,9 +27,11 @@ export const HeaderClient = ({ isClientRegistry, name, position }: HeaderClientP
     <Container>
       {isClientRegistry ? (
         <HeaderChevronContainer>
-          <ChevronLeftIconContainer onClick={() => router.back()}>
-            <ChevronLeftIcon />
-          </ChevronLeftIconContainer>
+          <ChevronLeftIconContainer
+            onClick={() => router.back()}
+            src="/images/enterprise/back-button.svg"
+            alt="Back icon"
+          />
           <WelcomeToManagement>
             <ManagementText>Cadastrar</ManagementText> Cliente
           </WelcomeToManagement>

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Dropdown from 'react-dropdown'
 
 export const Container = styled.div`
@@ -43,11 +43,19 @@ export const ClientLabel = styled.h3`
   font-size: 16px;
   line-height: 22px;
   color: var(--text-title);
-`
+  `
 
 export const ClientDropdown = styled(Dropdown)`
   margin-top: 1rem;
   width: 17.5rem;
+  .Dropdown-control {
+    ${ ({disabled} )=> disabled && css`
+      background-color: #C7C9CE  
+    `}
+
+    
+
+  }
 `
 
 export const RegisterClientContainer = styled.div`
@@ -56,6 +64,7 @@ export const RegisterClientContainer = styled.div`
   align-items: center;
   margin-top: 0.5rem;
   margin-bottom: 2rem;
+  cursor: pointer;
 `
 
 export const RegisterClientText = styled.h3`
