@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Dropdown from 'react-dropdown'
+import InputMask from 'react-input-mask'
 
 export const Container = styled.div`
   display: flex;
@@ -57,19 +58,14 @@ export const LargeTextInput = styled.input`
   height: 2.5rem;
   padding: 0 1rem;
   border-radius: 0.75rem;
-  border: 1px solid rgba(0,0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
   color: var(--text-title);
   // Deixar a borda do input azul quando clicar nele
   &:focus {
-    border: 2px solid rgba(43,144, 217, 0.5);
+    border: 2px solid rgba(43, 144, 217, 0.5);
     outline: none;
-    box-shadow: 0 0 1em rgba(43,144, 217, 0.5);
+    box-shadow: 0 0 1em rgba(43, 144, 217, 0.5);
   }
-`
-
-export const PhoneInput = styled(LargeTextInput)`
-  width: 30%;
-  margin-left: 1.25rem;
 `
 
 export const PhoneContainer = styled.div`
@@ -107,7 +103,7 @@ export const ButtonContainerRegister = styled.button`
   border-radius: 10px;
   &:hover {
     outline: none;
-    box-shadow: 0 0 1em rgba(43,144, 217, 0.5);
+    box-shadow: 0 0 1em rgba(43, 144, 217, 0.5);
   }
 `
 
@@ -116,8 +112,24 @@ export const ButtonRegister = styled.h3`
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   line-height: 1.5rem;
   color: var(--shape);
   margin-left: 0.25rem;
+`
+
+export const PhoneInput = styled(InputMask)`
+  margin-top: 0.5rem;
+  width: 40%;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  color: var(--text-title);
+  // Deixar a borda do input azul quando clicar nele
+  &:focus {
+    border: 2px solid rgba(43, 144, 217, 0.5);
+    outline: none;
+    box-shadow: 0 0 1em rgba(43, 144, 217, 0.5);
+  }
 `

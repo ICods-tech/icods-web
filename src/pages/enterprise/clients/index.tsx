@@ -24,7 +24,7 @@ import {
   TableContainer,
   TableHeaderContainer,
   TableHeaderOuterContainer,
-  TableHeaderText
+  TableHeaderText,
 } from './styles'
 
 const functionalities = <Functionalities />
@@ -60,7 +60,7 @@ function clientsColumns() {
 }
 
 const EnterpriseClients = () => {
-  const {redirect, getToken} = useContext(AuthContext)
+  const { redirect, getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
@@ -73,17 +73,15 @@ const EnterpriseClients = () => {
 
   const getClients = async () => {
     const { data } = await api.get('client-business')
-    return data.map(client => ({ ...client, functionalities }));
-  }        
+    return data.map((client) => ({ ...client, functionalities }))
+  }
 
   useEffect(() => {
-    redirect(router);
+    redirect(router)
     getClients()
-      .then(response => setClients(response))
-      .catch(err => console.error(err))
-    
+      .then((response) => setClients(response))
+      .catch((err) => console.error(err))
   }, [redirect])
-
 
   return (
     <>
@@ -146,5 +144,4 @@ const EnterpriseClients = () => {
   )
 }
 
-export default EnterpriseClients;
-
+export default EnterpriseClients

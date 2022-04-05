@@ -1,2 +1,2 @@
-export const PATH_LIST_CLIENTS =`clients`;
-export const PATH_LIST_LOGIN =`login`;
+export const PATH_LIST_CLIENTS = `/enterprise/clients`
+export const PATH_LIST_LOGIN = `/enterprise/login`
