@@ -31,10 +31,12 @@
     "react-dropdown-select": "^4.8.3",
     "react-hook-form": "^7.29.0",
     "react-iconly": "^2.2.5",
+    "react-icons": "^4.3.1",
     "react-input-mask": "^2.0.4",
     "react-modal": "^3.14.4",
     "react-select": "^4.3.1",
     "react-table": "^7.7.0",
+    "react-toastify": "^8.2.0",
     "remark": "^12.0.0",
     "remark-html": "^12.0.0",
     "styled-components": "^5.2.1"

@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
-import { Dispatch, useCallback, useState, SetStateAction } from 'react'
-import { Option } from 'react-dropdown'
+import { Dispatch, useCallback, useState, SetStateAction, useContext } from 'react'
+import { headerConfig } from '../../../../config/headerConfig'
 import api from '../../../../services/api'
+import { displayToast } from '../../../../utils/displayToast'
 import { PATH_LIST_CLIENTS } from '../../../constants/urls'
-import { useForm, Controller } from 'react-hook-form'
+import { AuthContext } from '../../../context/auth'
 import {
   ButtonContainerRegister,
   ButtonRegister,
@@ -19,10 +20,9 @@ import {
 } from './styles'
 
 const RegisterClient = () => {
+  const { getToken } = useContext(AuthContext)
   const options = ['+83', '+84', '+66']
   const defaultOption = options[0]
-  const { register, handleSubmit, control } = useForm()
-  const [selectedOption, setSelectedOption] = useState<Option | string>(defaultOption)
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
@@ -30,12 +30,6 @@ const RegisterClient = () => {
 
   const handleInput = (setState: Dispatch<SetStateAction<string>>, value: string) => {
     setState(value)
-  }
-
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    },
   }
 
   const handleCreateClient = useCallback(async () => {
@@ -48,12 +42,16 @@ const RegisterClient = () => {
           email,
           phone,
         },
-        config
+        headerConfig(getToken())
       )
 
+      displayToast('Cliente criado com sucesso!', 'success')
       router.push(PATH_LIST_CLIENTS)
     } catch (error) {
-      console.log(error)
+      const { errors } = error.response.data
+      errors.map(({ msg }: any) => {
+        displayToast(msg, 'error')
+      })
     }
   }, [])
 
@@ -72,7 +70,7 @@ const RegisterClient = () => {
           <LargeTextInput onChange={(e) => handleInput(setEmail, e.target.value)} />
         </InputAndLabelContainer>
         <InputAndLabelContainer>
-          <InputLabelText>Telefone para Contato:</InputLabelText>
+          <InputLabelText>Telefone:</InputLabelText>
           <PhoneContainer>
             <PhoneInput
               mask="(99) 99999-9999"

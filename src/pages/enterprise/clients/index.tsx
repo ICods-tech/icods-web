@@ -9,22 +9,16 @@ import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Head
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import { Functionalities } from '../../../components/Functionalities'
+import ListTable from '../../../components/Enterprise/ListTable'
 import { AuthContext } from '../../../context/auth'
 import {
   ButtonIconContainer,
   Container,
   GrayDivider,
   RightSectionContainer,
-  TableBodyContainer,
-  TableBodyInnerContainer,
-  TableBodyInnerContainerText,
   TableButton,
   TableButtonsContainer,
   TableButtonText,
-  TableContainer,
-  TableHeaderContainer,
-  TableHeaderOuterContainer,
-  TableHeaderText,
 } from './styles'
 
 const functionalities = <Functionalities />
@@ -96,7 +90,7 @@ const EnterpriseClients = () => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient name="  Mucas Loreira" position="Gerente" />
+          <HeaderClient pageType="home" name="  Mucas Loreira" position="Gerente" />
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>
@@ -108,36 +102,13 @@ const EnterpriseClients = () => {
               <TableButtonText>Cadastrar cliente</TableButtonText>
             </TableButton>
           </TableButtonsContainer>
-          <TableContainer {...getTableProps()}>
-            <TableHeaderOuterContainer>
-              {headerGroups.map((headerGroup) => (
-                <TableHeaderContainer {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <TableHeaderText {...column.getHeaderProps()}>
-                      {column.render('Header')}
-                    </TableHeaderText>
-                  ))}
-                </TableHeaderContainer>
-              ))}
-            </TableHeaderOuterContainer>
-            <TableBodyContainer {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row)
-
-                return (
-                  <TableBodyInnerContainer {...row.getRowProps()}>
-                    {row.cells.map((cell) => {
-                      return (
-                        <TableBodyInnerContainerText {...cell.getCellProps()}>
-                          {cell.render('Cell')}
-                        </TableBodyInnerContainerText>
-                      )
-                    })}
-                  </TableBodyInnerContainer>
-                )
-              })}
-            </TableBodyContainer>
-          </TableContainer>
+          <ListTable
+            getTableProps={getTableProps}
+            headerGroups={headerGroups}
+            getTableBodyProps={getTableBodyProps}
+            rows={rows}
+            prepareRow={prepareRow}
+          />
         </RightSectionContainer>
       </Container>
     </>

@@ -4,43 +4,52 @@ import Avatar from 'react-avatar'
 import { User } from 'react-iconly'
 import { AuthContext } from '../../../../context/auth'
 import {
-  ChevronLeftIcon, ChevronLeftIconContainer, Container, HeaderChevronContainer, ManagementText,
+  ChevronLeftIcon,
+  ChevronLeftIconContainer,
+  Container,
+  HeaderChevronContainer,
+  ManagementText,
   NameAndPositionOuterContainer,
   NameAndPositionText,
   NameAndPositionTextContainer,
   PositionAndIConContainer,
   RightSectionContainer,
-  SignOutText, WelcomeToManagement
+  SignOutText,
+  WelcomeToManagement,
 } from './styles'
 
 interface HeaderClientProps {
-  isClientRegistry?: boolean
+  pageType: 'home' | 'clients' | 'clientsRegistry' | 'lot'
   name: string
   position: string
 }
 
-export const HeaderClient = ({ isClientRegistry, name, position }: HeaderClientProps) => {
+export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) => {
   const router = useRouter()
   const { businessSignOut } = useContext(AuthContext)
   const iconStyle = { width: '1rem', height: '1rem', marginRight: '0.4rem' }
+  const headerTypes = {
+    home: () => (
+      <WelcomeToManagement>
+        Bem vindo ao módulo <ManagementText>Gerência</ManagementText>
+      </WelcomeToManagement>
+    ),
+    clientRegistry: () => (
+      <HeaderChevronContainer>
+        <ChevronLeftIconContainer
+          onClick={() => router.back()}
+          src="/images/enterprise/back-button.svg"
+          alt="Back icon"
+        />
+        <WelcomeToManagement>
+          <ManagementText>Cadastrar</ManagementText> Cliente
+        </WelcomeToManagement>
+      </HeaderChevronContainer>
+    ),
+  }
   return (
     <Container>
-      {isClientRegistry ? (
-        <HeaderChevronContainer>
-          <ChevronLeftIconContainer
-            onClick={() => router.back()}
-            src="/images/enterprise/back-button.svg"
-            alt="Back icon"
-          />
-          <WelcomeToManagement>
-            <ManagementText>Cadastrar</ManagementText> Cliente
-          </WelcomeToManagement>
-        </HeaderChevronContainer>
-      ) : (
-        <WelcomeToManagement>
-          Bem vindo ao módulo <ManagementText>Gerência</ManagementText>
-        </WelcomeToManagement>
-      )}
+      {headerTypes[pageType]()}
       <RightSectionContainer>
         <NameAndPositionOuterContainer>
           <Avatar fgColor="rgba(0, 0, 0, 0.87)" color="#fff" name={name} round size={'5rem'} />

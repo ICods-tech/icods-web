@@ -9,6 +9,7 @@ export const FunctionalitiesContainers = styled.button`
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  align-self: center;
 `
 
 export const DetailIcon = styled.img`
@@ -25,3 +26,4 @@ export const DeleteIcon = styled.img`
   width: 3rem;
   height: 2rem;
 `
+
