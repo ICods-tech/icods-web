@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import { PATH_LIST_LOTS } from '../../constants/urls'
+import { PATH_LIST_LOTS, PATH_LIST_QRCODES } from '../../constants/urls'
 import { ChatIcon, DeleteIcon, DetailIcon, FunctionalitiesContainers } from './styles'
 
 interface FunctionalitiesProps {
-  type: 'functionalitiesClients' | 'functionalitiesLots' 
+  type: 'functionalitiesClients' | 'functionalitiesLots' | 'functionalitiesQRCodes'
 }
 
 export const Functionalities = ({ type }: FunctionalitiesProps) => {
@@ -17,7 +17,11 @@ export const Functionalities = ({ type }: FunctionalitiesProps) => {
       delete: <DeleteIcon src="/images/delete.svg" alt="Deletar" />,
     }),
     functionalitiesLots: () => ( {
-      detail: <DetailIcon src="/images/detail.svg" onClick={()=>router.push(PATH_LIST_LOTS)}  alt="Detalhes" />,
+      detail: <DetailIcon src="/images/detail.svg" onClick={()=>router.push(PATH_LIST_QRCODES)}  alt="Detalhes" />,
+      chat: <ChatIcon src="/images/imprimir.svg" alt="Imprimir" />,
+      delete: <DeleteIcon src="/images/delete.svg" alt="Deletar" />
+    }),
+    functionalitiesQRCodes: () => ( {
       chat: <ChatIcon src="/images/imprimir.svg" alt="Imprimir" />,
       delete: <DeleteIcon src="/images/delete.svg" alt="Deletar" />
     })

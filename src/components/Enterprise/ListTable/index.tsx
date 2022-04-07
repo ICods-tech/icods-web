@@ -1,3 +1,4 @@
+import Status, { IStatus } from '../Status'
 import {
   TableContainer,
   TableHeaderContainer,
@@ -33,13 +34,20 @@ const ListTable = ({ getTableProps, headerGroups, getTableBodyProps, rows, prepa
               {row.cells.map((cell) => {
                 console.log("cell");
                 console.log(cell);
-                if(cell.column.Header === "Código do Lote"){
+                if(cell.column.Header === "Código do Lote" || cell.column.Header === "Código QR Code") {
                   return (
                     <TableBodyContainerText>
                       <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
                         {cell.render('Cell')}
                       </TableBodyInnerContainerTextCodeLote>
                     </TableBodyContainerText>
+                  )
+                }
+                if(cell.column.Header === "Estado") {
+                  return (
+                    <TableBodyInnerContainerText {...cell.getCellProps()}>
+                      <Status type={cell.value} />
+                    </TableBodyInnerContainerText>
                   )
                 }
                 return (

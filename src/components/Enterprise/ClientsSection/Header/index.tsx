@@ -18,7 +18,7 @@ import {
 } from './styles'
 
 interface HeaderClientProps {
-  pageType: 'home' | 'clients' | 'clientRegistry' | 'lots'
+  pageType: 'home' | 'clients' | 'clientRegistry' | 'lots' | 'qrcodes'
   name: string
   position: string
 }
@@ -54,6 +54,18 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
         />
         <WelcomeToManagement>
           <BreadcrumbHeader>Clientes/</BreadcrumbHeader>Cliente<ManagementText> Thomas Ribeiro</ManagementText> 
+        </WelcomeToManagement>
+      </HeaderChevronContainer>
+    ),
+    qrcodes: () => (
+      <HeaderChevronContainer>
+        <ChevronLeftIconContainer
+          onClick={() => router.back()}
+          src="/images/enterprise/back-button.svg"
+          alt="Back icon"
+        />
+        <WelcomeToManagement>
+          <BreadcrumbHeader>Thomas Ribeiro/</BreadcrumbHeader>Lote<ManagementText> ce4fb79b</ManagementText> 
         </WelcomeToManagement>
       </HeaderChevronContainer>
     ),

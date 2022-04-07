@@ -21,7 +21,7 @@ import {
   TableButtonText,
 } from './styles'
 
-const functionalities = <Functionalities />
+const functionalities = <Functionalities type='functionalitiesClients'/>
 
 function clientsColumns() {
   const columns = useMemo(

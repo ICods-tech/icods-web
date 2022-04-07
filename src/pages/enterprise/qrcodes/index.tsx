@@ -13,26 +13,18 @@ import { Functionalities } from '../../../components/Functionalities'
 import { AuthContext } from '../../../context/auth'
 import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
 
-const functionalities = <Functionalities type='functionalitiesLots' />
+const functionalities = <Functionalities type='functionalitiesQRCodes' />
 
-function lotsColumns() {
+function qrcodesColumns() {
   const columns = useMemo(
     () => [
       {
-        Header: 'Código do Lote',
+        Header: 'Código QR Code',
         accessor: 'id',
       },
       {
-        Header: 'Quantidade QR Codes',
-        accessor: 'numberOfQRCodes',
-      },
-      {
-        Header: 'Data de criação',
-        accessor: 'created_at',
-      },
-      {
-        Header: 'Última modificação',
-        accessor: 'updated_at',
+        Header: 'Estado',
+        accessor: 'status',
       },
       {
         Header: 'Funcionalidades',
@@ -45,42 +37,61 @@ function lotsColumns() {
   return columns
 }
 
-const EnterpriseLots = ({ lots }) => {
-  lots =[
-      {
-        "id": "bed44368-61c4-4ea1-98dc-6b4ca7648a62",
-        "numberOfQRCodes": 9,
-        "created_at": "2022-04-05T19:31:25.349Z",
-        "updated_at": "2022-04-05T19:31:26.330Z"
-      },
-      {
-        "id": "d20fb8fe-0695-4844-bd4a-8c53ecaf09a1",
-        "numberOfQRCodes": 10,
-        "created_at": "2022-04-05T20:13:15.388Z",
-        "updated_at": "2022-04-05T20:13:15.683Z"
-      },
-      {
-        "id": "2c487259-d496-4c41-a337-294132ee0e03",
-        "numberOfQRCodes": 10,
-        "created_at": "2022-04-07T03:33:32.701Z",
-        "updated_at": "2022-04-07T03:33:33.018Z"
-      }
-    ]
+const EnterpriseQRCodes = ({ qrcodes }) => {
+  qrcodes =[
+    {
+      "id": "596975a9-07de-4408-8f41-604c80e00a15",
+      "status": "ACTIVE",
+      "link": "",
+      "content": "",
+      "favorited": false,
+      "madeColor": "noColor",
+      "receivedColor": "noColor",
+      "postId": null,
+      "created_at": "2022-04-07T03:33:32.980Z",
+      "received_at": null,
+      "user": null
+    },
+    {
+      "id": "da90b883-a761-456b-aa95-8d1c1de98b4f",
+      "status": "IN_PROGRESS",
+      "link": "",
+      "content": "",
+      "favorited": false,
+      "madeColor": "noColor",
+      "receivedColor": "noColor",
+      "postId": null,
+      "created_at": "2022-04-07T03:33:32.966Z",
+      "received_at": null,
+      "user": null
+    },
+    {
+      "id": "ce4fb79b-c2c1-430f-bea9-fb487d0313a7",
+      "status": "INACTIVE",
+      "link": "",
+      "content": "",
+      "favorited": false,
+      "madeColor": "noColor",
+      "receivedColor": "noColor",
+      "postId": null,
+      "created_at": "2022-04-07T03:33:32.994Z",
+      "received_at": null,
+      "user": null
+    }
+  ]
 
   // MELHORAR ISSO DEPOIS
-  lots = lots.map((lots) => ({ ...lots, functionalities }))
-  lots = lots.map((lots) => ({ ...lots, created_at: new Date(lots.created_at).toLocaleDateString() }))
-  lots = lots.map((lots) => ({ ...lots, updated_at: new Date(lots.updated_at).toLocaleDateString() }))
-  lots = lots.map((lots) => ({ ...lots, id: lots.id.slice(0, 8) }))
+  qrcodes = qrcodes.map((qrcodes) => ({ ...qrcodes, functionalities }))
+  qrcodes = qrcodes.map((qrcodes) => ({ ...qrcodes, id: qrcodes.id.slice(0, 8) }))
 
   const { getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
-  const columns = lotsColumns()
+  const columns = qrcodesColumns()
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
-    data: lots,
+    data: qrcodes,
   })
 
   return (
@@ -96,12 +107,12 @@ const EnterpriseLots = ({ lots }) => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient pageType='lots' name="Ivonaldo Ivonaldo" position="Design Gráfico" />
+          <HeaderClient pageType='qrcodes' name="Ivonaldo Ivonaldo" position="Design Gráfico" />
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>
-              <ButtonIconContainer src="/images/enterprise/qrcodes.svg" alt="Create QR Codes" />
-              <TableButtonText>Criar QR Code</TableButtonText>
+              <ButtonIconContainer src="/images/printer.svg" alt="Create QR Codes" />
+              <TableButtonText>Imprmir Lote</TableButtonText>
             </TableButton>
           </TableButtonsContainer>
           <ListTable
@@ -117,5 +128,5 @@ const EnterpriseLots = ({ lots }) => {
   )
 }
 
-export default EnterpriseLots
+export default EnterpriseQRCodes
 

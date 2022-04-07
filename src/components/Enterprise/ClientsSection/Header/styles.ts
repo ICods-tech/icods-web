@@ -14,7 +14,7 @@ export const Container = styled.header`
 
 export const WelcomeToManagement = styled.h1`
   font-family: Manrope;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   font-weight: 500;
   color: var(--text-title);
 `

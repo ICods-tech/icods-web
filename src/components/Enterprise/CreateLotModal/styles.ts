@@ -52,9 +52,6 @@ export const ClientDropdown = styled(Dropdown)`
     ${ ({disabled} )=> disabled && css`
       background-color: #C7C9CE  
     `}
-
-    
-
   }
 `
 
