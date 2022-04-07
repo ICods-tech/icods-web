@@ -19,7 +19,7 @@ const CreateClient = () => {
         <LeftSection />
         <RightSectionContainer>
           <HeaderClient
-            pageType="clientsRegistry"
+            pageType="clientRegistry"
             name="Marcelo Ivonaldo"
             position="Design Gráfico"
           />

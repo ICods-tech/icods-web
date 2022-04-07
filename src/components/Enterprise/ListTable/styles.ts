@@ -76,3 +76,24 @@ export const TableBodyInnerContainerText = styled.td`
   color: var(--text-title);
 `
 
+
+export const TableBodyInnerContainerTextCodeLote = styled.td`
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #FFF;
+  background:#000000;
+  border-radius: 6px;
+  padding: 0.1667rem 1.3333rem;
+`
+
+export const TableBodyContainerText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+;
+`
+

@@ -4,8 +4,7 @@ import Avatar from 'react-avatar'
 import { User } from 'react-iconly'
 import { AuthContext } from '../../../../context/auth'
 import {
-  ChevronLeftIcon,
-  ChevronLeftIconContainer,
+  BreadcrumbHeader, ChevronLeftIconContainer,
   Container,
   HeaderChevronContainer,
   ManagementText,
@@ -15,11 +14,11 @@ import {
   PositionAndIConContainer,
   RightSectionContainer,
   SignOutText,
-  WelcomeToManagement,
+  WelcomeToManagement
 } from './styles'
 
 interface HeaderClientProps {
-  pageType: 'home' | 'clients' | 'clientsRegistry' | 'lot'
+  pageType: 'home' | 'clients' | 'clientRegistry' | 'lots'
   name: string
   position: string
 }
@@ -43,6 +42,18 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
         />
         <WelcomeToManagement>
           <ManagementText>Cadastrar</ManagementText> Cliente
+        </WelcomeToManagement>
+      </HeaderChevronContainer>
+    ),
+    lots: () => (
+      <HeaderChevronContainer>
+        <ChevronLeftIconContainer
+          onClick={() => router.back()}
+          src="/images/enterprise/back-button.svg"
+          alt="Back icon"
+        />
+        <WelcomeToManagement>
+          <BreadcrumbHeader>Clientes/</BreadcrumbHeader>Cliente<ManagementText> Thomas Ribeiro</ManagementText> 
         </WelcomeToManagement>
       </HeaderChevronContainer>
     ),

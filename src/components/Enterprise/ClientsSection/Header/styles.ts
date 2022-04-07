@@ -92,3 +92,9 @@ export const ChevronLeftIconContainer = styled.img`
   margin-left: 0;
   margin-right: 1.5rem;
 `
+
+export const BreadcrumbHeader = styled.span`
+  font-weight: 100;
+  font-size: 1rem;
+  color: rgb(0, 0, 0, 0.4);
+`

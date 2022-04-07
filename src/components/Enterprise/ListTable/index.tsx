@@ -6,6 +6,8 @@ import {
   TableBodyContainer,
   TableBodyInnerContainer,
   TableBodyInnerContainerText,
+  TableBodyInnerContainerTextCodeLote,
+  TableBodyContainerText,
 } from './styles'
 
 const ListTable = ({ getTableProps, headerGroups, getTableBodyProps, rows, prepareRow }) => {
@@ -29,10 +31,23 @@ const ListTable = ({ getTableProps, headerGroups, getTableBodyProps, rows, prepa
           return (
             <TableBodyInnerContainer {...row.getRowProps()}>
               {row.cells.map((cell) => {
+                console.log("cell");
+                console.log(cell);
+                if(cell.column.Header === "Código do Lote"){
+                  return (
+                    <TableBodyContainerText>
+                      <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
+                        {cell.render('Cell')}
+                      </TableBodyInnerContainerTextCodeLote>
+                    </TableBodyContainerText>
+                  )
+                }
                 return (
-                  <TableBodyInnerContainerText {...cell.getCellProps()}>
-                    {cell.render('Cell')}
-                  </TableBodyInnerContainerText>
+                  // <TableBodyContainerText>
+                    <TableBodyInnerContainerText {...cell.getCellProps()}>
+                      {cell.render('Cell')}
+                    </TableBodyInnerContainerText>
+                  // </TableBodyContainerText>
                 )
               })}
             </TableBodyInnerContainer>
