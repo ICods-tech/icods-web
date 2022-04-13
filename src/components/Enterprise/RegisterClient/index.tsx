@@ -28,12 +28,12 @@ const RegisterClient = () => {
   const [name, setName] = useState('')
   const router = useRouter()
 
-  const handleInput = (setState: Dispatch<SetStateAction<string>>, value: string) => {
+  const handleInput = (setState: any, value: string) => {
     setState(value)
   }
 
   const handleCreateClient = useCallback(async () => {
-    console.log('create client')
+    
     try {
       await api.post(
         '/client-business',

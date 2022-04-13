@@ -9,11 +9,8 @@ import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Head
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
-import { Functionalities } from '../../../components/Functionalities'
 import { AuthContext } from '../../../context/auth'
 import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
-
-const functionalities = <Functionalities type='functionalitiesQRCodes' />
 
 function qrcodesColumns() {
   const columns = useMemo(
@@ -38,7 +35,8 @@ function qrcodesColumns() {
 }
 
 const EnterpriseQRCodes = ({ qrcodes }) => {
-  qrcodes =[
+
+  qrcodes = [
     {
       "id": "596975a9-07de-4408-8f41-604c80e00a15",
       "status": "ACTIVE",
@@ -81,7 +79,6 @@ const EnterpriseQRCodes = ({ qrcodes }) => {
   ]
 
   // MELHORAR ISSO DEPOIS
-  qrcodes = qrcodes.map((qrcodes) => ({ ...qrcodes, functionalities }))
   qrcodes = qrcodes.map((qrcodes) => ({ ...qrcodes, id: qrcodes.id.slice(0, 8) }))
 
   const { getToken } = useContext(AuthContext)
@@ -89,10 +86,8 @@ const EnterpriseQRCodes = ({ qrcodes }) => {
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const columns = qrcodesColumns()
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-    columns,
-    data: qrcodes,
-  })
+
+  console.log({qrcodes, columns});
 
   return (
     <>
@@ -116,11 +111,9 @@ const EnterpriseQRCodes = ({ qrcodes }) => {
             </TableButton>
           </TableButtonsContainer>
           <ListTable
-            getTableProps={getTableProps}
-            headerGroups={headerGroups}
-            getTableBodyProps={getTableBodyProps}
-            rows={rows}
-            prepareRow={prepareRow}
+            columns={qrcodesColumns}
+            data={qrcodes}
+            type={'qrcodes'}
           />
         </RightSectionContainer>
       </Container>

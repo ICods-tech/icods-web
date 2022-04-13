@@ -22,6 +22,11 @@ export const ChatIcon = styled.img`
   height: 2rem;
 `
 
+export const PrinterIcon = styled.img`
+  width: 3rem;
+  height: 2rem;
+`
+
 export const DeleteIcon = styled.img`
   width: 3rem;
   height: 2rem;

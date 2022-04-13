@@ -1,17 +1,77 @@
-import Status, { IStatus } from '../Status'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useTable } from 'react-table'
+import { PATH_LIST_LOTS } from '../../../constants/urls'
+import { Functionalities } from '../../Functionalities'
+import Status from '../Status'
 import {
-  TableContainer,
+  TableBodyContainer, TableBodyContainerText, TableBodyInnerContainer,
+  TableBodyInnerContainerText,
+  TableBodyInnerContainerTextCodeLote, TableContainer,
   TableHeaderContainer,
   TableHeaderOuterContainer,
-  TableHeaderText,
-  TableBodyContainer,
-  TableBodyInnerContainer,
-  TableBodyInnerContainerText,
-  TableBodyInnerContainerTextCodeLote,
-  TableBodyContainerText,
+  TableHeaderText
 } from './styles'
 
-const ListTable = ({ getTableProps, headerGroups, getTableBodyProps, rows, prepareRow }) => {
+
+
+const ListTable = ({data, columns, type}) => {
+  console.log({data, columns, type});
+  
+  const [row, setRow ] = useState(null)
+  
+  const router = useRouter()
+  
+  const handleClickDetail = () => {
+    router.push(PATH_LIST_LOTS+`?id=${row.id}`)
+  }
+  const handleClickDeleteClient = () => {
+    console.log('delete client', new Date())
+  }
+  const handleClickDeleteLots = () => {
+    console.log('delete lots',new Date())
+  }
+  const handleClickDeleteQrcodes = () => {
+    console.log('delete qrcodes',new Date())
+  }
+  const functionsClients = {
+    detail: handleClickDetail, 
+    delete: handleClickDeleteClient,
+  }
+  const functionsLots = {
+    detail: handleClickDetail, 
+    delete: handleClickDeleteLots,
+  }
+  const functionsQRCodes = {
+    detail: handleClickDetail, 
+    delete: handleClickDeleteQrcodes,
+  }
+ 
+  const functionsTypes = {
+    clients: functionsClients,
+    lots: functionsLots,
+    qrcodes: functionsQRCodes
+  }
+  
+ 
+  const functionalities = <Functionalities type={type} functions={functionsTypes[type]}/>
+ 
+  
+  data = data.map((client) => ({ ...client, functionalities }))
+  
+  const handleClickRow = (email) => {
+    setRow(data.find(client => client.email === email));
+  }
+  console.log(columns,data);
+  
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({
+    columns,
+    data
+  })
+
+  
+  
+  
   return (
     <TableContainer {...getTableProps()}>
       <TableHeaderOuterContainer>
@@ -28,12 +88,10 @@ const ListTable = ({ getTableProps, headerGroups, getTableBodyProps, rows, prepa
       <TableBodyContainer {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row)
-
+          
           return (
-            <TableBodyInnerContainer {...row.getRowProps()}>
+            <TableBodyInnerContainer {...row.getRowProps()} onClick={()=>handleClickRow(row.cells[1].value)}>
               {row.cells.map((cell) => {
-                console.log("cell");
-                console.log(cell);
                 if(cell.column.Header === "Código do Lote" || cell.column.Header === "Código QR Code") {
                   return (
                     <TableBodyContainerText>

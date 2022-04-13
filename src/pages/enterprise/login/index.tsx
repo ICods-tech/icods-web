@@ -45,7 +45,6 @@ const EnterpriseLogin = () => {
           { responseType: 'blob' }
         )
         .then((response) => {
-          console.log(`response: `, { ...response })
           const pdfFile = new Blob([response.data], { type: 'application/pdf' })
           const fileURL = URL.createObjectURL(pdfFile)
           window.open(fileURL)

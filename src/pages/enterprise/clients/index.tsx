@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
-import { useTable } from 'react-table'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
@@ -21,9 +20,8 @@ import {
   TableButtonText,
 } from './styles'
 
-const functionalities = <Functionalities type='functionalitiesClients'/>
-
 function clientsColumns() {
+
   const columns = useMemo(
     () => [
       {
@@ -60,14 +58,11 @@ const EnterpriseClients = () => {
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const [clients, setClients] = useState([])
   const columns = clientsColumns()
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-    columns,
-    data: clients,
-  })
 
   const getClients = async () => {
     const { data } = await api.get('client-business')
-    return data.map((client) => ({ ...client, functionalities }))
+    // adjus format data for DD/MM/YYYY
+    return data.map((client) => ({ ...client, updated_at: new Date(client.updated_at).toLocaleDateString() }))
   }
 
   useEffect(() => {
@@ -103,11 +98,9 @@ const EnterpriseClients = () => {
             </TableButton>
           </TableButtonsContainer>
           <ListTable
-            getTableProps={getTableProps}
-            headerGroups={headerGroups}
-            getTableBodyProps={getTableBodyProps}
-            rows={rows}
-            prepareRow={prepareRow}
+            columns={columns}
+            data={clients}
+            type={'clients'}
           />
         </RightSectionContainer>
       </Container>

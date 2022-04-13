@@ -25,7 +25,6 @@ import {
 
 const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
   const { getToken } = useContext(AuthContext)
-  console.log({ getToken })
   const customStyles = {
     content: {
       width: '32.6875rem',
@@ -68,7 +67,6 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
   const [numberOfQrCodes, setNumberOfQrCodes] = useState(1)
 
   const createQRCodes = async () => {
-    console.log(selectedOption)
 
     const { data } = await api.post(
       '/business/generate_deactivated_qrcode',

@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log('Inside useEffect from auth');
     async function loadStoredData(): Promise<void> {
       const token = localStorage.getItem(KEY_TOKEN);
       setAuthState({token});

@@ -2,18 +2,15 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useContext, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
-import { useTable } from 'react-table'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
-import { Functionalities } from '../../../components/Functionalities'
 import { AuthContext } from '../../../context/auth'
 import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
 
-const functionalities = <Functionalities type='functionalitiesLots' />
 
 function lotsColumns() {
   const columns = useMemo(
@@ -46,29 +43,22 @@ function lotsColumns() {
 }
 
 const EnterpriseLots = ({ lots }) => {
-  lots =[
-      {
-        "id": "bed44368-61c4-4ea1-98dc-6b4ca7648a62",
-        "numberOfQRCodes": 9,
-        "created_at": "2022-04-05T19:31:25.349Z",
-        "updated_at": "2022-04-05T19:31:26.330Z"
-      },
-      {
-        "id": "d20fb8fe-0695-4844-bd4a-8c53ecaf09a1",
-        "numberOfQRCodes": 10,
-        "created_at": "2022-04-05T20:13:15.388Z",
-        "updated_at": "2022-04-05T20:13:15.683Z"
-      },
-      {
-        "id": "2c487259-d496-4c41-a337-294132ee0e03",
-        "numberOfQRCodes": 10,
-        "created_at": "2022-04-07T03:33:32.701Z",
-        "updated_at": "2022-04-07T03:33:33.018Z"
-      }
-    ]
+  lots = [
+    {
+      "id": "762090f5-2c53-4112-9db1-0509ecff42dc",
+      "numberOfQRCodes": 10,
+      "created_at": "2022-04-09T20:54:07.872Z",
+      "updated_at": "2022-04-09T20:54:08.258Z"
+    },
+    {
+      "id": "d1d6b503-aeee-4bff-9560-7a905d0227c3",
+      "numberOfQRCodes": 10,
+      "created_at": "2022-04-09T20:54:09.419Z",
+      "updated_at": "2022-04-09T20:54:09.635Z"
+    }
+  ]
 
   // MELHORAR ISSO DEPOIS
-  lots = lots.map((lots) => ({ ...lots, functionalities }))
   lots = lots.map((lots) => ({ ...lots, created_at: new Date(lots.created_at).toLocaleDateString() }))
   lots = lots.map((lots) => ({ ...lots, updated_at: new Date(lots.updated_at).toLocaleDateString() }))
   lots = lots.map((lots) => ({ ...lots, id: lots.id.slice(0, 8) }))
@@ -78,10 +68,6 @@ const EnterpriseLots = ({ lots }) => {
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const columns = lotsColumns()
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-    columns,
-    data: lots,
-  })
 
   return (
     <>
@@ -105,11 +91,9 @@ const EnterpriseLots = ({ lots }) => {
             </TableButton>
           </TableButtonsContainer>
           <ListTable
-            getTableProps={getTableProps}
-            headerGroups={headerGroups}
-            getTableBodyProps={getTableBodyProps}
-            rows={rows}
-            prepareRow={prepareRow}
+            columns={columns}
+            data={lots}
+            type={'lots'}
           />
         </RightSectionContainer>
       </Container>
