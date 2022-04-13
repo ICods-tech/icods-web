@@ -65,6 +65,7 @@ export const TableBodyContainer = styled.tbody``
 
 export const TableBodyInnerContainer = styled.tr`
   border: 0;
+  text-align: center;
 `
 
 export const TableBodyInnerContainerText = styled.td`
@@ -74,8 +75,8 @@ export const TableBodyInnerContainerText = styled.td`
   font-size: 16px;
   line-height: 22px;
   color: var(--text-title);
+  text-align: center;
 `
-
 
 export const TableBodyInnerContainerTextCodeLote = styled.td`
   font-family: Manrope;
@@ -83,8 +84,8 @@ export const TableBodyInnerContainerTextCodeLote = styled.td`
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  color: #FFF;
-  background:#000000;
+  color: #fff;
+  background: #000000;
   border-radius: 6px;
   padding: 0.1667rem 1.3333rem;
 `
@@ -94,10 +95,8 @@ export const TableBodyContainerText = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-;
+  margin-top: 0.5rem;
 `
-
-
 
 // functionalities
 export const FunctionalitiesContainers = styled.button`
@@ -127,3 +126,8 @@ export const DeleteIcon = styled.img`
   height: 2rem;
 `
 
+export const FunctionalitiesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

@@ -5,73 +5,74 @@ import { PATH_LIST_LOTS } from '../../../constants/urls'
 import { Functionalities } from '../../Functionalities'
 import Status from '../Status'
 import {
-  TableBodyContainer, TableBodyContainerText, TableBodyInnerContainer,
+  TableBodyContainer,
+  TableBodyContainerText,
+  TableBodyInnerContainer,
   TableBodyInnerContainerText,
-  TableBodyInnerContainerTextCodeLote, TableContainer,
+  TableBodyInnerContainerTextCodeLote,
+  TableContainer,
   TableHeaderContainer,
   TableHeaderOuterContainer,
-  TableHeaderText
+  TableHeaderText,
+  FunctionalitiesContainer,
 } from './styles'
 
+const ListTable = ({ data, columns, type }) => {
+  console.log({ data, columns, type })
 
+  const [row, setRow] = useState(null)
 
-const ListTable = ({data, columns, type}) => {
-  console.log({data, columns, type});
-  
-  const [row, setRow ] = useState(null)
-  
   const router = useRouter()
-  
+
   const handleClickDetail = () => {
-    router.push(PATH_LIST_LOTS+`?id=${row.id}`)
+    router.push(PATH_LIST_LOTS + `?id=${row.id}`)
   }
   const handleClickDeleteClient = () => {
     console.log('delete client', new Date())
   }
   const handleClickDeleteLots = () => {
-    console.log('delete lots',new Date())
+    console.log('delete lots', new Date())
   }
   const handleClickDeleteQrcodes = () => {
-    console.log('delete qrcodes',new Date())
+    console.log('delete qrcodes', new Date())
   }
   const functionsClients = {
-    detail: handleClickDetail, 
+    detail: handleClickDetail,
     delete: handleClickDeleteClient,
   }
   const functionsLots = {
-    detail: handleClickDetail, 
+    detail: handleClickDetail,
     delete: handleClickDeleteLots,
   }
   const functionsQRCodes = {
-    detail: handleClickDetail, 
+    detail: handleClickDetail,
     delete: handleClickDeleteQrcodes,
   }
- 
+
   const functionsTypes = {
     clients: functionsClients,
     lots: functionsLots,
-    qrcodes: functionsQRCodes
+    qrcodes: functionsQRCodes,
   }
-  
- 
-  const functionalities = <Functionalities type={type} functions={functionsTypes[type]}/>
- 
-  
+
+  const functionalities = (
+    <FunctionalitiesContainer>
+      <Functionalities type={type} functions={functionsTypes[type]} />
+    </FunctionalitiesContainer>
+  )
+
   data = data.map((client) => ({ ...client, functionalities }))
-  
+
   const handleClickRow = (email) => {
-    setRow(data.find(client => client.email === email));
+    setRow(data.find((client) => client.email === email))
   }
-  console.log(columns,data);
-  
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({
+  console.log(columns, data)
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
-    data
+    data,
   })
 
-  
-  
-  
   return (
     <TableContainer {...getTableProps()}>
       <TableHeaderOuterContainer>
@@ -88,11 +89,16 @@ const ListTable = ({data, columns, type}) => {
       <TableBodyContainer {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row)
-          
           return (
-            <TableBodyInnerContainer {...row.getRowProps()} onClick={()=>handleClickRow(row.cells[1].value)}>
+            <TableBodyInnerContainer
+              {...row.getRowProps()}
+              onClick={() => handleClickRow(row.cells[1].value)}
+            >
               {row.cells.map((cell) => {
-                if(cell.column.Header === "Código do Lote" || cell.column.Header === "Código QR Code") {
+                if (
+                  cell.column.Header === 'Código do Lote' ||
+                  cell.column.Header === 'Código QR Code'
+                ) {
                   return (
                     <TableBodyContainerText>
                       <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
@@ -101,7 +107,7 @@ const ListTable = ({data, columns, type}) => {
                     </TableBodyContainerText>
                   )
                 }
-                if(cell.column.Header === "Estado") {
+                if (cell.column.Header === 'Estado') {
                   return (
                     <TableBodyInnerContainerText {...cell.getCellProps()}>
                       <Status type={cell.value} />
@@ -110,9 +116,9 @@ const ListTable = ({data, columns, type}) => {
                 }
                 return (
                   // <TableBodyContainerText>
-                    <TableBodyInnerContainerText {...cell.getCellProps()}>
-                      {cell.render('Cell')}
-                    </TableBodyInnerContainerText>
+                  <TableBodyInnerContainerText {...cell.getCellProps()}>
+                    {cell.render('Cell')}
+                  </TableBodyInnerContainerText>
                   // </TableBodyContainerText>
                 )
               })}
@@ -125,4 +131,3 @@ const ListTable = ({data, columns, type}) => {
 }
 
 export default ListTable
-
