@@ -21,7 +21,6 @@ const ListTable = ({ data, columns, type }) => {
   const router = useRouter()
 
   const handleClickDetail = (id: string) => {
-    console.log('Details meu chapinha', { id })
     router.push(PATH_LIST_LOTS + `?id=${id}`)
   }
   const handleClickDeleteClient = (id: string) => {

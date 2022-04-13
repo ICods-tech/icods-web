@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useContext, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
@@ -9,8 +9,15 @@ import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
 import { AuthContext } from '../../../context/auth'
-import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
-
+import {
+  ButtonIconContainer,
+  Container,
+  GrayDivider,
+  RightSectionContainer,
+  TableButton,
+  TableButtonsContainer,
+  TableButtonText,
+} from './syles'
 
 function lotsColumns() {
   const columns = useMemo(
@@ -45,22 +52,30 @@ function lotsColumns() {
 const EnterpriseLots = ({ lots }) => {
   lots = [
     {
-      "id": "762090f5-2c53-4112-9db1-0509ecff42dc",
-      "numberOfQRCodes": 10,
-      "created_at": "2022-04-09T20:54:07.872Z",
-      "updated_at": "2022-04-09T20:54:08.258Z"
+      id: '762090f5-2c53-4112-9db1-0509ecff42dc',
+      numberOfQRCodes: 10,
+      created_at: '2022-04-09T20:54:07.872Z',
+      updated_at: '2022-04-09T20:54:08.258Z',
     },
     {
-      "id": "d1d6b503-aeee-4bff-9560-7a905d0227c3",
-      "numberOfQRCodes": 10,
-      "created_at": "2022-04-09T20:54:09.419Z",
-      "updated_at": "2022-04-09T20:54:09.635Z"
-    }
+      id: 'd1d6b503-aeee-4bff-9560-7a905d0227c3',
+      numberOfQRCodes: 10,
+      created_at: '2022-04-09T20:54:09.419Z',
+      updated_at: '2022-04-09T20:54:09.635Z',
+    },
   ]
 
+  const [lotsState, setLotsState] = useState([])
+
   // MELHORAR ISSO DEPOIS
-  lots = lots.map((lots) => ({ ...lots, created_at: new Date(lots.created_at).toLocaleDateString() }))
-  lots = lots.map((lots) => ({ ...lots, updated_at: new Date(lots.updated_at).toLocaleDateString() }))
+  lots = lots.map((lots) => ({
+    ...lots,
+    created_at: new Date(lots.created_at).toLocaleDateString(),
+  }))
+  lots = lots.map((lots) => ({
+    ...lots,
+    updated_at: new Date(lots.updated_at).toLocaleDateString(),
+  }))
   lots = lots.map((lots) => ({ ...lots, id: lots.id.slice(0, 8) }))
 
   const { getToken } = useContext(AuthContext)
@@ -68,6 +83,27 @@ const EnterpriseLots = ({ lots }) => {
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const columns = lotsColumns()
+
+  useEffect(() => {
+    const { id } = router.query
+    api
+      .get(`/client-business-lots/${id}`)
+      .then((response) => {
+        const filteredResponse = response.data.map((lotResponse) => {
+          return {
+            ...lotResponse,
+            id: lotResponse.id.slice(0, 8),
+            created_at: new Date(lotResponse.created_at).toLocaleDateString('pt-BR'),
+            updated_at: new Date(lotResponse.updated_at).toLocaleDateString('pt-BR'),
+          }
+        })
+
+        setLotsState(filteredResponse)
+      })
+      .catch((error) => {
+        console.log('error', error)
+      })
+  })
 
   return (
     <>
@@ -82,7 +118,7 @@ const EnterpriseLots = ({ lots }) => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient pageType='lots' name="Ivonaldo Ivonaldo" position="Design Gráfico" />
+          <HeaderClient pageType="lots" name="Ivonaldo Ivonaldo" position="Design Gráfico" />
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>
@@ -90,11 +126,7 @@ const EnterpriseLots = ({ lots }) => {
               <TableButtonText>Criar QR Code</TableButtonText>
             </TableButton>
           </TableButtonsContainer>
-          <ListTable
-            columns={columns}
-            data={lots}
-            type={'lots'}
-          />
+          <ListTable columns={columns} data={lotsState} type={'lots'} />
         </RightSectionContainer>
       </Container>
     </>
@@ -102,4 +134,3 @@ const EnterpriseLots = ({ lots }) => {
 }
 
 export default EnterpriseLots
-
