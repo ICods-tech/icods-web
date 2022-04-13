@@ -33,7 +33,6 @@ const RegisterClient = () => {
   }
 
   const handleCreateClient = useCallback(async () => {
-    
     try {
       await api.post(
         '/client-business',
@@ -53,7 +52,7 @@ const RegisterClient = () => {
         displayToast(msg, 'error')
       })
     }
-  }, [])
+  }, [name, email, phone])
 
   return (
     <Container>
