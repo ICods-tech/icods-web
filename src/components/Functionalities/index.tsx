@@ -5,32 +5,76 @@ import { ChatIcon, DeleteIcon, DetailIcon, FunctionalitiesContainers, PrinterIco
 
 interface FunctionalitiesProps {
   type: 'clients' | 'lots' | 'qrcodes'
-  functions: any
+  clicked: (type: string) => void
 }
 
-export const Functionalities = ({ type , functions}: FunctionalitiesProps) => {
-  const router = useRouter()
-  
+export const Functionalities = ({ type, clicked }: FunctionalitiesProps) => {
   const functionalitiesTypes = {
-    clients: () => ( {
-      detail: <DetailIcon src="/images/detail.svg" onClick={functions.detail}  alt="Detalhes" />,
-      chat: <ChatIcon src="/images/chat.svg" alt="Chat de conversa" onClick={functions.chat}/>,
-      delete: <DeleteIcon src="/images/delete.svg" alt="Deletar" onClick={functions.delete}/>,
+    clients: () => ({
+      detail: (
+        <DetailIcon
+          src="/images/detail.svg"
+          onClick={() => clicked('clientsDetails')}
+          alt="Detalhes"
+        />
+      ),
+      chat: (
+        <ChatIcon
+          src="/images/chat.svg"
+          alt="Chat de conversa"
+          onClick={() => clicked('clientsChat')}
+        />
+      ),
+      delete: (
+        <DeleteIcon
+          src="/images/delete.svg"
+          alt="Deletar"
+          onClick={() => clicked('clientsDelete')}
+        />
+      ),
     }),
-    lots: () => ( {
-      detail: <DetailIcon src="/images/detail.svg" onClick={()=>router.push(PATH_LIST_QRCODES)}  alt="Detalhes" />,
-      chat: <PrinterIcon src="/images/imprimir.svg" alt="Imprimir" />,
-      delete: <DeleteIcon src="/images/delete.svg" alt="Deletar" />
+    lots: () => ({
+      detail: (
+        <DetailIcon
+          src="/images/detail.svg"
+          onClick={() => clicked('lotsDetails')}
+          alt="Detalhes"
+        />
+      ),
+      chat: (
+        <PrinterIcon
+          src="/images/imprimir.svg"
+          onClick={() => clicked('lotsChat')}
+          alt="Imprimir"
+        />
+      ),
+      delete: (
+        <DeleteIcon src="/images/delete.svg" onClick={() => clicked('lotsDelete')} alt="Deletar" />
+      ),
     }),
-    qrcodes: () => ( {
-      chat: <PrinterIcon src="/images/imprimir.svg" alt="Imprimir" />,
-      delete: <DeleteIcon src="/images/delete.svg" alt="Deletar" />
-    })
+    qrcodes: () => ({
+      chat: (
+        <PrinterIcon
+          src="/images/imprimir.svg"
+          onClick={() => clicked('printQRCode')}
+          alt="Imprimir"
+        />
+      ),
+      delete: (
+        <DeleteIcon
+          src="/images/delete.svg"
+          onClick={() => clicked('deleteQRCode')}
+          alt="Deletar"
+        />
+      ),
+    }),
   }
-  
+
+  const functionalities = Object.keys(functionalitiesTypes[type]())
+
   return (
     <FunctionalitiesContainers>
-      {Object.keys(functionalitiesTypes[type]()).map(function (key, index) {
+      {functionalities.map(function (key, index) {
         return functionalitiesTypes[type]()[key]
       })}
     </FunctionalitiesContainers>

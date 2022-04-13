@@ -18,32 +18,35 @@ import {
 } from './styles'
 
 const ListTable = ({ data, columns, type }) => {
-  console.log({ data, columns, type })
-
-  const [row, setRow] = useState(null)
-
   const router = useRouter()
 
-  const handleClickDetail = () => {
-    router.push(PATH_LIST_LOTS + `?id=${row.id}`)
+  const handleClickDetail = (id: string) => {
+    console.log('Details meu chapinha', { id })
+    router.push(PATH_LIST_LOTS + `?id=${id}`)
   }
-  const handleClickDeleteClient = () => {
+  const handleClickDeleteClient = (id: string) => {
     console.log('delete client', new Date())
   }
-  const handleClickDeleteLots = () => {
+  const handleClickDeleteLots = (id: string) => {
     console.log('delete lots', new Date())
   }
-  const handleClickDeleteQrcodes = () => {
+
+  const handleClickDeleteQrcodes = (id: string) => {
     console.log('delete qrcodes', new Date())
   }
+
   const functionsClients = {
-    detail: handleClickDetail,
-    delete: handleClickDeleteClient,
+    clientsDetails: (id: string) => handleClickDetail(id),
+    clientsChat: (id: string) => {},
+    clientsDelete: (id: string) => handleClickDeleteClient(id),
   }
+
   const functionsLots = {
-    detail: handleClickDetail,
-    delete: handleClickDeleteLots,
+    lotsDetails: (id: string) => handleClickDetail(id),
+    lotsChat: (id: string) => {},
+    lotsDelete: (id: string) => handleClickDeleteLots(id),
   }
+
   const functionsQRCodes = {
     detail: handleClickDetail,
     delete: handleClickDeleteQrcodes,
@@ -55,18 +58,21 @@ const ListTable = ({ data, columns, type }) => {
     qrcodes: functionsQRCodes,
   }
 
-  const functionalities = (
-    <FunctionalitiesContainer>
-      <Functionalities type={type} functions={functionsTypes[type]} />
-    </FunctionalitiesContainer>
-  )
-
-  data = data.map((client) => ({ ...client, functionalities }))
-
-  const handleClickRow = (email) => {
-    setRow(data.find((client) => client.email === email))
-  }
-  console.log(columns, data)
+  data = data.map((client) => ({
+    ...client,
+    functionalities: (
+      <FunctionalitiesContainer>
+        <Functionalities
+          clicked={(functionalityType) => {
+            const { id } = client
+            console.log('those are the type and functionalityType', { type, functionalityType })
+            functionsTypes[type][functionalityType](id)
+          }}
+          type={type}
+        />
+      </FunctionalitiesContainer>
+    ),
+  }))
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
@@ -90,10 +96,7 @@ const ListTable = ({ data, columns, type }) => {
         {rows.map((row) => {
           prepareRow(row)
           return (
-            <TableBodyInnerContainer
-              {...row.getRowProps()}
-              onClick={() => handleClickRow(row.cells[1].value)}
-            >
+            <TableBodyInnerContainer {...row.getRowProps()}>
               {row.cells.map((cell) => {
                 if (
                   cell.column.Header === 'Código do Lote' ||
@@ -115,11 +118,9 @@ const ListTable = ({ data, columns, type }) => {
                   )
                 }
                 return (
-                  // <TableBodyContainerText>
                   <TableBodyInnerContainerText {...cell.getCellProps()}>
                     {cell.render('Cell')}
                   </TableBodyInnerContainerText>
-                  // </TableBodyContainerText>
                 )
               })}
             </TableBodyInnerContainer>
