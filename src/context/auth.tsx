@@ -1,6 +1,6 @@
 // src/context/auth-context.js
-import Router,{ useRouter, NextRouter } from "next/router";
-import React, { createContext, useEffect, useState } from "react";
+import { NextRouter } from "next/router";
+import { createContext, useEffect, useState } from "react";
 import api from '../../services/api';
 
 interface IAuthContext {
@@ -8,7 +8,7 @@ interface IAuthContext {
   setAuthState: (userAuthInfo: { token: string }) => void;
   isUserAuthenticated: () => boolean;
   businessSignIn: (userAuthInfo: { email: string, password: string }) => Promise<void>;
-  businessSignOut: () => void;
+  businessSignOut: (router: NextRouter) => void;
   redirect: (router: NextRouter) => void;
   getToken: () => string;
 } 
@@ -56,12 +56,13 @@ const AuthProvider = ({ children }) => {
     setUserAuthInfo({ token });
  }
 
- const businessSignOut = () => {
+ const businessSignOut = (router: NextRouter) => {
   localStorage.setItem(KEY_TOKEN, "");
 
    setAuthState({
      token: ''
    })
+   router.push('/enterprise/login');
   }
 
 const redirect = (router: NextRouter) => {

@@ -4,6 +4,7 @@ import { useContext, useEffect, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
+import formatDateToTable from '../../../../utils/formatDate'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
@@ -16,7 +17,7 @@ import {
   RightSectionContainer,
   TableButton,
   TableButtonsContainer,
-  TableButtonText,
+  TableButtonText
 } from './syles'
 
 function lotsColumns() {
@@ -49,34 +50,9 @@ function lotsColumns() {
   return columns
 }
 
-const EnterpriseLots = ({ lots }) => {
-  lots = [
-    {
-      id: '762090f5-2c53-4112-9db1-0509ecff42dc',
-      numberOfQRCodes: 10,
-      created_at: '2022-04-09T20:54:07.872Z',
-      updated_at: '2022-04-09T20:54:08.258Z',
-    },
-    {
-      id: 'd1d6b503-aeee-4bff-9560-7a905d0227c3',
-      numberOfQRCodes: 10,
-      created_at: '2022-04-09T20:54:09.419Z',
-      updated_at: '2022-04-09T20:54:09.635Z',
-    },
-  ]
+const EnterpriseLots = () => {
 
   const [lotsState, setLotsState] = useState([])
-
-  // MELHORAR ISSO DEPOIS
-  lots = lots.map((lots) => ({
-    ...lots,
-    created_at: new Date(lots.created_at).toLocaleDateString(),
-  }))
-  lots = lots.map((lots) => ({
-    ...lots,
-    updated_at: new Date(lots.updated_at).toLocaleDateString(),
-  }))
-  lots = lots.map((lots) => ({ ...lots, id: lots.id.slice(0, 8) }))
 
   const { getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
@@ -93,8 +69,8 @@ const EnterpriseLots = ({ lots }) => {
           return {
             ...lotResponse,
             id: lotResponse.id.slice(0, 8),
-            created_at: new Date(lotResponse.created_at).toLocaleDateString('pt-BR'),
-            updated_at: new Date(lotResponse.updated_at).toLocaleDateString('pt-BR'),
+            created_at: formatDateToTable(lotResponse.created_at),
+            updated_at: formatDateToTable(lotResponse.updated_at),
           }
         })
 

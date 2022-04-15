@@ -1,3 +1,4 @@
+import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import Avatar from 'react-avatar'
@@ -70,6 +71,11 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
       </HeaderChevronContainer>
     ),
   }
+
+  const signOut = () => {
+    businessSignOut(router)
+  }
+
   return (
     <Container>
       {headerTypes[pageType]()}
@@ -84,7 +90,7 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
             </PositionAndIConContainer>
           </NameAndPositionTextContainer>
         </NameAndPositionOuterContainer>
-        <SignOutText onClick={businessSignOut}>Sair</SignOutText>
+        <SignOutText onClick={signOut}>Sair</SignOutText>
       </RightSectionContainer>
     </Container>
   )
