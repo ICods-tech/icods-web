@@ -7,7 +7,6 @@ import GlobalStyle from '../../../../styles/globalStyle'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
-import { Functionalities } from '../../../components/Functionalities'
 import ListTable from '../../../components/Enterprise/ListTable'
 import { AuthContext } from '../../../context/auth'
 import {
@@ -17,7 +16,7 @@ import {
   RightSectionContainer,
   TableButton,
   TableButtonsContainer,
-  TableButtonText,
+  TableButtonText
 } from './styles'
 
 function clientsColumns() {

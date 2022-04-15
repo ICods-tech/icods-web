@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useContext, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
-import { useTable } from 'react-table'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
@@ -111,7 +110,7 @@ const EnterpriseQRCodes = ({ qrcodes }) => {
             </TableButton>
           </TableButtonsContainer>
           <ListTable
-            columns={qrcodesColumns}
+            columns={columns}
             data={qrcodes}
             type={'qrcodes'}
           />
