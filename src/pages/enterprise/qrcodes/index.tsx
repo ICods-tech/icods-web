@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useContext, useMemo, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
@@ -33,57 +33,48 @@ function qrcodesColumns() {
   return columns
 }
 
-const EnterpriseQRCodes = ({ qrcodes }) => {
-
-  qrcodes = [
-    {
-      "id": "596975a9-07de-4408-8f41-604c80e00a15",
-      "status": "ACTIVE",
-      "link": "",
-      "content": "",
-      "favorited": false,
-      "madeColor": "noColor",
-      "receivedColor": "noColor",
-      "postId": null,
-      "created_at": "2022-04-07T03:33:32.980Z",
-      "received_at": null,
-      "user": null
-    },
-    {
-      "id": "da90b883-a761-456b-aa95-8d1c1de98b4f",
-      "status": "IN_PROGRESS",
-      "link": "",
-      "content": "",
-      "favorited": false,
-      "madeColor": "noColor",
-      "receivedColor": "noColor",
-      "postId": null,
-      "created_at": "2022-04-07T03:33:32.966Z",
-      "received_at": null,
-      "user": null
-    },
-    {
-      "id": "ce4fb79b-c2c1-430f-bea9-fb487d0313a7",
-      "status": "INACTIVE",
-      "link": "",
-      "content": "",
-      "favorited": false,
-      "madeColor": "noColor",
-      "receivedColor": "noColor",
-      "postId": null,
-      "created_at": "2022-04-07T03:33:32.994Z",
-      "received_at": null,
-      "user": null
+const EnterpriseQRCodes = () => {
+  const handleGenerateQRCodes = useCallback(async () => {
+    try {
+      const lotId = 123;
+      api
+        .get('/business-printer-lot/' + lotId,
+          { responseType: 'blob' }
+        )
+        .then((response) => {
+          const pdfFile = new Blob([response.data], { type: 'application/pdf' })
+          const fileURL = URL.createObjectURL(pdfFile)
+          window.open(fileURL)
+        })
+    } catch (error) {
+      console.log(error)
     }
-  ]
+  }, [])
 
-  // MELHORAR ISSO DEPOIS
-  qrcodes = qrcodes.map((qrcodes) => ({ ...qrcodes, id: qrcodes.id.slice(0, 8) }))
+  const getQRCodes = async () => {
+    const { id } = router.query
+    try {
+      const { data } = await api.get(`/client-business-qrcodes/${id}`)
+      // const filteredResponse = data.map((qrcodes) => {
+      //   return { ...qrcodes, id: qrcodes.id.slice(0, 8) }
+      // })
+  
+      setQRCodes(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getQRCodes();
+  },[])
+
 
   const { getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
+  const [qrcodes, setQRCodes] = useState([])
   const columns = qrcodesColumns()
 
   console.log({qrcodes, columns});
@@ -101,7 +92,7 @@ const EnterpriseQRCodes = ({ qrcodes }) => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient pageType='qrcodes' name="Ivonaldo Ivonaldo" position="Design Gráfico" />
+          <HeaderClient pageType='qrcodes' name="iCods Tech"/>
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>

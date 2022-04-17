@@ -9,7 +9,7 @@ interface IAuthContext {
   isUserAuthenticated: () => boolean;
   businessSignIn: (userAuthInfo: { email: string, password: string }) => Promise<void>;
   businessSignOut: (router: NextRouter) => void;
-  redirect: (router: NextRouter) => void;
+  validatorToken: (router: NextRouter) => void;
   getToken: () => string;
 } 
 
@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
    router.push('/enterprise/login');
   }
 
-const redirect = (router: NextRouter) => {
+const validatorToken = (router: NextRouter) => {
   const token = localStorage.getItem(KEY_TOKEN);
   
   if (!token) {
@@ -86,7 +86,7 @@ const redirect = (router: NextRouter) => {
       isUserAuthenticated,
       businessSignIn,
       businessSignOut,
-      redirect,
+      validatorToken,
       getToken
     }}
    >

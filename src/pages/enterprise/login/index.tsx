@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { useRouter } from "next/router"
 import { useCallback, useContext, useState } from 'react'
 import 'react-dropdown/style.css'
-import api from '../../../../services/api'
 import GlobalStyle from '../../../../styles/globalStyle'
 import { getDropdownOptions } from '../../../../utils/getDropdownOptions'
 import { Button } from '../../../components/Enterprise/Button'
@@ -18,41 +17,20 @@ const options = getDropdownOptions()
 const defaultOption = options[0]
 
 const EnterpriseLogin = () => {
-  const {businessSignIn, authState} = useContext(AuthContext)
+  const { businessSignIn, authState } = useContext(AuthContext)
   const router = useRouter()
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [numberOfQrCodes, setNumberOfQrCodes] = useState<number>(1)
-  const [authenticated, setAuthenticated] = useState<boolean>(false)
-
   const handleEnterpriseLogin = useCallback(async () => {
     try {
       await businessSignIn({ email, password })
-      router.push(PATH_LIST_CLIENTS)      
+      router.push(PATH_LIST_CLIENTS)
     } catch (error) {
       console.log(error)
     }
   }, [email, password, authState])
 
-  const handleGenerateQRCodes = useCallback(async () => {
-    try {
-      api
-        .post(
-          'generate_deactivated_qrcode',
-          {
-            numberOfQrCodes,
-          },
-          { responseType: 'blob' }
-        )
-        .then((response) => {
-          const pdfFile = new Blob([response.data], { type: 'application/pdf' })
-          const fileURL = URL.createObjectURL(pdfFile)
-          window.open(fileURL)
-        })
-    } catch (error) {
-      console.log(error)
-    }
-  }, [numberOfQrCodes])
+
 
   return (
     <>

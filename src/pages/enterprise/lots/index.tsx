@@ -53,33 +53,35 @@ function lotsColumns() {
 const EnterpriseLots = () => {
 
   const [lotsState, setLotsState] = useState([])
-
+  const [createdQRCodes, setCreatedQRCodes] = useState(false)
   const { getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const columns = lotsColumns()
 
-  useEffect(() => {
+  const getLots = async () => {
     const { id } = router.query
-    api
-      .get(`/client-business-lots/${id}`)
-      .then((response) => {
-        const filteredResponse = response.data.map((lotResponse) => {
-          return {
-            ...lotResponse,
-            id: lotResponse.id.slice(0, 8),
-            created_at: formatDateToTable(lotResponse.created_at),
-            updated_at: formatDateToTable(lotResponse.updated_at),
-          }
-        })
+    try {
+      const { data } = await api.get(`/client-business-lots/${id}`)
+      const filteredResponse = data.map((lotResponse) => {
+        return {
+          ...lotResponse,
+          created_at: formatDateToTable(lotResponse.created_at),
+          updated_at: formatDateToTable(lotResponse.updated_at),
+        }
+      })
+  
+      setLotsState(filteredResponse)
+      setCreatedQRCodes(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-        setLotsState(filteredResponse)
-      })
-      .catch((error) => {
-        console.log('error', error)
-      })
-  })
+  useEffect(() => {
+    getLots();
+  },[createdQRCodes])
 
   return (
     <>
@@ -91,10 +93,13 @@ const EnterpriseLots = () => {
         <LeftSection />
         <CreateLotModal
           createLotModalOpen={createLotModalOpen}
-          closeModal={() => setCreateLotModalOpen(false)}
+          closeModal={(created) => {
+            setCreateLotModalOpen(false)
+            setCreatedQRCodes(created)
+          }}
         />
         <RightSectionContainer>
-          <HeaderClient pageType="lots" name="Ivonaldo Ivonaldo" position="Design Gráfico" />
+          <HeaderClient pageType="lots" name="iCods Tech"/>
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>

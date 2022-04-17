@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState, useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Option } from 'react-dropdown'
 import 'react-dropdown/style.css'
 import { AddUser } from 'react-iconly'
@@ -20,7 +20,7 @@ import {
   RegisterClientContainer,
   RegisterClientText,
   TopModalContainer,
-  TopModalTitleText,
+  TopModalTitleText
 } from './styles'
 
 const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
@@ -48,18 +48,36 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
       Authorization: 'Bearer ' + getToken(),
     },
   }
-  useEffect(() => {
-    const fetchClients = async () => {
-      const { data } = await api.get('/client-business', config)
-      const listNameClients = data.map((client) => {
-        return {
-          value: client.id,
-          label: client.name,
-        }
-      })
-      setClients(listNameClients)
+
+  const fetchClients = async () => {
+    const { data } = await api.get('/client-business', config)
+    const listNameClients = data.map((client) => {
+      return {
+        value: client.id,
+        label: client.name,
+      }
     }
-    fetchClients()
+    )
+    setClients(listNameClients)
+  }
+
+  const fetchClientById = async (id) => {
+    const { data } = await api.get('/business/client/' + id, config)
+    setDefaultOption({
+      value: data.id,
+      label: data.name,
+    })
+    setSelectedOption(defaultOption)
+
+  }
+
+  useEffect(() => {
+    const { id } = router.query;
+    if (id) {
+      fetchClientById(id)
+    } else {
+      fetchClients()
+    }
   }, [])
 
   const [defaultOption, setDefaultOption] = useState<Option>()
@@ -76,7 +94,7 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
       },
       config
     )
-    closeModal()
+    closeModal(true)
   }
 
   return (

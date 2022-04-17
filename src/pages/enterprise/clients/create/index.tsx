@@ -20,8 +20,7 @@ const CreateClient = () => {
         <RightSectionContainer>
           <HeaderClient
             pageType="clientRegistry"
-            name="Marcelo Ivonaldo"
-            position="Design Gráfico"
+            name="iCods Tech" 
           />
           <GrayDivider />
           <RegisterClient />

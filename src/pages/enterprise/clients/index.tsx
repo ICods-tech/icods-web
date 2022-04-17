@@ -51,7 +51,7 @@ function clientsColumns() {
 }
 
 const EnterpriseClients = () => {
-  const { redirect, getToken } = useContext(AuthContext)
+  const { validatorToken, getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
   const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
@@ -65,11 +65,11 @@ const EnterpriseClients = () => {
   }
 
   useEffect(() => {
-    redirect(router)
+    validatorToken(router)
     getClients()
       .then((response) => setClients(response))
       .catch((err) => console.error(err))
-  }, [redirect])
+  }, [validatorToken])
 
   return (
     <>
@@ -84,7 +84,7 @@ const EnterpriseClients = () => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient pageType="home" name="  Mucas Loreira" position="Gerente" />
+          <HeaderClient pageType="home" name="iCods Tech" />
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>

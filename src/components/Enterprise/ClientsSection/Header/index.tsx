@@ -21,7 +21,7 @@ import {
 interface HeaderClientProps {
   pageType: 'home' | 'clients' | 'clientRegistry' | 'lots' | 'qrcodes'
   name: string
-  position: string
+  position?: string
 }
 
 export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) => {
@@ -84,10 +84,11 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
           <Avatar fgColor="rgba(0, 0, 0, 0.87)" color="#fff" name={name} round size={'5rem'} />
           <NameAndPositionTextContainer>
             <NameAndPositionText>{name}</NameAndPositionText>
-            <PositionAndIConContainer>
+            {/* Aguardando criação da funcionalidade na API */}
+            {/* <PositionAndIConContainer>
               <User set="curved" primaryColor="#fff" style={iconStyle} />
               <NameAndPositionText>{position}</NameAndPositionText>
-            </PositionAndIConContainer>
+            </PositionAndIConContainer> */}
           </NameAndPositionTextContainer>
         </NameAndPositionOuterContainer>
         <SignOutText onClick={signOut}>Sair</SignOutText>
