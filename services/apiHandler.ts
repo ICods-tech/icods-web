@@ -13,7 +13,7 @@ class ApiHandler {
 
   public fillUrlParams(params: any = {}) {
     const headers = this.authenticated ? {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${this.token}`
     } : {}
     
     return {
@@ -22,20 +22,24 @@ class ApiHandler {
     }
   }
 
-  public get(url: string, params: any = {}) { 
-    return this.api.get(url, this.fillUrlParams(params));
+  public get(url: string, body: any = {}) { 
+    const { headers} = this.fillUrlParams(body);
+    return this.api.get(url, { headers });
   }
 
-  public post(url: string, params: any = {}) { 
-    return this.api.post(url, this.fillUrlParams(params));
+  public post(url: string, body: any = {}) { 
+    const { params ,headers} = this.fillUrlParams(body);
+    return this.api.post(url, params, { headers });
   }
 
-  public put(url: string, params: any = {}) { 
-    return this.api.put(url, this.fillUrlParams(params));
+  public put(url: string, body: any = {}) { 
+    const { params ,headers} = this.fillUrlParams(body);
+    return this.api.put(url, params, { headers });
   }
 
-  public delete(url: string, params: any = {}) { 
-    return this.api.delete(url, this.fillUrlParams(params));
+  public delete(url: string) { 
+    const { headers} = this.fillUrlParams();
+    return this.api.delete(url, { headers });
   }
 }
 

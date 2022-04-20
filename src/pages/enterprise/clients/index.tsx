@@ -4,10 +4,12 @@ import { useContext, useEffect, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'
+import formatDateToTable from '../../../../utils/formatDate'
 import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Header'
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
+import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
 import {
   ButtonIconContainer,
@@ -52,16 +54,15 @@ function clientsColumns() {
 
 const EnterpriseClients = () => {
   const { validatorToken, getToken } = useContext(AuthContext)
-  const api = new ApiHandler(true, getToken())
   const router = useRouter()
+  const api = new ApiHandler(true, getToken())
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const [clients, setClients] = useState([])
   const columns = clientsColumns()
-
+ 
   const getClients = async () => {
-    const { data } = await api.get('client-business')
-    // adjus format data for DD/MM/YYYY
-    return data.map((client) => ({ ...client, updated_at: new Date(client.updated_at).toLocaleDateString() }))
+    const { data } = await api.get(`${BUSINESS_PATH}/clients`)
+    return data.map((client) => ({ ...client, updated_at: formatDateToTable(client.updated_at) }))
   }
 
   useEffect(() => {

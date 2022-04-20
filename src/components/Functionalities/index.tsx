@@ -41,22 +41,22 @@ export const Functionalities = ({ type, clicked }: FunctionalitiesProps) => {
           alt="Detalhes"
         />
       ),
-      chat: (
+      printer: (
         <PrinterIcon
           src="/images/imprimir.svg"
-          onClick={() => clicked('lotsChat')}
+          onClick={() => clicked('lotsPrinter')}
           alt="Imprimir"
         />
       ),
       delete: (
-        <DeleteIcon src="/images/delete.svg" onClick={() => clicked('lotsDelete')} alt="Deletar" />
+        <DeleteIcon src="/images/delete.svg" onClick={() => clicked('deleteLot')} alt="Deletar" />
       ),
     }),
     qrcodes: () => ({
-      chat: (
+      printer: (
         <PrinterIcon
           src="/images/imprimir.svg"
-          onClick={() => clicked('printQRCode')}
+          onClick={() => clicked('qrcodePrinter')}
           alt="Imprimir"
         />
       ),

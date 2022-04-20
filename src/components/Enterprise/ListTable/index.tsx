@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router'
+import { useContext } from 'react'
 import { useTable } from 'react-table'
-import { PATH_LIST_LOTS, PATH_LIST_QRCODES } from '../../../constants/urls'
+import ApiHandler from '../../../../services/apiHandler'
+import { displayToast } from '../../../../utils/displayToast'
+import { BUSINESS_PATH, PATH_LIST_LOTS, PATH_LIST_QRCODES } from '../../../constants/urls'
+import { AuthContext } from '../../../context/auth'
 import { Functionalities } from '../../Functionalities'
 import Status from '../Status'
 import {
@@ -15,38 +19,62 @@ import {
   TableHeaderText
 } from './styles'
 
+const IS_QRCODE = true;
+const LOT = 'lots';
+const QRCODE = 'qrcodes';
+
+// ListTable poderia receber o setData também e quando for deletado retorna
+// um filter com o data sem o item deletado
 const ListTable = ({ data, columns, type }) => {
   const router = useRouter()
+  const { getToken } = useContext(AuthContext)
+  
+  const api = new ApiHandler(true, getToken())
+  const handleClickDetail = (id: string, name:string, path: string) => {
+    router.push(`${path}?id=${id}&name=${name}`)
+  }
+  
+  const handleClickDeleteClient = async (id: string) => {
+    try {
+      await api.delete(`${BUSINESS_PATH}/clients/${id}`)
+      data.filter(client => client.id !== id)
+      displayToast(`Cliente deletado com sucesso!`, 'info')
+    } catch (error) {
+      displayToast(`Falha ao deletar o cliente!`, 'error')
+      console.log(error)
+    }
+  }
+  const handleClickDelete = async (id: string, isQRcode: boolean) => {
+    try {
+      await api.delete(`${BUSINESS_PATH}/${isQRcode ? QRCODE : LOT}/${id}`)
+      data.filter(qrcode => qrcode.id !== id)
+      displayToast(`${isQRcode? "QRCode" : "Lote"} deletado com sucesso!`, 'info')
+    } catch (error) {
+      displayToast(`Falha ao deletar o ${isQRcode? "QRCode" : "Lote"}!`, 'error')
+      console.log(error)
+    }
+  }
 
-  const handleClickDetail = (id: string, path: string) => {
-    router.push(`${path}?id=${id}`)
-  }
-  const handleClickDeleteClient = (id: string) => {
-    console.log('delete client', new Date())
-  }
-  const handleClickDeleteLots = (id: string) => {
-    console.log('delete lots', new Date())
-  }
-
-  const handleClickDeleteQrcodes = (id: string) => {
-    console.log('delete qrcodes', new Date())
+  const handleClickPrinter = async (id: string, isQRcode: boolean) => {
+    const {data} = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + "?qrcode=" + isQRcode)
+    window.open("data:application/pdf;charset=utf-16le;base64,"+data);
   }
 
   const functionsClients = {
-    clientsDetails: (id: string) => handleClickDetail(id, PATH_LIST_LOTS),
+    clientsDetails: (id: string, name:string) => handleClickDetail(id, name, PATH_LIST_LOTS),
     clientsChat: (id: string) => { },
     clientsDelete: (id: string) => handleClickDeleteClient(id),
   }
 
   const functionsLots = {
-    lotsDetails: (id: string) => handleClickDetail(id, PATH_LIST_QRCODES),
-    lotsChat: (id: string) => { },
-    lotsDelete: (id: string) => handleClickDeleteLots(id),
+    lotsDetails: (id: string,name: string) => handleClickDetail(id, name ,PATH_LIST_QRCODES),
+    lotsPrinter: (id: string) => handleClickPrinter(id,!IS_QRCODE),
+    deleteLot: (id: string) => handleClickDelete(id, !IS_QRCODE),
   }
 
   const functionsQRCodes = {
-    detail: handleClickDetail,
-    delete: handleClickDeleteQrcodes,
+    qrcodePrinter: (id: string) => handleClickPrinter(id,IS_QRCODE),
+    deleteQRCode: (id: string) => handleClickDelete(id, IS_QRCODE),
   }
 
   const functionsTypes = {
@@ -54,17 +82,16 @@ const ListTable = ({ data, columns, type }) => {
     lots: functionsLots,
     qrcodes: functionsQRCodes,
   }
-  console.log('data', data);
-  console.log('columns', columns);
   data = data.map((client) => ({
     ...client,
     functionalities: (
       <FunctionalitiesContainer>
         <Functionalities
           clicked={(functionalityType) => {
-            const { id } = client
-            console.log('those are the type and functionalityType', { type, functionalityType })
-            functionsTypes[type][functionalityType](id)
+            const { id, name , } = client
+
+            // console.log('those are the type and functionalityType', { type, functionalityType })
+            functionsTypes[type][functionalityType](id,name)
           }}
           type={type}
         />
@@ -81,10 +108,11 @@ const ListTable = ({ data, columns, type }) => {
     switch (styleType) {
       case 'Código do Lote':
       case 'Código QR Code':
-        return (
+      const reducedHashValue = cell.render('Cell').props.value.slice(0, 8)
+      return (
           <TableBodyContainerText>
             <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
-              {cell.render('Cell')}
+              {reducedHashValue}
             </TableBodyInnerContainerTextCodeLote>
           </TableBodyContainerText>
         )

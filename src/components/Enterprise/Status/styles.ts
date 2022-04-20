@@ -6,10 +6,9 @@ export const StatusContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  height: 100%;
-  padding: 0.5rem;
+  height: 5rem;
   border-radius: 0.5rem;
 `;
 
@@ -19,11 +18,11 @@ export const StatusText = styled.p<{ status }>`
   // alterar a cor de acordo com o status
   color: ${({ status }) => {
     if (status === 'ACTIVE') {
-      return '##0FB016';
+      return '#0FB016';
     } else if (status === 'INACTIVE') {
-      return '##2B90D9';
+      return '#929292';
     } else if (status === 'IN_PROGRESS') {
-      return '##929292';
+      return '#2B90D9';
     }
   }};
 `

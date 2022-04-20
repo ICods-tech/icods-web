@@ -8,6 +8,7 @@ import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Head
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
+import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
 import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
 
@@ -34,27 +35,13 @@ function qrcodesColumns() {
 }
 
 const EnterpriseQRCodes = () => {
-  const handleGenerateQRCodes = useCallback(async () => {
-    try {
-      const lotId = 123;
-      api
-        .get('/business-printer-lot/' + lotId,
-          { responseType: 'blob' }
-        )
-        .then((response) => {
-          const pdfFile = new Blob([response.data], { type: 'application/pdf' })
-          const fileURL = URL.createObjectURL(pdfFile)
-          window.open(fileURL)
-        })
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+
+  const router = useRouter()
+  const { id } = router.query
 
   const getQRCodes = async () => {
-    const { id } = router.query
     try {
-      const { data } = await api.get(`/client-business-qrcodes/${id}`)
+      const { data } = await api.get(`${BUSINESS_PATH}/clients/lots/${id}/qrcodes`)
       // const filteredResponse = data.map((qrcodes) => {
       //   return { ...qrcodes, id: qrcodes.id.slice(0, 8) }
       // })
@@ -72,7 +59,6 @@ const EnterpriseQRCodes = () => {
 
   const { getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
-  const router = useRouter()
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const [qrcodes, setQRCodes] = useState([])
   const columns = qrcodesColumns()
@@ -92,7 +78,7 @@ const EnterpriseQRCodes = () => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient pageType='qrcodes' name="iCods Tech"/>
+          <HeaderClient pageType='qrcodes' name="iCods Tech" id={String(id)}/>
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>

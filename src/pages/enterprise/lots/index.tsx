@@ -9,6 +9,7 @@ import { HeaderClient } from '../../../components/Enterprise/ClientsSection/Head
 import CreateLotModal from '../../../components/Enterprise/CreateLotModal'
 import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
+import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
 import {
   ButtonIconContainer,
@@ -55,15 +56,15 @@ const EnterpriseLots = () => {
   const [lotsState, setLotsState] = useState([])
   const [createdQRCodes, setCreatedQRCodes] = useState(false)
   const { getToken } = useContext(AuthContext)
-  const api = new ApiHandler(true, getToken())
   const router = useRouter()
+  const api = new ApiHandler(true, getToken())
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const columns = lotsColumns()
+  const { id, name } = router.query
 
   const getLots = async () => {
-    const { id } = router.query
     try {
-      const { data } = await api.get(`/client-business-lots/${id}`)
+      const { data } = await api.get(`${BUSINESS_PATH}/clients/${id}/lots`)
       const filteredResponse = data.map((lotResponse) => {
         return {
           ...lotResponse,
@@ -99,7 +100,7 @@ const EnterpriseLots = () => {
           }}
         />
         <RightSectionContainer>
-          <HeaderClient pageType="lots" name="iCods Tech"/>
+          <HeaderClient pageType="lots" name="iCods Tech" client={String(name)} />
           <GrayDivider />
           <TableButtonsContainer>
             <TableButton onClick={() => setCreateLotModalOpen(true)}>

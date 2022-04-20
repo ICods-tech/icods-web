@@ -4,7 +4,9 @@ import { Option } from 'react-dropdown'
 import 'react-dropdown/style.css'
 import { AddUser } from 'react-iconly'
 import Modal from 'react-modal'
-import api from '../../../../services/api'
+import ApiHandler from '../../../../services/apiHandler'
+import { displayToast } from '../../../../utils/displayToast'
+import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
 import {
   ButtonsContainer,
@@ -43,14 +45,10 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
     MAX_VALUE = 1000
   const router = useRouter()
   const [clients, setClients] = useState<Option[]>([])
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + getToken(),
-    },
-  }
-
+  const api = new ApiHandler(true, getToken())
+  
   const fetchClients = async () => {
-    const { data } = await api.get('/client-business', config)
+    const { data } = await api.get(`${BUSINESS_PATH}/clients`)
     const listNameClients = data.map((client) => {
       return {
         value: client.id,
@@ -62,7 +60,7 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
   }
 
   const fetchClientById = async (id) => {
-    const { data } = await api.get('/business/client/' + id, config)
+    const { data } = await api.get(`${BUSINESS_PATH}/clients/` + id)
     setDefaultOption({
       value: data.id,
       label: data.name,
@@ -85,16 +83,21 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
   const [numberOfQrCodes, setNumberOfQrCodes] = useState(1)
 
   const createQRCodes = async () => {
-
-    const { data } = await api.post(
-      '/business/generate_deactivated_qrcode',
-      {
-        clientId: selectedOption.value,
-        numberOfQrCodes: numberOfQrCodes,
-      },
-      config
-    )
-    closeModal(true)
+    try {
+      await api.post(
+        `${BUSINESS_PATH}/generate_deactivated_qrcode`,
+        {
+          clientId: selectedOption.value,
+          numberOfQrCodes: numberOfQrCodes,
+        }
+      )
+      displayToast('QR Codes criados com sucesso!', 'success')
+      closeModal(true)
+    } catch (error) {
+      displayToast('Erro ao criar QR Codes', 'error')
+      console.log(error)
+    }
+      
   }
 
   return (

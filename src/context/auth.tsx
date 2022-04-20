@@ -2,6 +2,7 @@
 import { NextRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 import api from '../../services/api';
+import { BUSINESS_PATH } from "../constants/urls";
 
 interface IAuthContext {
   authState: { token: string };
@@ -46,7 +47,7 @@ const AuthProvider = ({ children }) => {
  };
 
   const businessSignIn = async ({ email, password }) => {
-    const { data } = await api.post('signin-business', {
+    const { data } = await api.post(`${BUSINESS_PATH}/signin`, {
       email,
       password,
     })

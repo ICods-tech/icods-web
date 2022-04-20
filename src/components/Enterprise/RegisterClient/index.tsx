@@ -3,7 +3,7 @@ import { Dispatch, useCallback, useState, SetStateAction, useContext } from 'rea
 import { headerConfig } from '../../../../config/headerConfig'
 import api from '../../../../services/api'
 import { displayToast } from '../../../../utils/displayToast'
-import { PATH_LIST_CLIENTS } from '../../../constants/urls'
+import { BUSINESS_PATH, PATH_LIST_CLIENTS } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
 import {
   ButtonContainerRegister,
@@ -35,7 +35,7 @@ const RegisterClient = () => {
   const handleCreateClient = useCallback(async () => {
     try {
       await api.post(
-        '/client-business',
+        `${BUSINESS_PATH}/clients`,
         {
           name,
           email,
@@ -47,10 +47,13 @@ const RegisterClient = () => {
       displayToast('Cliente criado com sucesso!', 'success')
       router.push(PATH_LIST_CLIENTS)
     } catch (error) {
-      const { errors } = error.response.data
-      errors.map(({ msg }: any) => {
-        displayToast(msg, 'error')
-      })
+      if (typeof error.response.data === 'string') displayToast(error.response.data, 'error')
+      else {
+        const { errors } = error.response.data
+        errors.map(({ msg }: any) => {
+          displayToast(msg, 'error')
+        })
+      }
     }
   }, [name, email, phone])
 

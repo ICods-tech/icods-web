@@ -21,10 +21,12 @@ import {
 interface HeaderClientProps {
   pageType: 'home' | 'clients' | 'clientRegistry' | 'lots' | 'qrcodes'
   name: string
+  client?: string
+  id?: string
   position?: string
 }
 
-export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) => {
+export const HeaderClient = ({ pageType, name, client= "", id="", position }: HeaderClientProps) => {
   const router = useRouter()
   const { businessSignOut } = useContext(AuthContext)
   const iconStyle = { width: '1rem', height: '1rem', marginRight: '0.4rem' }
@@ -54,7 +56,7 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
           alt="Back icon"
         />
         <WelcomeToManagement>
-          <BreadcrumbHeader>Clientes/</BreadcrumbHeader>Cliente<ManagementText> Thomas Ribeiro</ManagementText> 
+          <BreadcrumbHeader>Clientes/</BreadcrumbHeader>Cliente <ManagementText>{client}</ManagementText> 
         </WelcomeToManagement>
       </HeaderChevronContainer>
     ),
@@ -66,7 +68,7 @@ export const HeaderClient = ({ pageType, name, position }: HeaderClientProps) =>
           alt="Back icon"
         />
         <WelcomeToManagement>
-          <BreadcrumbHeader>Thomas Ribeiro/</BreadcrumbHeader>Lote<ManagementText> ce4fb79b</ManagementText> 
+          <BreadcrumbHeader>Thomas Ribeiro/</BreadcrumbHeader>Lote<ManagementText> {id.slice(0,8)}</ManagementText> 
         </WelcomeToManagement>
       </HeaderChevronContainer>
     ),
