@@ -42,10 +42,6 @@ const EnterpriseQRCodes = () => {
   const getQRCodes = async () => {
     try {
       const { data } = await api.get(`${BUSINESS_PATH}/clients/lots/${id}/qrcodes`)
-      // const filteredResponse = data.map((qrcodes) => {
-      //   return { ...qrcodes, id: qrcodes.id.slice(0, 8) }
-      // })
-  
       setQRCodes(data)
     } catch (error) {
       console.log(error)
@@ -63,7 +59,10 @@ const EnterpriseQRCodes = () => {
   const [qrcodes, setQRCodes] = useState([])
   const columns = qrcodesColumns()
 
-  console.log({qrcodes, columns});
+  const handleClickPrinter = async (id: string, isQRcode: boolean) => {
+    const {data} = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + "?qrcode=" + isQRcode)
+    window.open("data:application/pdf;charset=utf-16le;base64,"+data);
+  }
 
   return (
     <>
@@ -81,7 +80,7 @@ const EnterpriseQRCodes = () => {
           <HeaderClient pageType='qrcodes' name="iCods Tech" id={String(id)}/>
           <GrayDivider />
           <TableButtonsContainer>
-            <TableButton onClick={() => setCreateLotModalOpen(true)}>
+            <TableButton onClick={() => handleClickPrinter(String(id),false)}>
               <ButtonIconContainer src="/images/printer.svg" alt="Create QR Codes" />
               <TableButtonText>Imprmir Lote</TableButtonText>
             </TableButton>
