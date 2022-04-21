@@ -49,6 +49,17 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
   
   const fetchClients = async () => {
     const { data } = await api.get(`${BUSINESS_PATH}/clients`)
+    
+    if(data.length === 1) {
+      const { id:value, name:label} = data[0]
+      setDefaultOption({
+        value,
+        label
+      })
+      setSelectedOption({ label, value})
+      return;
+    }
+
     const listNameClients = data.map((client) => {
       return {
         value: client.id,
@@ -56,23 +67,18 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
       }
     }
     )
+    
     setClients(listNameClients)
   }
-
-  const fetchClientById = async (id) => {
-    const { data } = await api.get(`${BUSINESS_PATH}/clients/` + id)
-    setDefaultOption({
-      value: data.id,
-      label: data.name,
-    })
-    setSelectedOption(defaultOption)
-
-  }
-
+  
   useEffect(() => {
-    const { id } = router.query;
+    const { id,name } = router.query;
     if (id) {
-      fetchClientById(id)
+      setDefaultOption({
+        value: String(id),
+        label: String(name),
+      })
+      setSelectedOption({ label: String(name), value: String(id) })
     } else {
       fetchClients()
     }

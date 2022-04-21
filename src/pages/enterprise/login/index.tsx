@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { useCallback, useContext, useState } from 'react'
 import 'react-dropdown/style.css'
 import GlobalStyle from '../../../../styles/globalStyle'
+import { displayToast } from "../../../../utils/displayToast"
 import { getDropdownOptions } from '../../../../utils/getDropdownOptions'
 import { Button } from '../../../components/Enterprise/Button'
 import { Header } from '../../../components/Enterprise/Header'
@@ -26,7 +27,13 @@ const EnterpriseLogin = () => {
       await businessSignIn({ email, password })
       router.push(PATH_LIST_CLIENTS)
     } catch (error) {
-      console.log(error)
+      if (typeof error.response.data === 'string') displayToast(error.response.data, 'error')
+      else {
+        const { errors } = error.response.data
+        errors.map(({ msg }: any) => {
+          displayToast(msg, 'error')
+        })
+      }
     }
   }, [email, password, authState])
 

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import 'react-dropdown/style.css'
 import ApiHandler from '../../../../services/apiHandler'
 import GlobalStyle from '../../../../styles/globalStyle'

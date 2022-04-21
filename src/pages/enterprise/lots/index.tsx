@@ -53,12 +53,13 @@ function lotsColumns() {
 
 const EnterpriseLots = () => {
 
-  const [lotsState, setLotsState] = useState([])
-  const [createdQRCodes, setCreatedQRCodes] = useState(false)
   const { getToken } = useContext(AuthContext)
   const router = useRouter()
-  const api = new ApiHandler(true, getToken())
+  const [lotsState, setLotsState] = useState([])
+  const [createdQRCodes, setCreatedQRCodes] = useState(false)
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
+  
+  const api = new ApiHandler(true, getToken())
   const columns = lotsColumns()
   const { id, name } = router.query
 
