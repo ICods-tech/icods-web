@@ -72,6 +72,8 @@ const EnterpriseClients = () => {
       .catch((err) => console.error(err))
   }, [validatorToken])
 
+  console.log("CALL HANDLE DATA: ",clients)
+
   return (
     <>
       <GlobalStyle />
@@ -99,6 +101,8 @@ const EnterpriseClients = () => {
           </TableButtonsContainer>
           <ListTable
             columns={columns}
+            key={clients.length}
+            setData={setClients}
             data={clients}
             type={'clients'}
           />

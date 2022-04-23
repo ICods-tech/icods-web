@@ -25,7 +25,7 @@ const QRCODE = 'qrcodes';
 
 // ListTable poderia receber o setData também e quando for deletado retorna
 // um filter com o data sem o item deletado
-const ListTable = ({ data, columns, type }) => {
+const ListTable = ({ data, setData, columns, type }) => {
   const router = useRouter()
   const { getToken } = useContext(AuthContext)
   
@@ -37,7 +37,8 @@ const ListTable = ({ data, columns, type }) => {
   const handleClickDeleteClient = async (id: string) => {
     try {
       await api.delete(`${BUSINESS_PATH}/clients/${id}`)
-      data.filter(client => client.id !== id)
+      const newData = data.filter(client => client.id !== id)
+      setData(newData)
       displayToast(`Cliente deletado com sucesso!`, 'info')
     } catch (error) {
       displayToast(`Falha ao deletar o cliente!`, 'error')
@@ -47,7 +48,8 @@ const ListTable = ({ data, columns, type }) => {
   const handleClickDelete = async (id: string, isQRcode: boolean) => {
     try {
       await api.delete(`${BUSINESS_PATH}/${isQRcode ? QRCODE : LOT}/${id}`)
-      data.filter(qrcode => qrcode.id !== id)
+      const newData = data.filter(qrcode => qrcode.id !== id)
+      setData(newData)
       displayToast(`${isQRcode? "QRCode" : "Lote"} deletado com sucesso!`, 'info')
     } catch (error) {
       displayToast(`Falha ao deletar o ${isQRcode? "QRCode" : "Lote"}!`, 'error')
@@ -89,8 +91,6 @@ const ListTable = ({ data, columns, type }) => {
         <Functionalities
           clicked={(functionalityType) => {
             const { id, name , } = client
-
-            // console.log('those are the type and functionalityType', { type, functionalityType })
             functionsTypes[type][functionalityType](id,name)
           }}
           type={type}
@@ -108,14 +108,14 @@ const ListTable = ({ data, columns, type }) => {
     switch (styleType) {
       case 'Código do Lote':
       case 'Código QR Code':
-      const reducedHashValue = cell.render('Cell').props.value.slice(0, 8)
-      return (
-          <TableBodyContainerText>
-            <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
-              {reducedHashValue}
-            </TableBodyInnerContainerTextCodeLote>
-          </TableBodyContainerText>
-        )
+        const reducedHashValue = cell.render('Cell').props.value.slice(0, 8)
+        return (
+            <TableBodyContainerText>
+              <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
+                {reducedHashValue}
+              </TableBodyInnerContainerTextCodeLote>
+            </TableBodyContainerText>
+          )
       case 'Estado': 
         return (
           <TableBodyInnerContainerText {...cell.getCellProps()}>

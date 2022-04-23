@@ -87,6 +87,7 @@ const EnterpriseQRCodes = () => {
           </TableButtonsContainer>
           <ListTable
             columns={columns}
+            setData={setQRCodes}
             data={qrcodes}
             type={'qrcodes'}
           />

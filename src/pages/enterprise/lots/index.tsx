@@ -109,7 +109,7 @@ const EnterpriseLots = () => {
               <TableButtonText>Criar QR Code</TableButtonText>
             </TableButton>
           </TableButtonsContainer>
-          <ListTable columns={columns} data={lotsState} type={'lots'} />
+          <ListTable setData={setLotsState} columns={columns} data={lotsState} type={'lots'} />
         </RightSectionContainer>
       </Container>
     </>
