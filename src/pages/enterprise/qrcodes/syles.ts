@@ -60,7 +60,7 @@ export const TableButtonsContainer = styled.div`
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-end;
-  margin: 0.5rem;
+  margin-top: 1rem;
 `
 
 export const TableButton = styled.button`
@@ -72,7 +72,6 @@ export const TableButton = styled.button`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
   border-radius: 2px;
 `

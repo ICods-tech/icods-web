@@ -96,10 +96,10 @@ const ListTable = ({ data, setData, columns, type }) => {
       </FunctionalitiesContainer>
     ),
   }))
-
+  
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
-    data,
+    data, 
   })
 
   const styleRow = (styleType, cell) => {
@@ -130,7 +130,7 @@ const ListTable = ({ data, setData, columns, type }) => {
   }
 
     return (
-      <TableContainer {...getTableProps()}>
+    <TableContainer {...getTableProps()}>
         <TableHeaderOuterContainer>
           {headerGroups.map((headerGroup) => (
             <TableHeaderContainer {...headerGroup.getHeaderGroupProps()}>

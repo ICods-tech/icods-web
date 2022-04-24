@@ -11,6 +11,7 @@ import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
 import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
+import { BodyContainer } from '../clients/styles'
 import {
   ButtonIconContainer,
   Container,
@@ -103,13 +104,15 @@ const EnterpriseLots = () => {
         <RightSectionContainer>
           <HeaderClient pageType="lots" name="iCods Tech" client={String(name)} />
           <GrayDivider />
-          <TableButtonsContainer>
-            <TableButton onClick={() => setCreateLotModalOpen(true)}>
-              <ButtonIconContainer src="/images/enterprise/qrcodes.svg" alt="Create QR Codes" />
-              <TableButtonText>Criar QR Code</TableButtonText>
-            </TableButton>
-          </TableButtonsContainer>
-          <ListTable setData={setLotsState} columns={columns} data={lotsState} type={'lots'} />
+          <BodyContainer>
+            <TableButtonsContainer>
+              <TableButton onClick={() => setCreateLotModalOpen(true)}>
+                <ButtonIconContainer src="/images/enterprise/qrcodes.svg" alt="Create QR Codes" />
+                <TableButtonText>Criar QR Code</TableButtonText>
+              </TableButton>
+            </TableButtonsContainer>
+            <ListTable setData={setLotsState} columns={columns} data={lotsState} type={'lots'} />
+          </BodyContainer>
         </RightSectionContainer>
       </Container>
     </>

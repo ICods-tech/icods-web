@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const TableContainer = styled.table`
   margin-top: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+  border-right: 1px solid rgba(0, 0, 0, 0.17);
+  border-left: 1px solid rgba(0, 0, 0, 0.17);
   width: 100%;
   align-self: end;
 `
@@ -57,13 +59,14 @@ export const TableHeaderText = styled.th`
   font-size: 16px;
   line-height: 22px;
   color: var(--shape);
+  border: none;
 `
 
 export const TableBodyContainer = styled.tbody``
 
 export const TableBodyInnerContainer = styled.tr`
-  border: 0;
   text-align: center;
+  height: 6rem;
 `
 
 export const TableBodyInnerContainerText = styled.td`
@@ -85,7 +88,7 @@ export const TableBodyInnerContainerTextCodeLote = styled.td`
   color: #fff;
   background: #000000;
   border-radius: 6px;
-  padding: 0.1667rem 1.3333rem;
+  padding: 0.2rem 1.4rem;
 `
 
 export const TableBodyContainerText = styled.div`

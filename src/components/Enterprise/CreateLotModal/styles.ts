@@ -26,6 +26,7 @@ export const TopModalTitleText = styled.h1`
 
 export const CloseIcon = styled.img`
   cursor: pointer;
+  width: 1.2rem;
 `
 
 export const MidModalContainer = styled.div`

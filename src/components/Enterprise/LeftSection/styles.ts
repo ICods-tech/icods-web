@@ -6,11 +6,12 @@ interface MenuOptionContainerProps {
 
 export const LeftSectionContainer = styled.div`
   width: 17.188rem;
-  display: flex;
+  display: flex;border: 0.5px solid rgba(0, 0, 0, 0.17);
   flex-direction: column;
   background-color: #171717;
   align-items: center;
   padding-top: 1.5rem;
+  height: 100%;
 `
 
 export const MenuOptionContainer = styled.div<MenuOptionContainerProps>`

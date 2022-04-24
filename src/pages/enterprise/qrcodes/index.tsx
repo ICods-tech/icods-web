@@ -10,6 +10,7 @@ import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
 import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
+import { BodyContainer } from '../clients/styles'
 import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
 
 function qrcodesColumns() {
@@ -29,8 +30,8 @@ function qrcodesColumns() {
       },
     ],
     []
-  )
-
+    )
+    
   return columns
 }
 
@@ -79,18 +80,20 @@ const EnterpriseQRCodes = () => {
         <RightSectionContainer>
           <HeaderClient pageType='qrcodes' name="iCods Tech" id={String(id)}/>
           <GrayDivider />
-          <TableButtonsContainer>
-            <TableButton onClick={() => handleClickPrinter(String(id),false)}>
-              <ButtonIconContainer src="/images/printer.svg" alt="Create QR Codes" />
-              <TableButtonText>Imprmir Lote</TableButtonText>
-            </TableButton>
-          </TableButtonsContainer>
-          <ListTable
-            columns={columns}
-            setData={setQRCodes}
-            data={qrcodes}
-            type={'qrcodes'}
-          />
+          <BodyContainer>
+            <TableButtonsContainer>
+              <TableButton onClick={() => handleClickPrinter(String(id),false)}>
+                <ButtonIconContainer src="/images/printer.svg" alt="Create QR Codes" />
+                <TableButtonText>Imprmir Lote</TableButtonText>
+              </TableButton>
+            </TableButtonsContainer>
+            <ListTable
+              columns={columns}
+              setData={setQRCodes}
+              data={qrcodes}
+              type={'qrcodes'}
+              />
+          </BodyContainer>
         </RightSectionContainer>
       </Container>
     </>
