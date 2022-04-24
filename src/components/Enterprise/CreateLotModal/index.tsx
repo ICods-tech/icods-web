@@ -11,17 +11,13 @@ import { AuthContext } from '../../../context/auth'
 import {
   ButtonsContainer,
   CancelButton,
-  ClientDropdown,
-  ClientLabel,
+  ClientDropdown, ClientInputContainer, ClientLabel,
   CloseIcon,
   Container,
   CreateQRCodesButton,
   FooterContainer,
   MidModalContainer,
-  QRCodeQuantityInput,
-  RegisterClientContainer,
-  RegisterClientText,
-  TopModalContainer,
+  QRCodeQuantityInput, QuantityInputContainer, RegisterClientContainer, TopModalContainer,
   TopModalTitleText
 } from './styles'
 
@@ -30,7 +26,7 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
   const customStyles = {
     content: {
       width: '32.6875rem',
-      height: '33.75rem',
+      height: '30rem',
       top: '50%',
       left: '50%',
       right: 'auto',
@@ -123,27 +119,31 @@ const CreateLotModal = ({ createLotModalOpen, closeModal }) => {
           />
         </TopModalContainer>
         <MidModalContainer>
-          <ClientLabel>Cliente:</ClientLabel>
-          <ClientDropdown
-            options={clients}
-            onChange={(option: Option) => setSelectedOption(option)}
-            value={defaultOption}
-            placeholder={
-              clients.length === 0 ? 'Nenhum cliente cadastrado' : 'Selecione um cliente'
-            }
-            disabled={clients.length === 0}
-          />
-          <RegisterClientContainer onClick={() => router.push('clients/create')}>
-            <AddUser set="light" size={14} primaryColor="var(--background)" />
-            <RegisterClientText>Cadastre um cliente aqui</RegisterClientText>
-          </RegisterClientContainer>
-          <ClientLabel>Quantidade de QR Codes:</ClientLabel>
-          <QRCodeQuantityInput
-            value={numberOfQrCodes}
-            onChange={(e) => {
-              setNumberOfQrCodes(Number(e.target.value))
-            }}
-          />
+          <ClientInputContainer>
+            <ClientLabel>Cliente:</ClientLabel>
+            <ClientDropdown
+              options={clients}
+              onChange={(option: Option) => setSelectedOption(option)}
+              value={defaultOption}
+              placeholder={
+                clients.length === 0 ? 'Nenhum cliente cadastrado' : 'Selecione um cliente'
+              }
+              disabled={clients.length === 0}
+              />
+            <RegisterClientContainer onClick={() => router.push('clients/create')}>
+              <AddUser set="light" size={14} primaryColor="#FFF" />
+              {/* <RegisterClientText>Cadastre um cliente aqui</RegisterClientText> */}
+            </RegisterClientContainer>
+          </ClientInputContainer>
+          <QuantityInputContainer>
+            <ClientLabel>Quantidade de QR Codes:</ClientLabel>
+            <QRCodeQuantityInput
+              value={numberOfQrCodes}
+              onChange={(e) => {
+                setNumberOfQrCodes(Number(e.target.value))
+              }}
+              />
+            </QuantityInputContainer>
         </MidModalContainer>
         <FooterContainer>
           <ButtonsContainer>

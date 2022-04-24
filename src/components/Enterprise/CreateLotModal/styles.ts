@@ -30,10 +30,10 @@ export const CloseIcon = styled.img`
 
 export const MidModalContainer = styled.div`
   margin-top: 4rem;
+  margin-left: 1.6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 `
 
 export const ClientLabel = styled.h3`
@@ -43,24 +43,28 @@ export const ClientLabel = styled.h3`
   font-size: 16px;
   line-height: 22px;
   color: var(--text-title);
-  `
+`
 
 export const ClientDropdown = styled(Dropdown)`
-  margin-top: 1rem;
-  width: 17.5rem;
+  width: 22rem;
+  height: 1.2rem;
+  margin-top: -1.2rem;
+  margin-left: 0.2rem;
+  margin-right: 0.8rem;
+  background-color: #FFF
   .Dropdown-control {
     ${ ({disabled} )=> disabled && css`
-      background-color: #C7C9CE  
+      background-color: #C7C9CE
     `}
   }
 `
 
 export const RegisterClientContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  border-radius: 50px;
+  padding: 10px;
+  background-color: var(--background);
   cursor: pointer;
 `
 
@@ -79,8 +83,8 @@ export const QRCodeQuantityInput = styled.input.attrs({
   max: '1000',
   min: '1',
 })`
-  margin-top: 0.5rem;
-  display: flex;
+  margin-left: 0.2rem;
+
   align-items: center;
   justify-content: center;
   width: 4.5rem;
@@ -113,7 +117,7 @@ export const GrayLine = styled.div`
 `
 
 export const CancelButton = styled.button`
-  width: 9.5rem;
+  width: 9rem;
   height: 2.5rem;
   font-family: Manrope;
   font-style: normal;
@@ -129,4 +133,19 @@ export const CancelButton = styled.button`
 export const CreateQRCodesButton = styled(CancelButton)`
   background: var(--background);
   margin-left: 1.125rem;
+`
+
+export const ClientInputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  text-align: center;
+`
+
+export const QuantityInputContainer = styled.div`
+  display: flex;
+  justify-content: start;
+  margin-top: 1.8rem
 `

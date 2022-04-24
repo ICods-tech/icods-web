@@ -23,8 +23,6 @@ const IS_QRCODE = true;
 const LOT = 'lots';
 const QRCODE = 'qrcodes';
 
-// ListTable poderia receber o setData também e quando for deletado retorna
-// um filter com o data sem o item deletado
 const ListTable = ({ data, setData, columns, type }) => {
   const router = useRouter()
   const { getToken } = useContext(AuthContext)

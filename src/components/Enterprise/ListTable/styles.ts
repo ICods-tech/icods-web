@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 export const TableContainer = styled.table`
-  margin-top: 4rem;
+  margin-top: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.17);
-
-  align-self: center;
-  width: 90%;
+  width: 100%;
+  align-self: end;
 `
 
 export const TableButtonsContainer = styled.div`
@@ -25,7 +24,6 @@ export const TableButton = styled.button`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
   border-radius: 2px;
 `

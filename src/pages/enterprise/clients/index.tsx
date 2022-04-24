@@ -18,7 +18,8 @@ import {
   RightSectionContainer,
   TableButton,
   TableButtonsContainer,
-  TableButtonText
+  TableButtonText,
+  BodyContainer
 } from './styles'
 
 function clientsColumns() {
@@ -89,23 +90,25 @@ const EnterpriseClients = () => {
         <RightSectionContainer>
           <HeaderClient pageType="home" name="iCods Tech" />
           <GrayDivider />
-          <TableButtonsContainer>
-            <TableButton onClick={() => setCreateLotModalOpen(true)}>
-              <ButtonIconContainer src="/images/enterprise/qrcodes.svg" alt="Create QR Codes" />
-              <TableButtonText>Criar QR Codes</TableButtonText>
-            </TableButton>
-            <TableButton onClick={() => router.push('clients/create')}>
-              <ButtonIconContainer src="/images/enterprise/add-client.svg" alt="Add Client" />
-              <TableButtonText>Cadastrar cliente</TableButtonText>
-            </TableButton>
-          </TableButtonsContainer>
-          <ListTable
-            columns={columns}
-            key={clients.length}
-            setData={setClients}
-            data={clients}
-            type={'clients'}
-          />
+          <BodyContainer>
+            <TableButtonsContainer>
+              <TableButton onClick={() => setCreateLotModalOpen(true)}>
+                <ButtonIconContainer src="/images/enterprise/qrcodes.svg" alt="Create QR Codes" />
+                <TableButtonText>Criar QR Codes</TableButtonText>
+              </TableButton>
+              <TableButton onClick={() => router.push('clients/create')}>
+                <ButtonIconContainer src="/images/enterprise/add-client.svg" alt="Add Client" />
+                <TableButtonText>Cadastrar cliente</TableButtonText>
+              </TableButton>
+            </TableButtonsContainer>
+            <ListTable
+              columns={columns}
+              key={clients.length}
+              setData={setClients}
+              data={clients}
+              type={'clients'}
+              />
+          </BodyContainer>
         </RightSectionContainer>
       </Container>
     </>
