@@ -2438,6 +2438,11 @@ react-select@^4.3.1:
     react-input-autosize "^3.0.0"
     react-transition-group "^4.3.0"
 
+react-table-scrollbar@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/react-table-scrollbar/-/react-table-scrollbar-0.1.11.tgz#e09887973e54805a478d222d388059a126c99d64"
+  integrity sha512-jfcMyQba5+8n7RQVGx76gw4zWFjyKvfzmMQdq46115Yjl2mBZJkS3KrRdipKZrOR4NC9IbtJ67tmjbfSJInw+w==
+
 react-table@^7.7.0:
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.7.0.tgz#e2ce14d7fe3a559f7444e9ecfe8231ea8373f912"

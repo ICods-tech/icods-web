@@ -18,6 +18,7 @@ import {
   TableHeaderOuterContainer,
   TableHeaderText
 } from './styles'
+import TableScrollbar from 'react-table-scrollbar';
 
 const IS_QRCODE = true;
 const LOT = 'lots';
@@ -26,12 +27,12 @@ const QRCODE = 'qrcodes';
 const ListTable = ({ data, setData, columns, type }) => {
   const router = useRouter()
   const { getToken } = useContext(AuthContext)
-  
+
   const api = new ApiHandler(true, getToken())
-  const handleClickDetail = (id: string, name:string, path: string) => {
+  const handleClickDetail = (id: string, name: string, path: string) => {
     router.push(`${path}?id=${id}&name=${name}`)
   }
-  
+
   const handleClickDeleteClient = async (id: string) => {
     try {
       await api.delete(`${BUSINESS_PATH}/clients/${id}`)
@@ -48,32 +49,32 @@ const ListTable = ({ data, setData, columns, type }) => {
       await api.delete(`${BUSINESS_PATH}/${isQRcode ? QRCODE : LOT}/${id}`)
       const newData = data.filter(qrcode => qrcode.id !== id)
       setData(newData)
-      displayToast(`${isQRcode? "QRCode" : "Lote"} deletado com sucesso!`, 'info')
+      displayToast(`${isQRcode ? "QRCode" : "Lote"} deletado com sucesso!`, 'info')
     } catch (error) {
-      displayToast(`Falha ao deletar o ${isQRcode? "QRCode" : "Lote"}!`, 'error')
+      displayToast(`Falha ao deletar o ${isQRcode ? "QRCode" : "Lote"}!`, 'error')
       console.log(error)
     }
   }
 
   const handleClickPrinter = async (id: string, isQRcode: boolean) => {
-    const {data} = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + "?qrcode=" + isQRcode)
-    window.open("data:application/pdf;charset=utf-16le;base64,"+data);
+    const { data } = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + "?qrcode=" + isQRcode)
+    window.open("data:application/pdf;charset=utf-16le;base64," + data);
   }
 
   const functionsClients = {
-    clientsDetails: (id: string, name:string) => handleClickDetail(id, name, PATH_LIST_LOTS),
+    clientsDetails: (id: string, name: string) => handleClickDetail(id, name, PATH_LIST_LOTS),
     clientsChat: (id: string) => { },
     clientsDelete: (id: string) => handleClickDeleteClient(id),
   }
 
   const functionsLots = {
-    lotsDetails: (id: string,name: string) => handleClickDetail(id, name ,PATH_LIST_QRCODES),
-    lotsPrinter: (id: string) => handleClickPrinter(id,!IS_QRCODE),
+    lotsDetails: (id: string, name: string) => handleClickDetail(id, name, PATH_LIST_QRCODES),
+    lotsPrinter: (id: string) => handleClickPrinter(id, !IS_QRCODE),
     deleteLot: (id: string) => handleClickDelete(id, !IS_QRCODE),
   }
 
   const functionsQRCodes = {
-    qrcodePrinter: (id: string) => handleClickPrinter(id,IS_QRCODE),
+    qrcodePrinter: (id: string) => handleClickPrinter(id, IS_QRCODE),
     deleteQRCode: (id: string) => handleClickDelete(id, IS_QRCODE),
   }
 
@@ -88,18 +89,18 @@ const ListTable = ({ data, setData, columns, type }) => {
       <FunctionalitiesContainer>
         <Functionalities
           clicked={(functionalityType) => {
-            const { id, name , } = client
-            functionsTypes[type][functionalityType](id,name)
+            const { id, name, } = client
+            functionsTypes[type][functionalityType](id, name)
           }}
           type={type}
         />
       </FunctionalitiesContainer>
     ),
   }))
-  
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
     columns,
-    data, 
+    data,
   })
 
   const styleRow = (styleType, cell) => {
@@ -108,29 +109,30 @@ const ListTable = ({ data, setData, columns, type }) => {
       case 'Código QR Code':
         const reducedHashValue = cell.render('Cell').props.value.slice(0, 8)
         return (
-            <TableBodyContainerText>
-              <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
-                {reducedHashValue}
-              </TableBodyInnerContainerTextCodeLote>
-            </TableBodyContainerText>
-          )
-      case 'Estado': 
+          <TableBodyContainerText>
+            <TableBodyInnerContainerTextCodeLote {...cell.getCellProps()}>
+              {reducedHashValue}
+            </TableBodyInnerContainerTextCodeLote>
+          </TableBodyContainerText>
+        )
+      case 'Estado':
         return (
           <TableBodyInnerContainerText {...cell.getCellProps()}>
             <Status type={cell.value} />
           </TableBodyInnerContainerText>
         )
-      default: 
-        return(
+      default:
+        return (
           <TableBodyInnerContainerText {...cell.getCellProps()}>
-              {cell.render('Cell')}
+            {cell.render('Cell')}
           </TableBodyInnerContainerText>
         )
-      }
+    }
   }
 
-    return (
-    <TableContainer {...getTableProps()}>
+  return (
+    <TableScrollbar height="600px">
+      <TableContainer {...getTableProps()}>
         <TableHeaderOuterContainer>
           {headerGroups.map((headerGroup) => (
             <TableHeaderContainer {...headerGroup.getHeaderGroupProps()}>
@@ -155,7 +157,8 @@ const ListTable = ({ data, setData, columns, type }) => {
           })}
         </TableBodyContainer>
       </TableContainer>
-    )
-  }
+    </TableScrollbar>
+  )
+}
 
-  export default ListTable
+export default ListTable
