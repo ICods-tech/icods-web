@@ -97,6 +97,7 @@ export const TableBodyContainerText = styled.div`
   align-items: center;
   justify-content: center;
   height: 4rem;
+  margin-top:1rem
 `
 
 // functionalities
