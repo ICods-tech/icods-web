@@ -19,11 +19,10 @@ import {
   TableButton,
   TableButtonsContainer,
   TableButtonText,
-  BodyContainer
+  BodyContainer,
 } from './styles'
 
 function clientsColumns() {
-
   const columns = useMemo(
     () => [
       {
@@ -60,7 +59,7 @@ const EnterpriseClients = () => {
   const [createLotModalOpen, setCreateLotModalOpen] = useState(false)
   const [clients, setClients] = useState([])
   const columns = clientsColumns()
- 
+
   const getClients = async () => {
     const { data } = await api.get(`${BUSINESS_PATH}/clients`)
     return data.map((client) => ({ ...client, updated_at: formatDateToTable(client.updated_at) }))
@@ -73,7 +72,7 @@ const EnterpriseClients = () => {
       .catch((err) => console.error(err))
   }, [validatorToken])
 
-  console.log("CALL HANDLE DATA: ",clients)
+  console.log('CALL HANDLE DATA: ', clients)
 
   return (
     <>
@@ -107,7 +106,7 @@ const EnterpriseClients = () => {
               setData={setClients}
               data={clients}
               type={'clients'}
-              />
+            />
           </BodyContainer>
         </RightSectionContainer>
       </Container>

@@ -8,7 +8,8 @@ import { AuthContext } from '../../../context/auth'
 import { Functionalities } from '../../Functionalities'
 import Status from '../Status'
 import {
-  FunctionalitiesContainer, TableBodyContainer,
+  FunctionalitiesContainer,
+  TableBodyContainer,
   TableBodyContainerText,
   TableBodyInnerContainer,
   TableBodyInnerContainerText,
@@ -16,13 +17,13 @@ import {
   TableContainer,
   TableHeaderContainer,
   TableHeaderOuterContainer,
-  TableHeaderText
+  TableHeaderText,
 } from './styles'
-import TableScrollbar from 'react-table-scrollbar';
+import TableScrollbar from 'react-table-scrollbar'
 
-const IS_QRCODE = true;
-const LOT = 'lots';
-const QRCODE = 'qrcodes';
+const IS_QRCODE = true
+const LOT = 'lots'
+const QRCODE = 'qrcodes'
 
 const ListTable = ({ data, setData, columns, type }) => {
   const router = useRouter()
@@ -36,7 +37,7 @@ const ListTable = ({ data, setData, columns, type }) => {
   const handleClickDeleteClient = async (id: string) => {
     try {
       await api.delete(`${BUSINESS_PATH}/clients/${id}`)
-      const newData = data.filter(client => client.id !== id)
+      const newData = data.filter((client) => client.id !== id)
       setData(newData)
       displayToast(`Cliente deletado com sucesso!`, 'info')
     } catch (error) {
@@ -47,23 +48,23 @@ const ListTable = ({ data, setData, columns, type }) => {
   const handleClickDelete = async (id: string, isQRcode: boolean) => {
     try {
       await api.delete(`${BUSINESS_PATH}/${isQRcode ? QRCODE : LOT}/${id}`)
-      const newData = data.filter(qrcode => qrcode.id !== id)
+      const newData = data.filter((qrcode) => qrcode.id !== id)
       setData(newData)
-      displayToast(`${isQRcode ? "QRCode" : "Lote"} deletado com sucesso!`, 'info')
+      displayToast(`${isQRcode ? 'QRCode' : 'Lote'} deletado com sucesso!`, 'info')
     } catch (error) {
-      displayToast(`Falha ao deletar o ${isQRcode ? "QRCode" : "Lote"}!`, 'error')
+      displayToast(`Falha ao deletar o ${isQRcode ? 'QRCode' : 'Lote'}!`, 'error')
       console.log(error)
     }
   }
 
   const handleClickPrinter = async (id: string, isQRcode: boolean) => {
-    const { data } = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + "?qrcode=" + isQRcode)
-    window.open("data:application/pdf;charset=utf-16le;base64," + data);
+    const { data } = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + '?qrcode=' + isQRcode)
+    window.open('data:application/pdf;charset=utf-16le;base64,' + data)
   }
 
   const functionsClients = {
     clientsDetails: (id: string, name: string) => handleClickDetail(id, name, PATH_LIST_LOTS),
-    clientsChat: (id: string) => { },
+    clientsChat: (id: string) => {},
     clientsDelete: (id: string) => handleClickDeleteClient(id),
   }
 
@@ -89,7 +90,7 @@ const ListTable = ({ data, setData, columns, type }) => {
       <FunctionalitiesContainer>
         <Functionalities
           clicked={(functionalityType) => {
-            const { id, name, } = client
+            const { id, name } = client
             functionsTypes[type][functionalityType](id, name)
           }}
           type={type}
@@ -131,7 +132,7 @@ const ListTable = ({ data, setData, columns, type }) => {
   }
 
   return (
-    <TableScrollbar height="600px">
+    <TableScrollbar style={{ overflowX: 'hidden' }} height="70vh">
       <TableContainer {...getTableProps()}>
         <TableHeaderOuterContainer>
           {headerGroups.map((headerGroup) => (

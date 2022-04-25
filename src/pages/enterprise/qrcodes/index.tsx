@@ -11,7 +11,15 @@ import ListTable from '../../../components/Enterprise/ListTable'
 import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
 import { BodyContainer } from '../clients/styles'
-import { ButtonIconContainer, Container, GrayDivider, RightSectionContainer, TableButton, TableButtonsContainer, TableButtonText } from './syles'
+import {
+  ButtonIconContainer,
+  Container,
+  GrayDivider,
+  RightSectionContainer,
+  TableButton,
+  TableButtonsContainer,
+  TableButtonText,
+} from './syles'
 
 function qrcodesColumns() {
   const columns = useMemo(
@@ -30,13 +38,12 @@ function qrcodesColumns() {
       },
     ],
     []
-    )
-    
+  )
+
   return columns
 }
 
 const EnterpriseQRCodes = () => {
-
   const router = useRouter()
   const { id } = router.query
 
@@ -50,9 +57,8 @@ const EnterpriseQRCodes = () => {
   }
 
   useEffect(() => {
-    getQRCodes();
-  },[])
-
+    getQRCodes()
+  }, [])
 
   const { getToken } = useContext(AuthContext)
   const api = new ApiHandler(true, getToken())
@@ -61,8 +67,8 @@ const EnterpriseQRCodes = () => {
   const columns = qrcodesColumns()
 
   const handleClickPrinter = async (id: string, isQRcode: boolean) => {
-    const {data} = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + "?qrcode=" + isQRcode)
-    window.open("data:application/pdf;charset=utf-16le;base64,"+data);
+    const { data } = await api.get(`${BUSINESS_PATH}/qrcode-file/` + id + '?qrcode=' + isQRcode)
+    window.open('data:application/pdf;charset=utf-16le;base64,' + data)
   }
 
   return (
@@ -78,21 +84,16 @@ const EnterpriseQRCodes = () => {
           closeModal={() => setCreateLotModalOpen(false)}
         />
         <RightSectionContainer>
-          <HeaderClient pageType='qrcodes' name="iCods Tech" id={String(id)}/>
+          <HeaderClient pageType="qrcodes" name="iCods Tech" id={String(id)} />
           <GrayDivider />
           <BodyContainer>
             <TableButtonsContainer>
-              <TableButton onClick={() => handleClickPrinter(String(id),false)}>
+              <TableButton onClick={() => handleClickPrinter(String(id), false)}>
                 <ButtonIconContainer src="/images/printer.svg" alt="Create QR Codes" />
                 <TableButtonText>Imprmir Lote</TableButtonText>
               </TableButton>
             </TableButtonsContainer>
-            <ListTable
-              columns={columns}
-              setData={setQRCodes}
-              data={qrcodes}
-              type={'qrcodes'}
-              />
+            <ListTable columns={columns} setData={setQRCodes} data={qrcodes} type={'qrcodes'} />
           </BodyContainer>
         </RightSectionContainer>
       </Container>
@@ -101,4 +102,3 @@ const EnterpriseQRCodes = () => {
 }
 
 export default EnterpriseQRCodes
-
