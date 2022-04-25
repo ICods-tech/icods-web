@@ -54,7 +54,5 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
 
    @media (max-width: 825px) {
        margin-right: 2.8rem;
-  //   margin-bottom: 0.75rem;
-  //   margin-top: 2rem;
   }
 `;

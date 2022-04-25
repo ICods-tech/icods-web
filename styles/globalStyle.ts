@@ -51,6 +51,10 @@ const GlobalStyle = createGlobalStyle`
         
   }
 
+  button {
+    margin: 0;
+  }
+
   a { 
     text-decoration: none;
     font-weight: 600;
