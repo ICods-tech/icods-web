@@ -2,11 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   :root {
-        --background: #f0f2f5;
+        --background: #2B90D9;
         --main: #171717;
-        
-        --text-shape: #ffffff;
-        --text-dark: rgba(0, 0, 0, 0.87);
+        --shape: #ffffff;
+        --text-title: rgba(0, 0, 0, 0.87);
+        --dark-void: #171717;
   }
   
   
@@ -23,20 +23,32 @@ const GlobalStyle = createGlobalStyle`
 
 
   * { 
-    font-family: 'Manrope', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
     /* background: teal; */
-    /* font-famil */
-    /* overflow: hidden; */
   }
 
   body {
     max-height: 100vh;
     max-width: 100vw;
-    background: #2B90D9;
+  }
+
+  body, input, button, textArea {
+    // por padrão o input, button e textArea não herdam a fonte do body, por isso forçamos aqui
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+  }
+  
+  h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 600;
+  }
+
+  button {
+    cursor: pointer;
+    margin: 0;
+        
   }
 
   button {
@@ -45,6 +57,8 @@ const GlobalStyle = createGlobalStyle`
 
   a { 
     text-decoration: none;
+    font-weight: 600;
+
   }
 
   h1 { 
@@ -57,10 +71,6 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: 0.02em;
     font-weight: 300;
     line-height: 2rem;
-  }
-
-  a {
-    font-weight: 600;
   }
 `
 
