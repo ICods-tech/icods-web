@@ -20,7 +20,7 @@ import {
   TableButtonsContainer,
   TableButtonText,
   BodyContainer,
-} from './styles'
+} from '../../../pageStyles/clientsStyles'
 
 function clientsColumns() {
   const columns = useMemo(

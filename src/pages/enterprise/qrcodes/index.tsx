@@ -10,7 +10,7 @@ import LeftSection from '../../../components/Enterprise/LeftSection'
 import ListTable from '../../../components/Enterprise/ListTable'
 import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
-import { BodyContainer } from '../clients/styles'
+import { BodyContainer } from '../../../pageStyles/clientsStyles'
 import {
   ButtonIconContainer,
   Container,
@@ -19,7 +19,7 @@ import {
   TableButton,
   TableButtonsContainer,
   TableButtonText,
-} from './syles'
+} from '../../../pageStyles/qrcodeStyles'
 
 function qrcodesColumns() {
   const columns = useMemo(

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import Head from 'next/head'
-import { Container, GrayDivider, RightSectionContainer } from './styles'
+import { Container, GrayDivider, RightSectionContainer } from '../../../../pageStyles/createStyles'
 import 'react-dropdown/style.css'
 import GlobalStyle from '../../../../../styles/globalStyle'
 import { HeaderClient } from '../../../../components/Enterprise/ClientsSection/Header'

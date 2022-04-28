@@ -12,7 +12,7 @@ import { PATH_LIST_CLIENTS } from "../../../constants/urls"
 import { AuthContext } from '../../../context/auth'
 import {
   BoldHeaderLoginText, CheckboxRememberMe, ContactUsContainer, ContactUsHighlightedText, ContactUsText, ContentContainer, EnterButtonContainer, HeaderLoginContainer, HeaderLoginText, ICodsDescriptionText, ICodsEnterpriseLogoLarge, InputLoginText, LabelLoginText, LeftWave, LeftWaveContainer, LoginInformationContainer, LoginSectionContainer, LogoAndDescriptionContainer
-} from './styles'
+} from '../../../pageStyles/loginStyles'
 
 const options = getDropdownOptions()
 const defaultOption = options[0]
