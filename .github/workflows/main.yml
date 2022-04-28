@@ -1,0 +1,12 @@
+name: Pushes to Repository
+uses: ICodsTech/icods-web@dev
+
+env:
+  API_TOKEN_GITHUB: ${{secrets.GIT_PAT_TOKEN}}
+  
+with:
+  user-name: "Icods Tech"
+  user-email: icods.tech@gmail.com
+  destination-github-username: "ICods Tech"
+  destination-repository-name: "icods-web"
+  target-branch: dev
