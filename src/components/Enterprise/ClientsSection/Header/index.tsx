@@ -83,7 +83,7 @@ export const HeaderClient = ({ pageType, name, client= "", id="", position }: He
       {headerTypes[pageType]()}
       <RightSectionContainer>
         <NameAndPositionOuterContainer>
-          {/* <Avatar fgColor="rgba(0, 0, 0, 0.87)" color="#fff" name={name} round size={'5rem'} /> */}
+          <Avatar fgColor="rgba(0, 0, 0, 0.87)" color="#fff" name={name} round size={'5rem'} />
           <NameAndPositionTextContainer>
             <NameAndPositionText>{name}</NameAndPositionText>
             {/* Aguardando criação da funcionalidade na API */}
