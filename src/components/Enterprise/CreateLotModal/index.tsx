@@ -1,17 +1,22 @@
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
 import { Option } from 'react-dropdown'
-import 'react-dropdown/style.css'
+import Dropdown from 'react-dropdown'
+
+// import 'react-dropdown/style.css'
 import { AddUser } from 'react-iconly'
 import Modal from 'react-modal'
 import ApiHandler from '../../../../services/apiHandler'
 import { displayToast } from '../../../../utils/displayToast'
 import { BUSINESS_PATH } from '../../../constants/urls'
 import { AuthContext } from '../../../context/auth'
+// ClientDropdown
 import {
   ButtonsContainer,
   CancelButton,
-  ClientDropdown, ClientInputContainer, ClientLabel,
+  ClientDropdown,
+  ClientInputContainer, 
+  ClientLabel,
   CloseIcon,
   Container,
   CreateQRCodesButton,
