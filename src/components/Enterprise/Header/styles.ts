@@ -7,26 +7,24 @@ export const Container = styled.header`
 
   align-items: center;
   justify-content: center;
-  padding: 0 3.063rem;
+  padding: 0 3rem;
 `;
 
 export const LogoImg = styled.img`
   width: 5.25rem;
-  height: 5.749rem;
+  height: 5.25rem;
 
   position: absolute;
-  left: 3.063rem;
+  top: 2rem;
+  left: 3rem;
 `
 
 export const NavBar = styled.nav`
   display: flex;
   max-width: 32.625rem;
-  background-color: var(--main);
 `;
 
 export const NavBarLink = styled.a`
-  color: var(--shape);
-    
     & + a {
       margin-left: 2rem;
     }

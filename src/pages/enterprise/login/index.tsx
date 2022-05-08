@@ -45,7 +45,7 @@ const EnterpriseLogin = () => {
       <Head>
         <title>Empresarial | ICods</title>
       </Head>
-      <Header />
+      <Header darkMode={true}/>
       <LeftWave src="/images/enterprise/wave-left.svg" alt="Wave left" />
       <ContentContainer>
         <LeftWaveContainer>
