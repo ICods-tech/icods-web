@@ -48,10 +48,9 @@ export const Footer = () => {
 
           <SubSectionFooter marginTop="0">
             <SubSectionFooterTitle>Produto</SubSectionFooterTitle>
-            <SubSectionFooterLinks href="#">Baixar</SubSectionFooterLinks>
+            <SubSectionFooterLinks href="https://icodsmobile.page.link/icods">Baixar</SubSectionFooterLinks>
             <SubSectionFooterLinks href="#">Usar iCODS? Por que?</SubSectionFooterLinks>
-            <SubSectionFooterLinks href="#">Atualizações</SubSectionFooterLinks>
-            <SubSectionFooterLinks href="#">Para Empresas</SubSectionFooterLinks>
+            <SubSectionFooterLinks href="/enterprise/login">Para Empresas</SubSectionFooterLinks>
           </SubSectionFooter>
         
         <SubSectionFooter marginTop="0">
@@ -60,7 +59,6 @@ export const Footer = () => {
             </SubSectionFooterTitle>
             <SubSectionFooterLinks href="#">Sobre</SubSectionFooterLinks>
             <SubSectionFooterLinks href="#">Empregos</SubSectionFooterLinks>
-            <SubSectionFooterLinks href="#">Marca</SubSectionFooterLinks>
           </SubSectionFooter>
           
           <SubSectionFooter marginTop="40px">
@@ -70,17 +68,14 @@ export const Footer = () => {
 
             <SubSectionFooterLinks href="#">Estou com problemas</SubSectionFooterLinks>
             <SubSectionFooterLinks href="#">Status do aplicativo</SubSectionFooterLinks>
+            <SubSectionFooterLinks href="#">Atualizações</SubSectionFooterLinks>
             <SubSectionFooterLinks href="#">Contate-nos</SubSectionFooterLinks>
           </SubSectionFooter>
           
           <SubSectionFooter marginTop="40px">
-            <SubSectionFooterTitle>
-              Política
-            </SubSectionFooterTitle>
-
-            <SubSectionFooterLinks href="#">Licenças</SubSectionFooterLinks>
+            <SubSectionFooterTitle> Política </SubSectionFooterTitle>
             <SubSectionFooterLinks href="terms">Termos de uso</SubSectionFooterLinks>
-            <SubSectionFooterLinks href="#">Reconhecimentos</SubSectionFooterLinks>
+            <SubSectionFooterLinks href="politcs">Politicas de privacidade</SubSectionFooterLinks>
           </SubSectionFooter>
           </SubSectionFooterGridLinks>
       </FooterContainer>
