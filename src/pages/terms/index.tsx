@@ -1,9 +1,18 @@
 import Head from 'next/head'
 import 'react-dropdown/style.css'
 import GlobalStyle from '../../../styles/globalStyle'
-import { Header } from "../../components/Enterprise/Header"
+import { Header } from '../../components/Enterprise/Header'
 import { Footer } from '../../components/Footer'
-import { ChangesTermsConditions, ContactUs, ContainerBody, ContentContainer, Paragraph, SectionContainer, Subtitle, TermsConditions } from '../../pageStyles/termsStyles'
+import {
+  ChangesTermsConditions,
+  ContactUs,
+  ContainerBody,
+  ContentContainer,
+  Paragraph,
+  SectionContainer,
+  Subtitle,
+  TermsConditions,
+} from '../../pageStyles/termsStyles'
 
 const Terms = () => {
   return (
@@ -19,65 +28,112 @@ const Terms = () => {
         </SectionContainer>
         <ContainerBody>
           <TermsConditions>
-            <Subtitle>
-              Terms & Conditions
-            </Subtitle>
+            <Subtitle>Termos e Condições </Subtitle>
             <Paragraph>
-              By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages, or make derivative versions. The app itself, and all the trade marks, copyright, database rights and other intellectual property rights related to it, still belong to iCods.
+              Ao descarregar ou utilizar a aplicação, estes termos aplicar-se-ão automaticamente a
+              si - deve, portanto, certificar-se de que os lê cuidadosamente antes de utilizar a
+              aplicação. Não está autorizado a copiar, ou modificar a aplicação, qualquer parte da
+              aplicação, ou as nossas marcas comerciais, de forma alguma. Não está autorizado a
+              tentar extrair o código fonte do aplicativo, e também não deve tentar traduzir o
+              aplicativo para outras línguas, ou fazer versões derivadas. A própria aplicação, e
+              todas as marcas registadas, direitos de autor, direitos de base de dados e outros
+              direitos de propriedade intelectual relacionados com a mesma, ainda pertencem ao
+              iCods.
             </Paragraph>
             <Paragraph>
-              iCods is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.
+              O iCods está empenhado em assegurar que a aplicação seja tão útil e eficiente quanto
+              possível. Por esse motivo, reservamo-nos o direito de fazer alterações à aplicação ou
+              de cobrar pelos seus serviços, em qualquer altura e por qualquer razão. Nunca lhe
+              cobraremos pela aplicação ou pelos seus serviços sem lhe tornarmos muito claro o que
+              está a pagar.
             </Paragraph>
             <Paragraph>
-              The iCods app stores and processes personal data that you have provided to us, in order to provide our Service. It’s your responsibility to keep your phone and access to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone’s security features and it could mean that the iCods app won’t work properly or at all.
+              A aplicação iCods armazena e processa dados pessoais que o cliente nos forneceu, a fim
+              de prestar o nosso Serviço. É da sua responsabilidade manter o seu telefone e o acesso
+              à aplicação em segurança. Por conseguinte, recomendamos-lhe que não quebre ou
+              desenraize o seu telefone, que é o processo de remoção de restrições e limitações de
+              software impostas pelo sistema operativo oficial do seu dispositivo. Pode tornar o seu
+              telefone vulnerável a malware/vírus/ programas maliciosos, comprometer as
+              características de segurança do seu telefone e pode significar que a aplicação iCods
+              não funcionará correctamente ou não funcionará de todo.
             </Paragraph>
             <Paragraph>
-              The app does use third party services that declare their own Terms and Conditions.
+              A aplicação utiliza serviços de terceiros que declaram os seus próprios Termos e
+              Condições.
             </Paragraph>
             <Paragraph>
-              Link to Terms and Conditions of third party service providers used by the app
+              Ligação aos Termos e Condições de fornecedores de serviços de terceiros utilizados
+              pela aplicação
             </Paragraph>
 
-            <Paragraph style={{ marginLeft: "30px" }}>
-              <li>
-                Google Play Services
-              </li>
-              <li>
-                Facebook
-              </li>
+            <Paragraph style={{ marginLeft: '30px' }}>
+              <li>Google Play Services</li>
+              <li>Facebook</li>
             </Paragraph>
             <Paragraph>
-              You should be aware that there are certain things that iCods will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi, or provided by your mobile network provider, but iCods cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left.
+              Deve estar ciente de que existem certas coisas pelas quais o iCods não assumirá
+              responsabilidade. Certas funções do aplicativo exigirão que o aplicativo tenha uma
+              ligação activa à Internet. A ligação pode ser Wi-Fi, ou fornecida pelo seu fornecedor
+              de rede móvel, mas iCods não pode assumir a responsabilidade pelo facto de a aplicação
+              não funcionar em pleno se não tiver acesso a Wi-Fi, e não lhe restar nenhum dos seus
+              dados.
             </Paragraph>
             <Paragraph>
-              If you’re using the app outside of an area with Wi-Fi, you should remember that your terms of the agreement with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or other third party charges. In using the app, you’re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without turning off data roaming. If you are not the bill payer for the device on which you’re using the app, please be aware that we assume that you have received permission from the bill payer for using the app.
+              Se estiver a utilizar a aplicação fora de uma área com Wi-Fi, deve lembrar-se que os
+              seus termos do acordo com o seu fornecedor de rede móvel continuarão a ser aplicáveis.
+              Como resultado, poderá ser-lhe cobrado pelo seu fornecedor móvel o custo dos dados
+              durante a duração da ligação ao aceder à aplicação, ou outros encargos de terceiros.
+              Ao utilizar a aplicação, está a aceitar a responsabilidade por tais encargos,
+              incluindo encargos de roaming de dados se utilizar a aplicação fora do seu território
+              de origem (ou seja, região ou país) sem desligar o roaming de dados. Se o cliente não
+              for o pagador da factura do aparelho em que está a utilizar a aplicação, deve estar
+              ciente de que assumimos que recebeu autorização do pagador da factura para utilizar a
+              aplicação.
             </Paragraph>
             <Paragraph>
-              Along the same lines, iCods cannot always take responsibility for the way you use the app i.e. You need to make sure that your device stays charged – if it runs out of battery and you can’t turn it on to avail the Service, iCods cannot accept responsibility.
+              Na mesma linha, iCods nem sempre pode assumir a responsabilidade pela forma como
+              utiliza a aplicação, ou seja, precisa de se certificar de que o seu dispositivo
+              permanece carregado - se ficar sem bateria e não o conseguir ligar para utilizar o
+              Serviço, iCods não pode aceitar a responsabilidade.
             </Paragraph>
             <Paragraph>
-              With respect to iCods’s responsibility for your use of the app, when you’re using the app, it’s important to bear in mind that although we endeavour to ensure that it is updated and correct at all times, we do rely on third parties to provide information to us so that we can make it available to you. iCods accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
+              Com respeito à responsabilidade do iCods pela sua utilização do aplicativo, quando
+              utiliza o aplicativo, é importante ter em mente que, embora nos esforcemos por
+              assegurar que está sempre actualizado e correcto, confiamos em terceiros para nos
+              fornecerem informações para que as possamos colocar à sua disposição. iCods não aceita
+              qualquer responsabilidade por qualquer perda, directa ou indirecta, que o utilizador
+              experimente como resultado de confiar totalmente nesta funcionalidade do aplicativo.
             </Paragraph>
-            <Paragraph> 
-              At some point, we may wish to update the app. The app is currently available on Android & iOS – the requirements for both systems(and for any additional systems we decide to extend the availability of the app to) may change, and you’ll need to download the updates if you want to keep using the app. iCods does not promise that it will always update the app so that it is relevant to you and/or works with the Android & iOS version that you have installed on your device. However, you promise to always accept updates to the application when offered to you, We may also wish to stop providing the app, and may terminate use of it at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must stop using the app, and (if needed) delete it from your device.
+            <Paragraph>
+              A dada altura, poderemos querer actualizar a aplicação. O aplicativo está actualmente
+              disponível no Android & iOS - os requisitos para ambos os sistemas (e para quaisquer
+              sistemas adicionais aos quais decidamos alargar a disponibilidade do aplicativo) podem
+              mudar, e será necessário descarregar as actualizações se quiser continuar a utilizar o
+              aplicativo. iCods não promete que actualizará sempre o aplicativo para que seja
+              relevante para si e/ou funcione com a versão do Android & iOS que tenha instalado no
+              seu dispositivo. No entanto, promete aceitar sempre actualizações à aplicação quando
+              lhe for oferecida, Podemos também desejar deixar de fornecer a aplicação, e podemos
+              terminar a utilização da mesma em qualquer altura sem lhe notificar a conclusão da
+              mesma. A menos que lhe digamos o contrário, após qualquer rescisão, (a) os direitos e
+              licenças concedidos nestes termos cessarão; (b) deverá deixar de utilizar a aplicação,
+              e (se necessário) eliminá-la do seu dispositivo.
             </Paragraph>
           </TermsConditions>
           <ChangesTermsConditions>
-            <Subtitle>
-              Changes to This Terms and Conditions
-            </Subtitle>
+            <Subtitle>Alterações a estes Termos e Condições</Subtitle>
             <Paragraph>
-              We may update our Terms and Conditions from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Terms and Conditions on this page.
+              Podemos actualizar os nossos Termos e Condições de vez em quando. Assim, é
+              aconselhável que reveja esta página periodicamente para quaisquer alterações. Iremos
+              notificar o utilizador de quaisquer alterações, publicando os novos Termos e Condições
+              nesta página.
             </Paragraph>
-            <Paragraph>
-              These terms and conditions are effective as of 2021-11-15
-            </Paragraph>
-
+            <Paragraph>Estes termos e condições são aplicáveis a partir de 2021-11-15</Paragraph>
           </ChangesTermsConditions>
           <ContactUs>
-            <Subtitle>Contact Us</Subtitle>
+            <Subtitle>Contacte-nos</Subtitle>
             <Paragraph>
-              If you have any questions or suggestions about our Terms and Conditions, do not hesitate to contact us at icods.tech@gmail.com.
+              Se tiver quaisquer perguntas ou sugestões sobre os nossos Termos e Condições, não
+              hesite em contactar-nos em icods.tech@gmail.com.
             </Paragraph>
           </ContactUs>
         </ContainerBody>
@@ -87,7 +143,4 @@ const Terms = () => {
   )
 }
 
-
-
 export default Terms
-
