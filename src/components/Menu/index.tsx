@@ -8,7 +8,7 @@ interface MenuProps {
 const Menu = (props: MenuProps) => {
   return (
     <StyledMenu open={props.open}>
-      <a href="/">Baixar</a>
+      <a href="https://icodsmobile.page.link/icods">Baixar</a>
       <a href="/">Porque usar iCODS?</a>
       <a href="/enterprise/login">Empresarial</a>
       <a href="/">Suporte</a>
