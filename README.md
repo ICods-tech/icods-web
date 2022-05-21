@@ -9,3 +9,4 @@
   │   └── vercel-deploy-web
   │     └── icods-web (Repositório pessoal iCods - privado)
 ```
+3. Executar o comando ` ➜ sh script-to-deploy.sh`
