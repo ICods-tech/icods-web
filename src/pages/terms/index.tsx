@@ -19,7 +19,7 @@ const Terms = () => {
     <>
       <GlobalStyle />
       <Head>
-        <title>Empresarial | ICods</title>
+        <title>Empresarial | iCods</title>
       </Head>
       <Header darkMode={false} />
       <ContentContainer>
