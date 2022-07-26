@@ -74,7 +74,7 @@ const Home = () => {
 
   return (
     <HomePage>
-      <Head> <title>ICods</title> </Head>
+      <Head> <title>iCods</title> </Head>
 
       < BlueCloud src="./images/blueCloud.svg"/>
       <InitSection>
