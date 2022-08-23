@@ -31,10 +31,10 @@ const Home = () => {
 
     const qtPages = tutorialContainer.current.children.length;
     tutorialCarrouselContainer.current.appendChild(navigationButtons)
-    
+
     function nextBanner(btn, item) {
       let buttons = navigationButtons.children;
-      
+
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove("selectedItem")
       }
@@ -62,14 +62,14 @@ const Home = () => {
         let a = document.createElement("a")
         a.addEventListener("click", (event) => buttonClicked(event.target, i))
         a.innerText = String(i + 1);
-        
+
         upperDiv.appendChild(a);
       }
-      
+
       navigationButtons.children[0].classList.add("selectedItem");
     }
     insertButtons(navigationButtons);
-    
+
   }, [])
 
   return (
@@ -92,7 +92,7 @@ const Home = () => {
           <Cloud
             time="20s"
             width={122}
-            heigth={80}         
+            heigth={80}
             path="./images/cloud01.svg"
             alt="nuvem 2"
             top="80px"
@@ -102,7 +102,7 @@ const Home = () => {
             <Cloud
               time="25s"
               width={84}
-              heigth={55}         
+              heigth={55}
               path="./images/cloud03.svg"
               alt="nuvem 1"
               top="15px"
@@ -113,7 +113,7 @@ const Home = () => {
             <Cloud
               time="30s"
               width={75}
-              heigth={49}         
+              heigth={49}
               path="./images/cloud03.svg"
               alt="nuvem 3"
               top="220px"
@@ -121,36 +121,24 @@ const Home = () => {
           </ThirdCloudContainer>
           <ContainerText>
 
-            <ContainerTextTitle>Compartilhe emoções de um novo jeito</ContainerTextTitle>  
+            <ContainerTextTitle>Compartilhe emoções de um novo jeito</ContainerTextTitle>
             <ContainerTextParagraph>
               Você quer presentear alguém de uma forma especial? iCods surgiu para te ajudar
               nesse problema, com ele você envia mensagens em forma de QR CODE, seja
-              um vídeo editado exclusivamente por você, uma mensagem de texto feito com 
+              um vídeo editado exclusivamente por você, uma mensagem de texto feito com
               carinho, um áudio ou imagem única, e tudo isso de uma forma acessível e fácil!
             </ContainerTextParagraph>
-            
+
             <DownloadLinks
-            href="#"
+            href="https://play.google.com/store/apps/details?id=com.icodsmobile"
             padding="21px 54px 25px 54px"
             color="#fff"
             backgroundColor="#282C37"
             marginTop="34px"
             border="none"
-            > 
+            >
               <PlaystoreImg src="./images/playstore.svg" />
               Baixar para Android
-            </DownloadLinks>
-            
-            <DownloadLinks
-            href="#"
-            padding="24px 82px 21px 69px"
-            marginTop="23px"
-            color="#2B90D9"
-            backgroundColor="#fff"
-            border="none"
-            > 
-              <IosImg src="./images/ios.svg" />
-              Baixar para IOS
             </DownloadLinks>
           </ContainerText>
 
@@ -160,16 +148,16 @@ const Home = () => {
               < WallpapersInitialSectionImg src='./images/wallpapericods2.svg'/>
           </WallpaperContainer>
       </InitSection>
-      
+
       <ExplanationSection>
         <ExplanationContainer>
           <WallpaperThree src="./images/wallpapericods3.svg" alt="wallpaper two" />
-          
-          <ExplanationText> 
+
+          <ExplanationText>
             <ExplanationTitle>Simples, Rápido e Prático</ExplanationTitle>
             <ExplanationParagraph>
-              Após adquirir um iCODS, você receberá um QR CODE personalizável. Escanei-o pela primeira vez e faça a edição do 
-              seu jeito para aquela pessoa que você deseja presentear. Clique em enviar e espere a outra pessoa escanear seu QR CODE.   
+              Após adquirir um iCODS, você receberá um QR CODE personalizável. Escanei-o pela primeira vez e faça a edição do
+              seu jeito para aquela pessoa que você deseja presentear. Clique em enviar e espere a outra pessoa escanear seu QR CODE.
             </ExplanationParagraph>
           </ExplanationText>
 
@@ -180,11 +168,11 @@ const Home = () => {
       </ExplanationSection>
 
       <FindSection>
-        <FindContainer> 
+        <FindContainer>
           <FindText>
             <FindTitle>Onde Encontrar iCODS?</FindTitle>
             <FindParagraph>
-              Existem 2 formas de se obter um iCODS. A primeira é comprando nas lojas parceiras próximas a você. 
+              Existem 2 formas de se obter um iCODS. A primeira é comprando nas lojas parceiras próximas a você.
               Ja a outa maneira é tornando-se um de nossos revendedores oficiais.
             </FindParagraph>
 
@@ -195,11 +183,11 @@ const Home = () => {
             backgroundColor="#282C37"
             marginTop="46px"
             border="none"
-            > 
+            >
               <LocalizationImg src="./images/localization.svg" />
               Encontrar lojas
             </DownloadLinks>
-            
+
             <DownloadLinks
             href="#"
             padding="24px 32px 21px 31px"
@@ -207,14 +195,14 @@ const Home = () => {
             color="#2B90D9"
             backgroundColor="#fff"
             border="1px solid #2B90D9"
-            > 
+            >
               <BagImg src="./images/bag.svg" />
               Seja um de nossos revendedores
             </DownloadLinks>
           </FindText>
 
           <FindImage src="./images/wallpapericods5.svg" alt="wallpaper three" />
-        </FindContainer>      
+        </FindContainer>
       </FindSection>
 
       <TutorialSection >
@@ -222,31 +210,31 @@ const Home = () => {
           <WavesExplanationSectionImg src="./images/wave2.svg" />
         </WavesContainer>
 
-        <TutorialCarrouselContainer  ref={tutorialCarrouselContainer}> 
+        <TutorialCarrouselContainer  ref={tutorialCarrouselContainer}>
           <TutorialContainer  ref={tutorialContainer}>
-            
-            <TutorialStepContainer 
-              image="./images/tutorial_step0_app.svg" 
+
+            <TutorialStepContainer
+              image="./images/tutorial_step0_app.svg"
               description="Baixe o aplicativo do iCODS no seu smartphone, seja android ou IOS"
             />
-            <TutorialStepContainer 
-              image="./images/tutorial_step1_bag.svg" 
+            <TutorialStepContainer
+              image="./images/tutorial_step1_bag.svg"
               description="Adquira um iCods em uma de nossas lojas parceiras"
             />
-            <TutorialStepContainer 
-              image="./images/tutorial_step2_cell.svg" 
+            <TutorialStepContainer
+              image="./images/tutorial_step2_cell.svg"
               description="Use a camera do seu celular e leia o QR Code"
             />
-            <TutorialStepContainer 
-              image="./images/tutorial_step3_edit.svg" 
+            <TutorialStepContainer
+              image="./images/tutorial_step3_edit.svg"
               description="Edite a mensagem do seu jeito, fique a vontade para usar texto, vídeo e áudio."
             />
-            <TutorialStepContainer 
-              image="./images/tutorial_step4_map.svg" 
+            <TutorialStepContainer
+              image="./images/tutorial_step4_map.svg"
               description="Pronto! Agora basta conferir sua edição e clicar em enviar o iCods."
             />
-            <TutorialStepContainer 
-              image="./images/tutorial_step5_girl.svg" 
+            <TutorialStepContainer
+              image="./images/tutorial_step5_girl.svg"
               description="Agora basta o destinatário ler o QR CODE e visualizar a mensagem."
             />
           </TutorialContainer>
@@ -257,17 +245,17 @@ const Home = () => {
       <CompaniesSection>
         <CompaniesContainer>
           <IcodsAppImg src="./images/icodsImageApp.svg" />
-          
+
           <CompaniesText>
             <CompaniesTitle>Se você é uma empresa, então entre aqui!</CompaniesTitle>
-            <CompaniesParagraph>Nessa área você pode gerenciar seus iCODS, 
-              personalizando-os, realizar impressões em larga escala e contar 
-              com um suporte especializado caso necessário, além de muitas outras funções, 
+            <CompaniesParagraph>Nessa área você pode gerenciar seus iCODS,
+              personalizando-os, realizar impressões em larga escala e contar
+              com um suporte especializado caso necessário, além de muitas outras funções,
               venha conferir!
             </CompaniesParagraph>
 
-            <DownloadLinks 
-              href="#" 
+            <DownloadLinks
+              href="#"
               padding="20px 60px"
               marginTop="79px"
               color="#FFFFFF"
@@ -275,7 +263,7 @@ const Home = () => {
               border="none"
             > <EnterpriseImg src="./images/enterprise.svg"/> Sessão Empresas</DownloadLinks>
           </CompaniesText>
-          
+
         </CompaniesContainer>
       </CompaniesSection>
       <Footer/>
